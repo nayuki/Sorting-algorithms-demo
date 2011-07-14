@@ -9,7 +9,7 @@ import nayuki.sortdemo.SortArray;
  */
 public final class ShellSort extends SortAlgorithm {
 	
-	private static int[] gapSequence = {701, 301, 132, 57, 23, 10, 4, 1};
+	private static int[] gapSequence = {1750, 701, 301, 132, 57, 23, 10, 4, 1};
 	
 	
 	public void sort(SortArray array) {

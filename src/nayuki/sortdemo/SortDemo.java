@@ -12,6 +12,7 @@ Color legend:
 import java.awt.Button;
 import java.awt.Canvas;
 import java.awt.Choice;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -20,6 +21,8 @@ import java.awt.Rectangle;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +30,7 @@ import nayuki.sortdemo.algor.*;
 
 
 @SuppressWarnings("serial")
-public class SortDemo extends AutoCloseFrame implements ActionListener {
+public class SortDemo extends Frame implements ActionListener {
 	
 	public static void main(String[] args) {
 		// Set up list of algorithms
@@ -62,6 +65,12 @@ public class SortDemo extends AutoCloseFrame implements ActionListener {
 	
 	public SortDemo(List<SortAlgorithm> algors) {
 		super("Sort Demo");
+		
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
 		
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();

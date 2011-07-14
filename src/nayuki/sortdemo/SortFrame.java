@@ -17,6 +17,7 @@ final class SortFrame extends Frame {
 		super(algor.getName());
 		this.thread = thread;
 		add(canvas);
+		setResizable(false);
 		pack();
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {

@@ -2,6 +2,7 @@ package nayuki.sortdemo;
 
 import java.awt.Canvas;
 import java.awt.Frame;
+import java.awt.Rectangle;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -27,6 +28,8 @@ final class SortFrame extends Frame {
 			}
 		});
 		
+		Rectangle rect = getGraphicsConfiguration().getBounds();
+		setLocation((rect.width - getWidth()) / 8, (rect.height - getHeight()) / 8);
 		setVisible(true);
 	}
 	

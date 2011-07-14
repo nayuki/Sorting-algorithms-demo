@@ -4,10 +4,10 @@ package nayuki.sortdemo;
 public final class SortThread extends Thread {
 	
 	private SortAlgorithm algorithm;
-	private SortArray array;
+	private SortArrayImpl array;
 	
 	
-	public SortThread(SortAlgorithm algor, SortArray array) {
+	public SortThread(SortAlgorithm algor, SortArrayImpl array) {
 		this.algorithm = algor;
 		this.array = array;
 	}

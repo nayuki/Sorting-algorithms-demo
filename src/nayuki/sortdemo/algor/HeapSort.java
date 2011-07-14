@@ -11,6 +11,7 @@ public final class HeapSort extends SortAlgorithm {
 	
 	public void sort(SortArray array) {
 		// Heapify
+		array.setInactive(0, array.length());
 		for (int i = array.length() - 1; i >= 0; i--)
 			siftDown(array, i, array.length());
 		

@@ -19,12 +19,14 @@ final class SortFrame extends Frame {
 		add(canvas);
 		setResizable(false);
 		pack();
+		
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				SortFrame.this.thread.stop1();
 				dispose();
 			}
 		});
+		
 		setVisible(true);
 	}
 	

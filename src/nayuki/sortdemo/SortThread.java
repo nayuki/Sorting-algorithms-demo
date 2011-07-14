@@ -1,7 +1,7 @@
 package nayuki.sortdemo;
 
 
-public class SortThread extends Thread {
+public final class SortThread extends Thread {
 	
 	private SortAlgorithm algorithm;
 	private SortArray array;

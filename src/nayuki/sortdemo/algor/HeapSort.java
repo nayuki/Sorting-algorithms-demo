@@ -7,7 +7,7 @@ import nayuki.sortdemo.SortArray;
 /**
  * Sorts by building a binary max-heap, then repeatedly extracting the maximum element and prepending it to the sorted subarray at the end of the array. The time complexity is in <var>O</var>(<var>n</var> log <var>n</var>).
  */
-public class HeapSort extends SortAlgorithm {
+public final class HeapSort extends SortAlgorithm {
 	
 	public void sort(SortArray array) {
 		// Heapify

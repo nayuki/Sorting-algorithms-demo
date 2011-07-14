@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 
 
 @SuppressWarnings("serial")
-class SortFrame extends Frame {
+final class SortFrame extends Frame {
 	
 	private SortThread thread;
 	

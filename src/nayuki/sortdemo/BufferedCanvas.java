@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 
 @SuppressWarnings("serial")
-class BufferedCanvas extends Canvas {
+final class BufferedCanvas extends Canvas {
 	
 	private BufferedImage buffer;
 	private Graphics bufferg;

@@ -4,7 +4,7 @@ import nayuki.sortdemo.SortAlgorithm;
 import nayuki.sortdemo.SortArray;
 
 
-public class CocktailSort extends SortAlgorithm {
+public final class CocktailSort extends SortAlgorithm {
 	
 	public void sort(SortArray array) {
 		int left = 0;

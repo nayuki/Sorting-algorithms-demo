@@ -7,7 +7,7 @@ import nayuki.sortdemo.SortArray;
 /**
  * Sorts by finding the smallest element in the unsorted subarray and swapping it to end of the sorted subarray.
  */
-public class SelectionSort extends SortAlgorithm {
+public final class SelectionSort extends SortAlgorithm {
 	
 	public void sort(SortArray array) {
 		for (int i = 0; i < array.length(); i++) {

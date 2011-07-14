@@ -30,7 +30,7 @@ import nayuki.sortdemo.algor.*;
 
 
 @SuppressWarnings("serial")
-public class SortDemo extends Frame implements ActionListener {
+public final class SortDemo extends Frame implements ActionListener {
 	
 	public static void main(String[] args) {
 		// Set up list of algorithms

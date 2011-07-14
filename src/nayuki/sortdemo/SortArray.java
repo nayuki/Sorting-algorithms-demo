@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * An array to be sorted. Elements can be compared and swapped, but their values cannot be accessed directly.
  */
-public class SortArray {
+public final class SortArray {
 	
 	private static Random random = new Random();
 	

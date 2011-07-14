@@ -7,7 +7,7 @@ import nayuki.sortdemo.SortArray;
 /**
  * Sorts by recursively partitioning the array around a pivot. The average time complexity is in <var>O</var>(<var>n</var> log <var>n</var>).
  */
-public class QuickSort1 extends SortAlgorithm {
+public final class QuickSort1 extends SortAlgorithm {
 	
 	public void sort(SortArray array) {
 		sort(array, 0, array.length());

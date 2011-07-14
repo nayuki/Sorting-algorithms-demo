@@ -2,7 +2,7 @@ package nayuki.sortdemo;
 
 
 @SuppressWarnings("serial")
-class StopException extends RuntimeException {
+final class StopException extends RuntimeException {
 	
 	public StopException() {}
 	

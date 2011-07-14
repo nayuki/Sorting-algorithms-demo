@@ -9,7 +9,7 @@ import nayuki.sortdemo.SortArray;
 /**
  * Sorts by randomly selecting two elements and swapping them if they are in inverted order, until the array is sorted. The time complexity is in <var>O</var>(<var>n</var><sup>3</sup> log <var>n</var>).
  */
-public class BozoSort extends SortAlgorithm {
+public final class BozoSort extends SortAlgorithm {
 	
 	private static Random random = new Random();
 	

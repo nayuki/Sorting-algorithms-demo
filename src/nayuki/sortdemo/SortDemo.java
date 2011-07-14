@@ -1,13 +1,13 @@
-package nayuki.sortdemo;
-
 /*
-Color legend:
-  Blue: Normal
-  Green: In final position
-  Yellow: Comparing
-  Gray: Inactive
-*/
+ * Color legend:
+ * - Blue: Normal
+ * - Green: In final position
+ * - Yellow: Comparing
+ * - Gray: Inactive
+ */
 
+
+package nayuki.sortdemo;
 
 import java.awt.Button;
 import java.awt.Canvas;

@@ -1,11 +1,13 @@
 package nayuki.sortdemo;
 
 import java.awt.Canvas;
+import java.awt.Frame;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 
 @SuppressWarnings("serial")
-class SortFrame extends AutoCloseFrame {
+class SortFrame extends Frame {
 	
 	private SortThread thread;
 	
@@ -16,14 +18,13 @@ class SortFrame extends AutoCloseFrame {
 		this.thread = thread;
 		add(canvas);
 		pack();
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				SortFrame.this.thread.stop1();
+				dispose();
+			}
+		});
 		setVisible(true);
-	}
-	
-	
-	
-	public void windowClosing(WindowEvent e) {
-		thread.stop1();
-		super.windowClosing(e);
 	}
 	
 }

@@ -73,6 +73,7 @@ public final class SortDemo extends Frame implements ActionListener {
 			}
 		});
 		
+		// Add widgets
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
 		setLayout(gbl);
@@ -82,8 +83,9 @@ public final class SortDemo extends Frame implements ActionListener {
 		gbc.ipady = 0;
 		gbc.insets = new Insets(4, 4, 4, 4);
 		gbc.weighty = 0;
-		Label label;
 		
+		// Labels
+		Label label;
 		gbc.gridx = 0;
 		label = new Label("Method:");
 		gbc.weightx = 1;
@@ -106,6 +108,7 @@ public final class SortDemo extends Frame implements ActionListener {
 		gbl.setConstraints(label, gbc);
 		add(label);
 		
+		// Algorithm
 		gbc.gridx = 1;
 		gbc.weightx = 2;
 		algorithms = new ArrayList<SortAlgorithm>(algors);
@@ -116,24 +119,28 @@ public final class SortDemo extends Frame implements ActionListener {
 		gbl.setConstraints(algorithmInput, gbc);
 		add(algorithmInput);
 		
+		// Number
 		numberInput = new TextField("32");
 		numberInput.addActionListener(this);
 		gbc.gridy = 1;
 		gbl.setConstraints(numberInput, gbc);
 		add(numberInput);
 		
+		// Scale
 		scaleInput = new TextField("8");
 		scaleInput.addActionListener(this);
 		gbc.gridy = 2;
 		gbl.setConstraints(scaleInput, gbc);
 		add(scaleInput);
 		
+		// Delay
 		delayInput = new TextField("100");
 		delayInput.addActionListener(this);
 		gbc.gridy = 3;
 		gbl.setConstraints(delayInput, gbc);
 		add(delayInput);
 		
+		// Run button
 		runButton = new Button("Run");
 		runButton.addActionListener(this);
 		gbc.anchor = GridBagConstraints.NORTH;
@@ -145,6 +152,7 @@ public final class SortDemo extends Frame implements ActionListener {
 		gbl.setConstraints(runButton, gbc);
 		add(runButton);
 		
+		// Do layout and show
 		pack();
 		Rectangle rect = getGraphicsConfiguration().getBounds();
 		setLocation((rect.width - getWidth()) / 2, (rect.height - getHeight()) / 3);

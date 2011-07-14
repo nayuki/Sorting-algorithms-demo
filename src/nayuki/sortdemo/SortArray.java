@@ -22,7 +22,7 @@ public final class SortArray {
 	private int[] values;
 	private int comparisons;
 	private int swaps;
-	private boolean stop;
+	private volatile boolean stop;
 	
 	private Color activeColor     = Color.BLUE;
 	private Color inactiveColor   = Color.GRAY;
@@ -131,7 +131,7 @@ public final class SortArray {
 	}
 	
 	
-	public synchronized void stop() {
+	public void stop() {
 		stop = true;
 	}
 	

@@ -46,8 +46,8 @@ public final class SortArray {
 			values[i] = i + 1;
 		
 		// Knuth shuffle
-		for (int i = 0; i < values.length; i++) {
-			int j = i + random.nextInt(values.length - i);
+		for (int i = values.length - 1; i >= 0; i--) {
+			int j = random.nextInt(i + 1);
 			int temp = values[i];
 			values[i] = values[j];
 			values[j] = temp;

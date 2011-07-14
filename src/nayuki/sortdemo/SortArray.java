@@ -134,34 +134,15 @@ public final class SortArray {
 	}
 	
 	
-	// Array visualization
+	/* Array visualization */
 	
-	public synchronized void setActive(int index) {
-		setActive(index, index + 1);
-	}
+	public synchronized void setActive  (int index) { redrawElement(index, activeColor  ); canvas.repaint(); }
+	public synchronized void setInactive(int index) { redrawElement(index, inactiveColor); canvas.repaint(); }
+	public synchronized void setDone    (int index) { redrawElement(index, doneColor    ); canvas.repaint(); }
 	
-	public synchronized void setActive(int start, int end) {
-		redrawRange(start, end, activeColor);
-		canvas.repaint();
-	}
-	
-	public synchronized void setInactive(int index) {
-		setInactive(index, index + 1);
-	}
-	
-	public synchronized void setInactive(int start, int end) {
-		redrawRange(start, end, inactiveColor);
-		canvas.repaint();
-	}
-	
-	public synchronized void setDone(int index) {
-		setDone(index, index + 1);
-	}
-	
-	public synchronized void setDone(int start, int end) {
-		redrawRange(start, end, doneColor);
-		canvas.repaint();
-	}
+	public synchronized void setActive  (int start, int end) { redrawRange(start, end, activeColor  ); canvas.repaint(); }
+	public synchronized void setInactive(int start, int end) { redrawRange(start, end, inactiveColor); canvas.repaint(); }
+	public synchronized void setDone    (int start, int end) { redrawRange(start, end, doneColor    ); canvas.repaint(); }
 	
 	
 	/* After sorting */
@@ -184,20 +165,16 @@ public final class SortArray {
 	}
 	
 	
-	/* Canvas drawing */
+	/* Canvas drawing. These methods do not call repaint()! */
 	
 	private synchronized void redrawElement(int index, Color color) {
 		graphics.setColor(backgroundColor);
-		if (scale == 1)
-			graphics.drawLine(0, index, values.length, index);
-		else
-			graphics.fillRect(0, index * scale, values.length * scale, scale);
+		if (scale == 1) graphics.drawLine(values[index], index, values.length, index);
+		else graphics.fillRect(values[index] * scale, index * scale, values.length * scale, scale);
 		
 		graphics.setColor(color);
-		if (scale == 1)
-			graphics.drawLine(0, index, values[index] - 1, index);
-		else
-			graphics.fillRect(0, index * scale, values[index] * scale, scale);
+		if (scale == 1) graphics.drawLine(0, index, values[index] - 1, index);
+		else graphics.fillRect(0, index * scale, values[index] * scale, scale);
 	}
 	
 	

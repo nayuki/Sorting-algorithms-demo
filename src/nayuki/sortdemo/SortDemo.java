@@ -36,6 +36,7 @@ public class SortDemo extends Frame implements ActionListener {
 		// Set up list of algorithms
 		List<SortAlgorithm> algors = new ArrayList<SortAlgorithm>();
 		algors.add(new BubbleSort());
+		algors.add(new CocktailSort());
 		algors.add(new SelectionSort());
 		algors.add(new InsertionSort());
 		algors.add(new InsertionSort1());

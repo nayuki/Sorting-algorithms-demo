@@ -3,16 +3,12 @@ package nayuki.sortdemo;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Random;
 
 
 /**
  * An array to be sorted. Elements can be compared and swapped, but their values cannot be accessed directly.
  */
 public final class SortArray {
-	
-	private static Random random = new Random();
-	
 	
 	// Data
 	private int[] values;
@@ -44,14 +40,8 @@ public final class SortArray {
 		values = new int[size];
 		for (int i = 0; i < values.length; i++)
 			values[i] = i + 1;
-		
-		// Knuth shuffle
-		for (int i = values.length - 1; i >= 0; i--) {
-			int j = random.nextInt(i + 1);
-			int temp = values[i];
-			values[i] = values[j];
-			values[j] = temp;
-		}
+		// Permute randomly
+		Utils.shuffle(values);
 		
 		comparisonCount = 0;
 		swapCount = 0;
@@ -61,7 +51,6 @@ public final class SortArray {
 		this.delay = delay;
 		canvas = new BufferedCanvas(size * scale);
 		graphics = canvas.getBufferGraphics();
-		
 		redrawRange(0, values.length, activeColor);
 	}
 	
@@ -96,7 +85,7 @@ public final class SortArray {
 		// No repaint here
 		
 		comparisonCount++;
-		return compareInts(values[i], values[j]);
+		return Utils.compare(values[i], values[j]);
 	}
 	
 	
@@ -194,22 +183,12 @@ public final class SortArray {
 	
 	/* Easy methods */
 	
-	private static void sleep(long time) {
+	public static void sleep(long time) {
 		try {
 			Thread.sleep(time);
 		} catch (InterruptedException e) {
 			throw new StopException();
 		}
-	}
-	
-	
-	private static int compareInts(int x, int y) {
-		if (x < y)
-			return -1;
-		else if (x > y)
-			return 1;
-		else
-			return 0;
 	}
 	
 }

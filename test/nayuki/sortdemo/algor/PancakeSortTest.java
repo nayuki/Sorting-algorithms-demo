@@ -7,7 +7,7 @@ import nayuki.sortdemo.SortAlgorithmTest;
 public final class PancakeSortTest extends SortAlgorithmTest {
 	
 	public SortAlgorithm getInstance() {
-		return new PancakeSort0();
+		return new PancakeSort();
 	}
 	
 }

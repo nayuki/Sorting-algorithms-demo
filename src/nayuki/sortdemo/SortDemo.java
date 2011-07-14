@@ -38,8 +38,8 @@ public final class SortDemo extends Frame implements ActionListener {
 		algors.add(new BubbleSort());
 		algors.add(new CocktailSort());
 		algors.add(new SelectionSort());
-		algors.add(new PancakeSort0());
-		algors.add(new PancakeSort1());
+		algors.add(new PancakeSort());
+		algors.add(new QuasiPancakeSort());
 		algors.add(new GnomeSort());
 		algors.add(new InsertionSort());
 		algors.add(new InsertionSort1());

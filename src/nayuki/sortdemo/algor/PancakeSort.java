@@ -4,7 +4,7 @@ import nayuki.sortdemo.SortAlgorithm;
 import nayuki.sortdemo.SortArray;
 
 
-public final class PancakeSort0 extends SortAlgorithm {
+public final class PancakeSort extends SortAlgorithm {
 	
 	public void sort(SortArray array) {
 		for (int i = array.length() - 1; i >= 0; i--) {
@@ -28,7 +28,7 @@ public final class PancakeSort0 extends SortAlgorithm {
 	
 	
 	public String getName() {
-		return "Pancake sort (selection)";
+		return "Pancake sort";
 	}
 	
 }

@@ -24,11 +24,11 @@ public final class SortArray {
 	private int swaps;
 	private volatile boolean stop;
 	
-	private Color activeColor     = Color.BLUE;
-	private Color inactiveColor   = Color.GRAY;
-	private Color comparingColor  = Color.YELLOW;
-	private Color doneColor       = Color.GREEN;
-	private Color backgroundColor = Color.WHITE;
+	private Color activeColor     = new Color(0x294099);  // Blue
+	private Color inactiveColor   = new Color(0x959EBF);  // Gray
+	private Color comparingColor  = new Color(0xD4BA0D);  // Yellow
+	private Color doneColor       = new Color(0x25963D);  // Green
+	private Color backgroundColor = new Color(0xFFFFFF);  // White
 	
 	
 	public SortArray(int size, int scale, int delay) {

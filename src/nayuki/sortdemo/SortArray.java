@@ -1,3 +1,5 @@
+package nayuki.sortdemo;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,7 +9,7 @@ import java.util.Random;
 /**
  * An array to be sorted. Elements can be compared and swapped, but their values cannot be accessed directly.
  */
-class SortArray {
+public class SortArray {
 	
 	private static Random random = new Random();
 	

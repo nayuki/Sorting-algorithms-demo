@@ -1,7 +1,13 @@
+package nayuki.sortdemo.algor;
+
+import nayuki.sortdemo.SortAlgorithm;
+import nayuki.sortdemo.SortArray;
+
+
 /**
  * Sorts by swapping the next unsorted item into the correct position in the sorted subarray. The time complexity is in <var>O</var>(<var>n</var><sup>3</sup>).
  */
-class InsertionSort extends SortAlgorithm {
+public class InsertionSort extends SortAlgorithm {
 	
 	public void sort(SortArray array) {
 		array.setInactive(0, array.length());

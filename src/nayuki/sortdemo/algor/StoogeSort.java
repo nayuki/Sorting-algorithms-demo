@@ -1,7 +1,13 @@
+package nayuki.sortdemo.algor;
+
+import nayuki.sortdemo.SortAlgorithm;
+import nayuki.sortdemo.SortArray;
+
+
 /**
  * A silly but simple, recursive sorting algorithm. The time complexity is in <var>O</var>(<var>n</var><sup>2.71</sup>).
  */
-class StoogeSort extends SortAlgorithm {
+public class StoogeSort extends SortAlgorithm {
 	
 	public void sort(SortArray array) {
 		sort(array, 0, array.length());

@@ -1,3 +1,5 @@
+package nayuki.sortdemo;
+
 /*
 Color legend:
   Blue: Normal
@@ -20,6 +22,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+
+import nayuki.sortdemo.algor.*;
 
 
 @SuppressWarnings("serial")

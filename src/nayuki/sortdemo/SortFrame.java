@@ -1,3 +1,5 @@
+package nayuki.sortdemo;
+
 import java.awt.Canvas;
 import java.awt.event.WindowEvent;
 

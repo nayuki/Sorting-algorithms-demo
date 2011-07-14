@@ -1,4 +1,9 @@
+package nayuki.sortdemo.algor;
+
 import java.util.Random;
+
+import nayuki.sortdemo.SortAlgorithm;
+import nayuki.sortdemo.SortArray;
 
 
 /**

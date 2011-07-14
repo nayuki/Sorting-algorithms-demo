@@ -1,3 +1,6 @@
+package nayuki.sortdemo;
+
+
 public class SortThread extends Thread {
 	
 	private SortAlgorithm algorithm;

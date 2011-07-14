@@ -20,12 +20,13 @@ public class SortThread extends Thread {
 				System.out.printf("%s: %d comparisons, %d swaps%n", algorithm.getName(), array.getComparisons(), array.getSwaps());
 			else
 				System.out.printf("%s: Sorting failed%n", algorithm.getName());
-		} catch (NullPointerException e) {}
+		} catch (StopException e) {}
 	}
 	
 	
 	public void stop1() {
-		array.destroy();
+		interrupt();
+		array.stop();
 	}
 	
 }

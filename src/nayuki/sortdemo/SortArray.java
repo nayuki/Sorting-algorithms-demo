@@ -22,6 +22,7 @@ public class SortArray {
 	private int[] values;
 	private int comparisons;
 	private int swaps;
+	private boolean stop;
 	
 	private Color activeColor     = Color.BLUE;
 	private Color inactiveColor   = Color.GRAY;
@@ -46,6 +47,7 @@ public class SortArray {
 		
 		comparisons = 0;
 		swaps = 0;
+		stop = false;
 		
 		this.scale = scale;
 		this.delay = delay;
@@ -77,6 +79,9 @@ public class SortArray {
 	
 	
 	public synchronized int compare(int i, int j) {
+		if (stop)
+			throw new StopException();
+		
 		redraw(i, comparingColor);
 		redraw(j, comparingColor);
 		canvas.repaint();
@@ -94,6 +99,9 @@ public class SortArray {
 	
 	
 	public synchronized void swap(int i, int j) {
+		if (stop)
+			throw new StopException();
+		
 		sleep(delay);
 		swaps++;
 		int temp = values[i];
@@ -123,8 +131,8 @@ public class SortArray {
 	}
 	
 	
-	public synchronized void destroy() {
-		values = null;
+	public synchronized void stop() {
+		stop = true;
 	}
 	
 	
@@ -194,7 +202,9 @@ public class SortArray {
 	protected static void sleep(long time) {
 		try {
 			Thread.sleep(time);
-		} catch (InterruptedException e) {}
+		} catch (InterruptedException e) {
+			throw new StopException();
+		}
 	}
 	
 }

@@ -14,11 +14,6 @@ public final class QuickSort1 extends SortAlgorithm {
 	}
 	
 	
-	public String getName() {
-		return "Quick sort (sliding)";
-	}
-	
-	
 	private static void sort(SortArray array, int start, int end) {
 		if (start == end)
 			return;
@@ -41,6 +36,11 @@ public final class QuickSort1 extends SortAlgorithm {
 		
 		sort(array, start, pivot);
 		sort(array, pivot + 1, end);
+	}
+	
+	
+	public String getName() {
+		return "Quick sort (sliding)";
 	}
 	
 }

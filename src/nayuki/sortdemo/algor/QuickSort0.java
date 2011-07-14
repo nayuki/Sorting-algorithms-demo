@@ -14,11 +14,6 @@ public final class QuickSort0 extends SortAlgorithm {
 	}
 	
 	
-	public String getName() {
-		return "Quick sort (double-ended)";
-	}
-	
-	
 	private static void sort(SortArray array, int start, int end) {
 		if (start == end)
 			return;
@@ -57,6 +52,11 @@ public final class QuickSort0 extends SortAlgorithm {
 		array.setDone(pivot);
 		sort(array, start, pivot);
 		sort(array, pivot + 1, end);
+	}
+	
+	
+	public String getName() {
+		return "Quick sort (double-ended)";
 	}
 	
 }

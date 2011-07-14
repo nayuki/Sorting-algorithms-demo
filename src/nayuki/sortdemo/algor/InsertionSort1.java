@@ -20,11 +20,6 @@ public final class InsertionSort1 extends SortAlgorithm {
 	}
 	
 	
-	public String getName() {
-		return "Insertion sort (binary search)";
-	}
-	
-	
 	private static int binarySearch(SortArray array, int index, int start, int end) {
 		while (start != end) {
 			int mid = (start + end) / 2;
@@ -37,6 +32,11 @@ public final class InsertionSort1 extends SortAlgorithm {
 				return mid;
 		}
 		return start;
+	}
+	
+	
+	public String getName() {
+		return "Insertion sort (binary search)";
 	}
 	
 }

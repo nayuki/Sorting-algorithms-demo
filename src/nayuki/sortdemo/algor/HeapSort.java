@@ -24,11 +24,6 @@ public final class HeapSort extends SortAlgorithm {
 	}
 	
 	
-	public String getName() {
-		return "Heap sort";
-	}
-	
-	
 	private static void siftDown(SortArray array, int node, int end) {
 		while (node * 2 + 1 < end) {
 			int child = node * 2 + 1;
@@ -38,6 +33,11 @@ public final class HeapSort extends SortAlgorithm {
 				break;
 			node = child;
 		}
+	}
+	
+	
+	public String getName() {
+		return "Heap sort";
 	}
 	
 }

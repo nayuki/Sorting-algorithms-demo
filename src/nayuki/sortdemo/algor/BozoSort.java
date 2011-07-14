@@ -14,11 +14,6 @@ public final class BozoSort extends SortAlgorithm {
 	private static Random random = new Random();
 	
 	
-	public String getName() {
-		return "Bozo sort";
-	}
-	
-	
 	public void sort(SortArray array) {
 		while (!isSorted(array)) {
 			int i = random.nextInt(array.length());
@@ -35,6 +30,11 @@ public final class BozoSort extends SortAlgorithm {
 				return false;
 		}
 		return true;
+	}
+	
+	
+	public String getName() {
+		return "Bozo sort";
 	}
 	
 }

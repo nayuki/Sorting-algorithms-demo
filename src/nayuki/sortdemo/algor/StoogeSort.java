@@ -15,11 +15,6 @@ public final class StoogeSort extends SortAlgorithm {
 	}
 	
 	
-	public String getName() {
-		return "Stooge sort";
-	}
-	
-	
 	private static void sort(SortArray array, int start, int end) {
 		array.setActive(start, end);
 		array.compareAndSwap(start, end - 1);
@@ -32,6 +27,11 @@ public final class StoogeSort extends SortAlgorithm {
 		sort(array, start, end - third);
 		sort(array, start + third, end);
 		sort(array, start, end - third);
+	}
+	
+	
+	public String getName() {
+		return "Stooge sort";
 	}
 	
 }

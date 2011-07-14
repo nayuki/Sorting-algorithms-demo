@@ -165,6 +165,8 @@ public final class SortDemo extends Frame implements ActionListener {
 			int size = Integer.parseInt(arraySizeInput.getText());
 			int scale = Integer.parseInt(scaleInput.getText());
 			int delay = Integer.parseInt(delayInput.getText());
+			if (size <= 0 || scale <= 0 || delay < 0)
+				return;
 			
 			SortArray array = new SortArray(size, scale, delay);
 			Canvas canvas = array.getCanvas();

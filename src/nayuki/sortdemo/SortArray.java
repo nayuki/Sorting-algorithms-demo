@@ -14,21 +14,29 @@ public final class SortArray {
 	private static Random random = new Random();
 	
 	
+	// Data
+	private int[] values;
+	
+	// Control
+	private volatile boolean stop;
+	
+	// Graphics
 	private int scale;
 	private int delay;
 	private BufferedCanvas canvas;
 	private Graphics graphics;
 	
-	private int[] values;
+	// Statistics
 	private int comparisons;
 	private int swaps;
-	private volatile boolean stop;
 	
+	// Colors
 	private Color activeColor     = new Color(0x294099);  // Blue
 	private Color inactiveColor   = new Color(0x959EBF);  // Gray
 	private Color comparingColor  = new Color(0xD4BA0D);  // Yellow
 	private Color doneColor       = new Color(0x25963D);  // Green
 	private Color backgroundColor = new Color(0xFFFFFF);  // White
+	
 	
 	
 	public SortArray(int size, int scale, int delay) {
@@ -54,8 +62,9 @@ public final class SortArray {
 		canvas = new BufferedCanvas(size * scale);
 		graphics = canvas.getBufferGraphics();
 		
-		redraw(0, values.length, activeColor);
+		redrawRange(0, values.length, activeColor);
 	}
+	
 	
 	
 	public synchronized Canvas getCanvas() {
@@ -82,12 +91,12 @@ public final class SortArray {
 		if (stop)
 			throw new StopException();
 		
-		redraw(i, comparingColor);
-		redraw(j, comparingColor);
+		redrawElement(i, comparingColor);
+		redrawElement(j, comparingColor);
 		canvas.repaint();
 		sleep(delay);
-		redraw(i, activeColor);
-		redraw(j, activeColor);
+		redrawElement(i, activeColor);
+		redrawElement(j, activeColor);
 		comparisons++;
 		if (values[i] < values[j])
 			return -1;
@@ -107,8 +116,8 @@ public final class SortArray {
 		int temp = values[i];
 		values[i] = values[j];
 		values[j] = temp;
-		redraw(i, activeColor);
-		redraw(j, activeColor);
+		redrawElement(i, activeColor);
+		redrawElement(j, activeColor);
 		canvas.repaint();
 	}
 	
@@ -143,7 +152,7 @@ public final class SortArray {
 	
 	
 	public synchronized void setActive(int start, int end) {
-		redraw(start, end, activeColor);
+		redrawRange(start, end, activeColor);
 		canvas.repaint();
 	}
 	
@@ -154,7 +163,7 @@ public final class SortArray {
 	
 	
 	public synchronized void setInactive(int start, int end) {
-		redraw(start, end, inactiveColor);
+		redrawRange(start, end, inactiveColor);
 		canvas.repaint();
 	}
 	
@@ -165,12 +174,12 @@ public final class SortArray {
 	
 	
 	public synchronized void setDone(int start, int end) {
-		redraw(start, end, doneColor);
+		redrawRange(start, end, doneColor);
 		canvas.repaint();
 	}
 	
 	
-	private synchronized void redraw(int index, Color color) {
+	private synchronized void redrawElement(int index, Color color) {
 		graphics.setColor(backgroundColor);
 		if (scale == 1)
 			graphics.drawLine(0, index, values.length, index);
@@ -185,7 +194,7 @@ public final class SortArray {
 	}
 	
 	
-	private synchronized void redraw(int start, int end, Color color) {
+	private synchronized void redrawRange(int start, int end, Color color) {
 		graphics.setColor(backgroundColor);
 		graphics.fillRect(0, start * scale, values.length * scale, (end - start) * scale);
 		graphics.setColor(color);

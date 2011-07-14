@@ -10,26 +10,20 @@ public final class CocktailSort extends SortAlgorithm {
 		int left = 0;
 		int right = array.length();
 		int i = left;
-		int dir = 1;
 		while (left != right) {
-			if (dir == 1) {
-				if (i + 1 == right) {
-					array.setDone(i);
-					dir = -dir;
-					right--;
-				} else {
-					array.compareAndSwap(i, i + 1);
-				}
-			} else {
-				if (i == left) {
-					array.setDone(i);
-					dir = -dir;
-					left++;
-				} else {
-					array.compareAndSwap(i - 1, i);
-				}
-			}
-			i += dir;
+			// Scan right
+			for (; i + 1 < right; i++)
+				array.compareAndSwap(i, i + 1);
+			array.setDone(i);
+			right--;
+			i--;
+			
+			// Scan left
+			for (; i > left; i--)
+				array.compareAndSwap(i - 1, i);
+			array.setDone(i);
+			left++;
+			i++;
 		}
 	}
 	

@@ -20,12 +20,21 @@ public class BozoSort extends SortAlgorithm {
 	
 	
 	public void sort(SortArray array) {
-		while (!array.isSorted()) {
+		while (!isSorted(array)) {
 			int i = random.nextInt(array.length());
 			int j = random.nextInt(array.length());
 			array.compareAndSwap(Math.min(i, j), Math.max(i, j));
 		}
 		array.setDone(0, array.length());
+	}
+	
+	
+	private boolean isSorted(SortArray array) {
+		for (int i = 0; i < array.length() - 1; i++) {
+			if (array.compare(i, i + 1) > 0)
+				return false;
+		}
+		return true;
 	}
 	
 }

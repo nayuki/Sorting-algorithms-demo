@@ -40,5 +40,4 @@ public class InsertionSort1 extends SortAlgorithm {
 		return start;
 	}
 	
-	
 }

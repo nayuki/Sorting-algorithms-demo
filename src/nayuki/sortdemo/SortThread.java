@@ -16,10 +16,12 @@ public final class SortThread extends Thread {
 	public void run() {
 		try {
 			algorithm.sort(array);
-			if (array.isSorted())
-				System.out.printf("%s: %d comparisons, %d swaps%n", algorithm.getName(), array.getComparisons(), array.getSwaps());
-			else
+			try {
+				array.assertSorted();
+				System.out.printf("%s: %d comparisons, %d swaps%n", algorithm.getName(), array.getComparisonCount(), array.getSwapCount());
+			} catch (AssertionError e) {
 				System.out.printf("%s: Sorting failed%n", algorithm.getName());
+			}
 		} catch (StopException e) {}
 	}
 	

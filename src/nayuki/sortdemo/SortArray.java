@@ -27,8 +27,8 @@ public final class SortArray {
 	private Graphics graphics;
 	
 	// Statistics
-	private int comparisons;
-	private int swaps;
+	private volatile int comparisonCount;
+	private volatile int swapCount;
 	
 	// Colors
 	private Color activeColor     = new Color(0x294099);  // Blue
@@ -53,8 +53,8 @@ public final class SortArray {
 			values[j] = temp;
 		}
 		
-		comparisons = 0;
-		swaps = 0;
+		comparisonCount = 0;
+		swapCount = 0;
 		stop = false;
 		
 		this.scale = scale;
@@ -66,27 +66,22 @@ public final class SortArray {
 	}
 	
 	
+	/* Field getters */
 	
-	public synchronized Canvas getCanvas() {
+	public Canvas getCanvas() {
 		return canvas;
 	}
 	
-	
-	public synchronized int length() {
+	public int length() {
 		return values.length;
 	}
 	
 	
-	public synchronized int getComparisons() {
-		return comparisons;
-	}
+	/* Comparison and swapping */
 	
-	
-	public synchronized int getSwaps() {
-		return swaps;
-	}
-	
-	
+	// Compares the values at the two given array indices.
+	// Returns a negative number if array[i] < array[j], zero if array[i] == array[j], or a positive number if array[i] > array[j].
+	// Do not assume that this returns only -1, 0, or 1.
 	public synchronized int compare(int i, int j) {
 		if (stop)
 			throw new StopException();
@@ -95,33 +90,34 @@ public final class SortArray {
 		redrawElement(j, comparingColor);
 		canvas.repaint();
 		sleep(delay);
+		
 		redrawElement(i, activeColor);
 		redrawElement(j, activeColor);
-		comparisons++;
-		if (values[i] < values[j])
-			return -1;
-		else if (values[i] > values[j])
-			return 1;
-		else
-			return 0;
+		// No repaint here
+		
+		comparisonCount++;
+		return compareInts(values[i], values[j]);
 	}
 	
 	
+	// Swaps the values at the two given array indices.
 	public synchronized void swap(int i, int j) {
 		if (stop)
 			throw new StopException();
 		
-		sleep(delay);
-		swaps++;
 		int temp = values[i];
 		values[i] = values[j];
 		values[j] = temp;
+		swapCount++;
+		
 		redrawElement(i, activeColor);
 		redrawElement(j, activeColor);
 		canvas.repaint();
+		sleep(delay);
 	}
 	
 	
+	// Compares the values at the two given array indices, swaps if and only if array[i] > array[j], and returns whether a swap occurred.
 	public synchronized boolean compareAndSwap(int i, int j) {
 		if (compare(j, i) < 0) {
 			swap(i, j);
@@ -131,53 +127,64 @@ public final class SortArray {
 	}
 	
 	
-	public synchronized boolean isSorted() {
-		for (int i = 1; i < values.length; i++) {
-			if (values[i - 1] > values[i])
-				return false;
-		}
-		return true;
-	}
-	
+	/* Control */
 	
 	public void stop() {
 		stop = true;
 	}
 	
 	
+	// Array visualization
 	
 	public synchronized void setActive(int index) {
 		setActive(index, index + 1);
 	}
-	
 	
 	public synchronized void setActive(int start, int end) {
 		redrawRange(start, end, activeColor);
 		canvas.repaint();
 	}
 	
-	
 	public synchronized void setInactive(int index) {
 		setInactive(index, index + 1);
 	}
-	
 	
 	public synchronized void setInactive(int start, int end) {
 		redrawRange(start, end, inactiveColor);
 		canvas.repaint();
 	}
 	
-	
 	public synchronized void setDone(int index) {
 		setDone(index, index + 1);
 	}
-	
 	
 	public synchronized void setDone(int start, int end) {
 		redrawRange(start, end, doneColor);
 		canvas.repaint();
 	}
 	
+	
+	/* After sorting */
+	
+	public int getComparisonCount() {
+		return comparisonCount;
+	}
+	
+	public int getSwapCount() {
+		return swapCount;
+	}
+	
+	
+	// Checks if the array is sorted. Returns silently if so, throws AssertionError if not.
+	public synchronized void assertSorted() {
+		for (int i = 1; i < values.length; i++) {
+			if (values[i - 1] > values[i])
+				throw new AssertionError();
+		}
+	}
+	
+	
+	/* Canvas drawing */
 	
 	private synchronized void redrawElement(int index, Color color) {
 		graphics.setColor(backgroundColor);
@@ -208,12 +215,24 @@ public final class SortArray {
 	}
 	
 	
-	protected static void sleep(long time) {
+	/* Easy methods */
+	
+	private static void sleep(long time) {
 		try {
 			Thread.sleep(time);
 		} catch (InterruptedException e) {
 			throw new StopException();
 		}
+	}
+	
+	
+	private static int compareInts(int x, int y) {
+		if (x < y)
+			return -1;
+		else if (x > y)
+			return 1;
+		else
+			return 0;
 	}
 	
 }

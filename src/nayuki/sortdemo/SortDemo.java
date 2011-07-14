@@ -56,7 +56,7 @@ public final class SortDemo extends Frame implements ActionListener {
 	
 	private List<SortAlgorithm> algorithms;
 	
-	private TextField numberInput;
+	private TextField arraySizeInput;
 	private TextField scaleInput;
 	private TextField delayInput;
 	private Choice algorithmInput;
@@ -87,13 +87,13 @@ public final class SortDemo extends Frame implements ActionListener {
 		// Labels
 		Label label;
 		gbc.gridx = 0;
-		label = new Label("Method:");
+		label = new Label("Algorithm:");
 		gbc.weightx = 1;
 		gbc.gridy = 0;
 		gbl.setConstraints(label, gbc);
 		add(label);
 		
-		label = new Label("Number:");
+		label = new Label("Array size:");
 		gbc.gridy = 1;
 		gbl.setConstraints(label, gbc);
 		add(label);
@@ -119,12 +119,12 @@ public final class SortDemo extends Frame implements ActionListener {
 		gbl.setConstraints(algorithmInput, gbc);
 		add(algorithmInput);
 		
-		// Number
-		numberInput = new TextField("32");
-		numberInput.addActionListener(this);
+		// Array size
+		arraySizeInput = new TextField("32");
+		arraySizeInput.addActionListener(this);
 		gbc.gridy = 1;
-		gbl.setConstraints(numberInput, gbc);
-		add(numberInput);
+		gbl.setConstraints(arraySizeInput, gbc);
+		add(arraySizeInput);
 		
 		// Scale
 		scaleInput = new TextField("8");
@@ -163,7 +163,7 @@ public final class SortDemo extends Frame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == runButton) {
 			try {
-				int size = Integer.parseInt(numberInput.getText());
+				int size = Integer.parseInt(arraySizeInput.getText());
 				int scale = Integer.parseInt(scaleInput.getText());
 				int delay = Integer.parseInt(delayInput.getText());
 				

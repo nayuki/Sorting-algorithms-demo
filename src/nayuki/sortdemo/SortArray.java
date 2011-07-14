@@ -71,7 +71,7 @@ public final class SortArray {
 	// Compares the values at the two given array indices.
 	// Returns a negative number if array[i] < array[j], zero if array[i] == array[j], or a positive number if array[i] > array[j].
 	// Do not assume that this returns only -1, 0, or 1.
-	public synchronized int compare(int i, int j) {
+	public int compare(int i, int j) {
 		if (stop)
 			throw new StopException();
 		
@@ -90,7 +90,7 @@ public final class SortArray {
 	
 	
 	// Swaps the values at the two given array indices.
-	public synchronized void swap(int i, int j) {
+	public void swap(int i, int j) {
 		if (stop)
 			throw new StopException();
 		
@@ -107,7 +107,7 @@ public final class SortArray {
 	
 	
 	// Compares the values at the two given array indices, swaps if and only if array[i] > array[j], and returns whether a swap occurred.
-	public synchronized boolean compareAndSwap(int i, int j) {
+	public boolean compareAndSwap(int i, int j) {
 		if (compare(j, i) < 0) {
 			swap(i, j);
 			return true;
@@ -125,13 +125,13 @@ public final class SortArray {
 	
 	/* Array visualization */
 	
-	public synchronized void setActive  (int index) { redrawElement(index, activeColor  ); canvas.repaint(); }
-	public synchronized void setInactive(int index) { redrawElement(index, inactiveColor); canvas.repaint(); }
-	public synchronized void setDone    (int index) { redrawElement(index, doneColor    ); canvas.repaint(); }
+	public void setActive  (int index) { redrawElement(index, activeColor  ); canvas.repaint(); }
+	public void setInactive(int index) { redrawElement(index, inactiveColor); canvas.repaint(); }
+	public void setDone    (int index) { redrawElement(index, doneColor    ); canvas.repaint(); }
 	
-	public synchronized void setActive  (int start, int end) { redrawRange(start, end, activeColor  ); canvas.repaint(); }
-	public synchronized void setInactive(int start, int end) { redrawRange(start, end, inactiveColor); canvas.repaint(); }
-	public synchronized void setDone    (int start, int end) { redrawRange(start, end, doneColor    ); canvas.repaint(); }
+	public void setActive  (int start, int end) { redrawRange(start, end, activeColor  ); canvas.repaint(); }
+	public void setInactive(int start, int end) { redrawRange(start, end, inactiveColor); canvas.repaint(); }
+	public void setDone    (int start, int end) { redrawRange(start, end, doneColor    ); canvas.repaint(); }
 	
 	
 	/* After sorting */
@@ -146,7 +146,7 @@ public final class SortArray {
 	
 	
 	// Checks if the array is sorted. Returns silently if so, throws AssertionError if not.
-	public synchronized void assertSorted() {
+	public void assertSorted() {
 		for (int i = 1; i < values.length; i++) {
 			if (values[i - 1] > values[i])
 				throw new AssertionError();
@@ -156,7 +156,7 @@ public final class SortArray {
 	
 	/* Canvas drawing. These methods do not call repaint()! */
 	
-	private synchronized void redrawElement(int index, Color color) {
+	private void redrawElement(int index, Color color) {
 		graphics.setColor(backgroundColor);
 		if (scale == 1) graphics.drawLine(values[index], index, values.length, index);
 		else graphics.fillRect(values[index] * scale, index * scale, values.length * scale, scale);
@@ -167,7 +167,7 @@ public final class SortArray {
 	}
 	
 	
-	private synchronized void redrawRange(int start, int end, Color color) {
+	private void redrawRange(int start, int end, Color color) {
 		graphics.setColor(backgroundColor);
 		graphics.fillRect(0, start * scale, values.length * scale, (end - start) * scale);
 		graphics.setColor(color);

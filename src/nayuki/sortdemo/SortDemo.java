@@ -30,6 +30,7 @@ import nayuki.sortdemo.algor.*;
 public class SortDemo extends AutoCloseFrame implements ActionListener {
 	
 	public static void main(String[] args) {
+		// Set up list of algorithms
 		List<SortAlgorithm> algors = new ArrayList<SortAlgorithm>();
 		algors.add(new BubbleSort());
 		algors.add(new SelectionSort());
@@ -42,16 +43,21 @@ public class SortDemo extends AutoCloseFrame implements ActionListener {
 		algors.add(new StoogeSort());
 		algors.add(new StupidSort());
 		algors.add(new BozoSort());
+		
+		// Go!
 		new SortDemo(algors);
 	}
 	
 	
+	
 	private List<SortAlgorithm> algorithms;
+	
 	private TextField numberInput;
 	private TextField scaleInput;
 	private TextField delayInput;
 	private Choice algorithmInput;
 	private Button runButton;
+	
 	
 	
 	public SortDemo(List<SortAlgorithm> algors) {

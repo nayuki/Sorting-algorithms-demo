@@ -10,6 +10,7 @@ class SortFrame extends AutoCloseFrame {
 	private SortThread thread;
 	
 	
+	
 	public SortFrame(Canvas canvas, SortAlgorithm algor, SortThread thread) {
 		super(algor.getName());
 		this.thread = thread;
@@ -17,6 +18,7 @@ class SortFrame extends AutoCloseFrame {
 		pack();
 		setVisible(true);
 	}
+	
 	
 	
 	public void windowClosing(WindowEvent e) {

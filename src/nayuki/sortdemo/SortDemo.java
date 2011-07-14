@@ -161,20 +161,18 @@ public final class SortDemo extends Frame implements ActionListener {
 	
 	
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == runButton) {
-			try {
-				int size = Integer.parseInt(arraySizeInput.getText());
-				int scale = Integer.parseInt(scaleInput.getText());
-				int delay = Integer.parseInt(delayInput.getText());
-				
-				SortArray array = new SortArray(size, scale, delay);
-				Canvas canvas = array.getCanvas();
-				SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
-				SortThread thread = new SortThread(algorithm, array);
-				new SortFrame(canvas, algorithm, thread);
-				thread.start();
-			} catch (NumberFormatException ee) {}
-		}
+		try {
+			int size = Integer.parseInt(arraySizeInput.getText());
+			int scale = Integer.parseInt(scaleInput.getText());
+			int delay = Integer.parseInt(delayInput.getText());
+			
+			SortArray array = new SortArray(size, scale, delay);
+			Canvas canvas = array.getCanvas();
+			SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
+			SortThread thread = new SortThread(algorithm, array);
+			new SortFrame(canvas, algorithm, thread);
+			thread.start();
+		} catch (NumberFormatException ee) {}
 	}
 	
 }

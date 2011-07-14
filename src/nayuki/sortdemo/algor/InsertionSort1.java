@@ -12,7 +12,6 @@ public final class InsertionSort1 extends SortAlgorithm {
 	public void sort(SortArray array) {
 		array.setInactive(0, array.length());
 		for (int i = 0; i < array.length(); i++) {
-			array.setActive(i);
 			int index = binarySearch(array, i, 0, i);
 			for (int j = i; j - 1 >= index; j--)
 				array.swap(j, j - 1);

@@ -39,7 +39,7 @@ final class SortArrayImpl implements SortArray {
 		// Initialize in order
 		values = new int[size];
 		for (int i = 0; i < values.length; i++)
-			values[i] = i + 1;
+			values[i] = i;
 		// Permute randomly
 		Utils.shuffle(values);
 		
@@ -153,12 +153,12 @@ final class SortArrayImpl implements SortArray {
 	
 	private void redrawElement(int index, Color color) {
 		graphics.setColor(backgroundColor);
-		if (scale == 1) graphics.drawLine(values[index], index, values.length, index);
-		else graphics.fillRect(values[index] * scale, index * scale, values.length * scale, scale);
+		if (scale == 1) graphics.drawLine(values[index] + 1, index, values.length, index);
+		else graphics.fillRect((values[index] + 1) * scale, index * scale, values.length * scale, scale);
 		
 		graphics.setColor(color);
-		if (scale == 1) graphics.drawLine(0, index, values[index] - 1, index);
-		else graphics.fillRect(0, index * scale, values[index] * scale, scale);
+		if (scale == 1) graphics.drawLine(0, index, values[index], index);
+		else graphics.fillRect(0, index * scale, (values[index] + 1) * scale, scale);
 	}
 	
 	
@@ -168,10 +168,10 @@ final class SortArrayImpl implements SortArray {
 		graphics.setColor(color);
 		if (scale == 1) {
 			for (int i = start; i < end; i++)
-				graphics.drawLine(0, i, values[i] - 1, i);
+				graphics.drawLine(0, i, values[i], i);
 		} else {
 			for (int i = start; i < end; i++)
-				graphics.fillRect(0, i * scale, values[i] * scale, scale);
+				graphics.fillRect(0, i * scale, (values[i] + 1) * scale, scale);
 		}
 	}
 	

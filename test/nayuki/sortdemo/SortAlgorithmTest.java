@@ -33,6 +33,12 @@ public abstract class SortAlgorithmTest {
 		testRandom(100);
 	}
 	
+	@Test
+	public void testRandomSizes() {
+		for (int i = 0; i < 100; i++)
+			testRandom(Utils.random.nextInt(100) + 1);
+	}
+	
 	protected void testRandom(int size) {
 		TestSortArray arr = new TestSortArray(size);
 		arr.shuffle();

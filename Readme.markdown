@@ -4,24 +4,24 @@ Sorting algorithms demo
 This package is a Java program that shows an animation of various sorting
 algorithms in action, such as bubble sort or quicksort.
 
+Home page: [http://nayuki.eigenstate.org/page/sorting-algorithms-demo-java](http://nayuki.eigenstate.org/page/sorting-algorithms-demo-java])
+
 
 How to run
 ----------
 
 If you have the JAR file and you are on Windows, then you can double click on
-the JAR file in Windows Explorer and the program will run.
+the JAR file in Windows Explorer and the program will run. Otherwise to run from
+the JAR file, run this from a command line: `java -jar TheJarFile.jar`
 
-Otherwise to run from the JAR file, run this from a command line:
-`java -jar TheJarFile.jar`
-
-Otherwise, note that the main class is `nayuki.sortdemo.SortDemo`, and compile
-the source code from the command line or in an IDE as needed.
+Otherwise, compile the source code on the command line or in an IDE, and run the
+main class `nayuki.sortdemo.SortDemo`.
 
 
 License
 -------
 
-Copyright © 2011 Nayuki Minase
+Copyright © 2012 Nayuki Minase
 
 (MIT License)
 

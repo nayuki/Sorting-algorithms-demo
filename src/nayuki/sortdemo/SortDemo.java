@@ -26,7 +26,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import nayuki.sortdemo.algor.*;
+import nayuki.sortdemo.algo.*;
 
 
 @SuppressWarnings("serial")

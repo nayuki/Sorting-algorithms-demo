@@ -20,17 +20,6 @@ final class Utils {
 	}
 	
 	
-	// Compares without overflowing
-	public static int compare(int x, int y) {
-		if (x < y)
-			return -1;
-		else if (x > y)
-			return 1;
-		else
-			return 0;
-	}
-	
-	
 	// Sleeps without throwing InterruptedException
 	public static void sleep(long time) {
 		try {

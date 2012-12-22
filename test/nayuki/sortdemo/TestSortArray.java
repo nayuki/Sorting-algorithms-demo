@@ -3,55 +3,21 @@ package nayuki.sortdemo;
 import static org.junit.Assert.fail;
 
 
-final class TestSortArray implements SortArray {
-	
-	private int[] values;
-	
+final class TestSortArray extends AbstractSortArray {
 	
 	/* Initialization */
 	
 	public TestSortArray(int size) {
-		values = new int[size];
-		for (int i = 0; i < values.length; i++)
-			values[i] = i;
+		super(size);
 	}
 	
 	public void reverse() {
-		for (int i = 0; i < values.length / 2; i++) {
-			int j = values.length - 1 - i;
-			int temp = values[i];
-			values[i] = values[j];
-			values[j] = temp;
-		}
+		for (int i = 0; i < values.length / 2; i++)
+			swap(i, values.length - 1 - i);
 	}
 	
 	public void shuffle() {
 		Utils.shuffle(values);
-	}
-	
-	
-	/* Sorting */
-	
-	public int length() {
-		return values.length;
-	}
-	
-	public int compare(int i, int j) {
-		return Utils.compare(values[i], values[j]);
-	}
-	
-	public void swap(int i, int j) {
-		int temp = values[i];
-		values[i] = values[j];
-		values[j] = temp;
-	}
-	
-	public boolean compareAndSwap(int i, int j) {
-		if (compare(j, i) < 0) {
-			swap(i, j);
-			return true;
-		} else
-			return false;
 	}
 	
 	

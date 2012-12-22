@@ -8,10 +8,7 @@ import java.awt.Graphics;
 /**
  * An array to be sorted. Elements can be compared and swapped, but their values cannot be accessed directly.
  */
-final class SortArrayImpl implements SortArray {
-	
-	// Data
-	private int[] values;
+final class SortArrayImpl extends AbstractSortArray {
 	
 	// Control
 	private volatile boolean stop;
@@ -36,11 +33,8 @@ final class SortArrayImpl implements SortArray {
 	
 	
 	public SortArrayImpl(int size, int scale, int delay) {
-		// Initialize in order
-		values = new int[size];
-		for (int i = 0; i < values.length; i++)
-			values[i] = i;
-		// Permute randomly
+		// Initialize in order, then permute randomly
+		super(size);
 		Utils.shuffle(values);
 		
 		comparisonCount = 0;
@@ -61,10 +55,6 @@ final class SortArrayImpl implements SortArray {
 		return canvas;
 	}
 	
-	public int length() {
-		return values.length;
-	}
-	
 	
 	/* Comparison and swapping */
 	
@@ -82,7 +72,7 @@ final class SortArrayImpl implements SortArray {
 		// No repaint here
 		
 		comparisonCount++;
-		return Utils.compare(values[i], values[j]);
+		return super.compare(i, j);
 	}
 	
 	
@@ -90,24 +80,13 @@ final class SortArrayImpl implements SortArray {
 		if (stop)
 			throw new StopException();
 		
-		int temp = values[i];
-		values[i] = values[j];
-		values[j] = temp;
+		super.swap(i, j);
 		swapCount++;
 		
 		redrawElement(i, activeColor);
 		redrawElement(j, activeColor);
 		canvas.repaint();
 		Utils.sleep(delay);
-	}
-	
-	
-	public boolean compareAndSwap(int i, int j) {
-		if (compare(j, i) < 0) {
-			swap(i, j);
-			return true;
-		} else
-			return false;
 	}
 	
 	

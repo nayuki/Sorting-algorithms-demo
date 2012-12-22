@@ -75,7 +75,7 @@ final class SortArrayImpl implements SortArray {
 		redrawElement(i, comparingColor);
 		redrawElement(j, comparingColor);
 		canvas.repaint();
-		sleep(delay);
+		Utils.sleep(delay);
 		
 		redrawElement(i, activeColor);
 		redrawElement(j, activeColor);
@@ -98,7 +98,7 @@ final class SortArrayImpl implements SortArray {
 		redrawElement(i, activeColor);
 		redrawElement(j, activeColor);
 		canvas.repaint();
-		sleep(delay);
+		Utils.sleep(delay);
 	}
 	
 	
@@ -172,17 +172,6 @@ final class SortArrayImpl implements SortArray {
 		} else {
 			for (int i = start; i < end; i++)
 				graphics.fillRect(0, i * scale, (values[i] + 1) * scale, scale);
-		}
-	}
-	
-	
-	/* Easy methods */
-	
-	public static void sleep(long time) {
-		try {
-			Thread.sleep(time);
-		} catch (InterruptedException e) {
-			throw new StopException();
 		}
 	}
 	

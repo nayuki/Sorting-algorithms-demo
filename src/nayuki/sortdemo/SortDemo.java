@@ -1,4 +1,6 @@
-/*
+/* 
+ * Sort demo main class
+ * 
  * Color legend:
  * - Blue: Normal
  * - Green: In final position
@@ -24,8 +26,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
 import nayuki.sortdemo.algo.*;
 
 
@@ -33,26 +35,25 @@ import nayuki.sortdemo.algo.*;
 public final class SortDemo extends Frame implements ActionListener {
 	
 	public static void main(String[] args) {
-		// Set up list of algorithms
-		List<SortAlgorithm> algors = new ArrayList<SortAlgorithm>();
-		algors.add(new BubbleSort());
-		algors.add(new CocktailSort());
-		algors.add(new SelectionSort());
-		algors.add(new PancakeSort());
-		algors.add(new QuasiPancakeSort());
-		algors.add(new GnomeSort());
-		algors.add(new InsertionSort());
-		algors.add(new InsertionSortBinarySearch());
-		algors.add(new ShellSort());
-		algors.add(new HeapSort());
-		algors.add(new QuickSortDoubleEnded());
-		algors.add(new QuickSortSliding());
-		algors.add(new StoogeSort());
-		algors.add(new StupidSort());
-		algors.add(new BozoSort());
-		
-		// Go!
-		new SortDemo(algors);
+		// Set up list of algorithms and go
+		List<SortAlgorithm> algos = new ArrayList<SortAlgorithm>();
+		Collections.addAll(algos,
+			new BubbleSort(),
+			new CocktailSort(),
+			new SelectionSort(),
+			new PancakeSort(),
+			new QuasiPancakeSort(),
+			new GnomeSort(),
+			new InsertionSort(),
+			new InsertionSortBinarySearch(),
+			new ShellSort(),
+			new HeapSort(),
+			new QuickSortDoubleEnded(),
+			new QuickSortSliding(),
+			new StoogeSort(),
+			new StupidSort(),
+			new BozoSort());
+		new SortDemo(algos);
 	}
 	
 	
@@ -67,7 +68,7 @@ public final class SortDemo extends Frame implements ActionListener {
 	
 	
 	
-	public SortDemo(List<SortAlgorithm> algors) {
+	public SortDemo(List<SortAlgorithm> algos) {
 		super("Sort Demo");
 		
 		addWindowListener(new WindowAdapter() {
@@ -114,10 +115,10 @@ public final class SortDemo extends Frame implements ActionListener {
 		// Algorithm
 		gbc.gridx = 1;
 		gbc.weightx = 2;
-		algorithms = new ArrayList<SortAlgorithm>(algors);
+		algorithms = new ArrayList<SortAlgorithm>(algos);
 		algorithmInput = new Choice();
-		for (SortAlgorithm algor : algors)
-			algorithmInput.add(algor.getName());
+		for (SortAlgorithm algo : algos)
+			algorithmInput.add(algo.getName());
 		gbc.gridy = 0;
 		gbl.setConstraints(algorithmInput, gbc);
 		add(algorithmInput);
@@ -163,7 +164,7 @@ public final class SortDemo extends Frame implements ActionListener {
 	}
 	
 	
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent ev) {
 		try {
 			int size = Integer.parseInt(arraySizeInput.getText());
 			int scale = Integer.parseInt(scaleInput.getText());
@@ -177,7 +178,7 @@ public final class SortDemo extends Frame implements ActionListener {
 			SortThread thread = new SortThread(algorithm, array);
 			new SortFrame(canvas, algorithm, thread);
 			thread.start();
-		} catch (NumberFormatException ee) {}
+		} catch (NumberFormatException e) {}
 	}
 	
 }

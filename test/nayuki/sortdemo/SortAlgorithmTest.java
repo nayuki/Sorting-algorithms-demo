@@ -9,12 +9,12 @@ public abstract class SortAlgorithmTest {
 	public abstract SortAlgorithm getInstance();
 	
 	
-	protected SortAlgorithm algor;
+	protected SortAlgorithm algo;
 	
 	
 	@Before
 	public void setUp() {
-		algor = getInstance();
+		algo = getInstance();
 	}
 	
 	
@@ -36,7 +36,7 @@ public abstract class SortAlgorithmTest {
 	protected void testRandom(int size) {
 		TestSortArray arr = new TestSortArray(size);
 		arr.shuffle();
-		algor.sort(arr);
+		algo.sort(arr);
 		arr.assertSorted();
 	}
 	
@@ -44,7 +44,7 @@ public abstract class SortAlgorithmTest {
 	@Test
 	public void testForward100() {
 		TestSortArray arr = new TestSortArray(100);
-		algor.sort(arr);
+		algo.sort(arr);
 		arr.assertSorted();
 	}
 	
@@ -53,7 +53,7 @@ public abstract class SortAlgorithmTest {
 	public void testReverse100() {
 		TestSortArray arr = new TestSortArray(100);
 		arr.reverse();
-		algor.sort(arr);
+		algo.sort(arr);
 		arr.assertSorted();
 	}
 	

@@ -1,6 +1,9 @@
 package nayuki.sortdemo;
 
 
+/**
+ * An array that can be sorted and have the sorting process visualized.
+ */
 public interface SortArray {
 	
 	/* Field getters */

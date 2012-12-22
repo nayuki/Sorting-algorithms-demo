@@ -14,8 +14,8 @@ final class SortFrame extends Frame {
 	
 	
 	
-	public SortFrame(Canvas canvas, SortAlgorithm algor, SortThread thread) {
-		super(algor.getName());
+	public SortFrame(Canvas canvas, SortAlgorithm algo, SortThread thread) {
+		super(algo.getName());
 		this.thread = thread;
 		add(canvas);
 		setResizable(false);

@@ -10,13 +10,15 @@ public final class CocktailSort extends SortAlgorithm {
 		int left = 0;
 		int right = array.length();
 		int i = left;
-		while (left != right) {
+		while (left < right) {
 			// Scan right
 			for (; i + 1 < right; i++)
 				array.compareAndSwap(i, i + 1);
 			array.setDone(i);
 			right--;
 			i--;
+			if (left == right)
+				break;
 			
 			// Scan left
 			for (; i > left; i--)

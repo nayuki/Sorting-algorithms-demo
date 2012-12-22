@@ -65,7 +65,7 @@ final class SortArrayImpl extends AbstractSortArray {
 		redrawElement(i, comparingColor);
 		redrawElement(j, comparingColor);
 		canvas.repaint();
-		Utils.sleep(delay);
+		sleep(delay);
 		
 		redrawElement(i, activeColor);
 		redrawElement(j, activeColor);
@@ -86,7 +86,7 @@ final class SortArrayImpl extends AbstractSortArray {
 		redrawElement(i, activeColor);
 		redrawElement(j, activeColor);
 		canvas.repaint();
-		Utils.sleep(delay);
+		sleep(delay);
 	}
 	
 	
@@ -151,6 +151,17 @@ final class SortArrayImpl extends AbstractSortArray {
 		} else {
 			for (int i = start; i < end; i++)
 				graphics.fillRect(0, i * scale, (values[i] + 1) * scale, scale);
+		}
+	}
+	
+	
+	/* Utilities */
+	
+	private static void sleep(long time) {
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			throw new StopException();
 		}
 	}
 	

@@ -8,7 +8,6 @@
  * - Gray: Inactive
  */
 
-
 package nayuki.sortdemo;
 
 import java.awt.Button;

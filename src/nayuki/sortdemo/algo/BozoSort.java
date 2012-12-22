@@ -1,9 +1,8 @@
 package nayuki.sortdemo.algo;
 
-import java.util.Random;
-
 import nayuki.sortdemo.SortAlgorithm;
 import nayuki.sortdemo.SortArray;
+import nayuki.sortdemo.Utils;
 
 
 /**
@@ -11,13 +10,10 @@ import nayuki.sortdemo.SortArray;
  */
 public final class BozoSort extends SortAlgorithm {
 	
-	private static Random random = new Random();
-	
-	
 	public void sort(SortArray array) {
 		while (!isSorted(array)) {
-			int i = random.nextInt(array.length());
-			int j = random.nextInt(array.length());
+			int i = Utils.random.nextInt(array.length());
+			int j = Utils.random.nextInt(array.length());
 			array.compareAndSwap(Math.min(i, j), Math.max(i, j));
 		}
 		array.setDone(0, array.length());

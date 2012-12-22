@@ -3,10 +3,9 @@ package nayuki.sortdemo;
 import java.util.Random;
 
 
-// A collection of well known methods that are not specific to this application.
-final class Utils {
+public final class Utils {
 	
-	private static Random random = new Random();
+	public static final Random random = new Random();
 	
 	
 	// Knuth shuffle
@@ -16,16 +15,6 @@ final class Utils {
 			int temp = values[i];
 			values[i] = values[j];
 			values[j] = temp;
-		}
-	}
-	
-	
-	// Sleeps without throwing InterruptedException
-	public static void sleep(long time) {
-		try {
-			Thread.sleep(time);
-		} catch (InterruptedException e) {
-			throw new StopException();
 		}
 	}
 	

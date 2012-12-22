@@ -171,7 +171,7 @@ public final class SortDemo extends Frame implements ActionListener {
 			if (size <= 0 || scale <= 0 || delay < 0)
 				return;
 			
-			SortArrayImpl array = new SortArrayImpl(size, scale, delay);
+			VisualSortArray array = new VisualSortArray(size, scale, delay);
 			Canvas canvas = array.getCanvas();
 			SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
 			SortThread thread = new SortThread(algorithm, array);

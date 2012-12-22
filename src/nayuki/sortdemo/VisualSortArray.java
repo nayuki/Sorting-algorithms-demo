@@ -8,10 +8,10 @@ import java.awt.Graphics;
 /**
  * An array to be sorted. Elements can be compared and swapped, but their values cannot be accessed directly.
  */
-final class SortArrayImpl extends AbstractSortArray {
+final class VisualSortArray extends AbstractSortArray {
 	
 	// Control
-	private volatile boolean stop;
+	private volatile boolean isStopRequested;
 	
 	// Graphics
 	private int scale;
@@ -32,14 +32,14 @@ final class SortArrayImpl extends AbstractSortArray {
 	
 	
 	
-	public SortArrayImpl(int size, int scale, int delay) {
+	public VisualSortArray(int size, int scale, int delay) {
 		// Initialize in order, then permute randomly
 		super(size);
 		Utils.shuffle(values);
 		
 		comparisonCount = 0;
 		swapCount = 0;
-		stop = false;
+		isStopRequested = false;
 		
 		this.scale = scale;
 		this.delay = delay;
@@ -59,7 +59,7 @@ final class SortArrayImpl extends AbstractSortArray {
 	/* Comparison and swapping */
 	
 	public int compare(int i, int j) {
-		if (stop)
+		if (isStopRequested)
 			throw new StopException();
 		
 		redrawElement(i, comparingColor);
@@ -77,7 +77,7 @@ final class SortArrayImpl extends AbstractSortArray {
 	
 	
 	public void swap(int i, int j) {
-		if (stop)
+		if (isStopRequested)
 			throw new StopException();
 		
 		super.swap(i, j);
@@ -92,8 +92,8 @@ final class SortArrayImpl extends AbstractSortArray {
 	
 	/* Control */
 	
-	public void stop() {
-		stop = true;
+	public void requestStop() {
+		isStopRequested = true;
 	}
 	
 	

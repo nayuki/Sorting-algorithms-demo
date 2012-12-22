@@ -4,11 +4,11 @@ package nayuki.sortdemo;
 final class SortThread extends Thread {
 	
 	private SortAlgorithm algorithm;
-	private SortArrayImpl array;
+	private VisualSortArray array;
 	
 	
-	public SortThread(SortAlgorithm algor, SortArrayImpl array) {
-		this.algorithm = algor;
+	public SortThread(SortAlgorithm algo, VisualSortArray array) {
+		this.algorithm = algo;
 		this.array = array;
 	}
 	
@@ -26,9 +26,9 @@ final class SortThread extends Thread {
 	}
 	
 	
-	public void stop1() {
+	public void requestStop() {
 		interrupt();
-		array.stop();
+		array.requestStop();
 	}
 	
 }

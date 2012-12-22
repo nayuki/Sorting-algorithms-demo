@@ -6,17 +6,19 @@ import org.junit.Test;
 
 public abstract class SortAlgorithmTest {
 	
+	// For subclasses to implement
 	public abstract SortAlgorithm getInstance();
 	
-	
+	// Actual algorithm under test
 	protected SortAlgorithm algo;
-	
 	
 	@Before
 	public void setUp() {
 		algo = getInstance();
 	}
 	
+	
+	/* Test cases */
 	
 	@Test
 	public void testRandom10() {

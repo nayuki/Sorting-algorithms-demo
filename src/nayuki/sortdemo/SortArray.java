@@ -25,7 +25,7 @@ public interface SortArray {
 	public boolean compareAndSwap(int i, int j);
 	
 	
-	/* Array visualization */
+	/* Sorting progress visualization */
 	
 	public void setActive(int index);
 	public void setInactive(int index);

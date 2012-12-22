@@ -7,7 +7,7 @@ import nayuki.sortdemo.SortArray;
 /**
  * Sorts by swapping the next unsorted item into the correct position in the sorted subarray. The correct position is determined using binary search instead of linear search. The time complexity is in <var>O</var>(<var>n</var><sup>3</sup>).
  */
-public final class InsertionSort1 extends SortAlgorithm {
+public final class InsertionSortBinarySearch extends SortAlgorithm {
 	
 	public void sort(SortArray array) {
 		array.setInactive(0, array.length());

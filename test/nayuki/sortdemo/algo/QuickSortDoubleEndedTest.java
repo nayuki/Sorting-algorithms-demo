@@ -2,13 +2,13 @@ package nayuki.sortdemo.algo;
 
 import nayuki.sortdemo.FastSortAlgorithmTest;
 import nayuki.sortdemo.SortAlgorithm;
-import nayuki.sortdemo.algo.QuickSort1;
+import nayuki.sortdemo.algo.QuickSortDoubleEnded;
 
 
-public final class QuickSort1Test extends FastSortAlgorithmTest {
+public final class QuickSortDoubleEndedTest extends FastSortAlgorithmTest {
 	
 	public SortAlgorithm getInstance() {
-		return new QuickSort1();
+		return new QuickSortDoubleEnded();
 	}
 	
 }

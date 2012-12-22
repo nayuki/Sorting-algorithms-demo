@@ -42,11 +42,11 @@ public final class SortDemo extends Frame implements ActionListener {
 		algors.add(new QuasiPancakeSort());
 		algors.add(new GnomeSort());
 		algors.add(new InsertionSort());
-		algors.add(new InsertionSort1());
+		algors.add(new InsertionSortBinarySearch());
 		algors.add(new ShellSort());
 		algors.add(new HeapSort());
-		algors.add(new QuickSort0());
-		algors.add(new QuickSort1());
+		algors.add(new QuickSortDoubleEnded());
+		algors.add(new QuickSortSliding());
 		algors.add(new StoogeSort());
 		algors.add(new StupidSort());
 		algors.add(new BozoSort());

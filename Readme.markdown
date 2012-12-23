@@ -4,7 +4,7 @@ Sorting algorithms demo
 This package is a Java program that shows an animation of various sorting
 algorithms in action, such as bubble sort or quicksort.
 
-Home page: [http://nayuki.eigenstate.org/page/sorting-algorithms-demo-java](http://nayuki.eigenstate.org/page/sorting-algorithms-demo-java])
+Home page: [http://nayuki.eigenstate.org/page/sorting-algorithms-demo-java](http://nayuki.eigenstate.org/page/sorting-algorithms-demo-java)
 
 
 How to run

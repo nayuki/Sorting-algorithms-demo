@@ -1,6 +1,6 @@
 package nayuki.sortdemo;
 
-import java.awt.Canvas;
+import java.awt.Component;
 import java.awt.Frame;
 import java.awt.Rectangle;
 import java.awt.event.WindowAdapter;
@@ -14,10 +14,10 @@ final class SortFrame extends Frame {
 	
 	
 	
-	public SortFrame(Canvas canvas, SortAlgorithm algo, SortThread thread) {
-		super(algo.getName());
+	public SortFrame(String name, Component maincomp, SortThread thread) {
+		super(name);
 		this.thread = thread;
-		add(canvas);
+		add(maincomp);
 		setResizable(false);
 		pack();
 		

@@ -49,7 +49,7 @@ final class VisualSortArray extends AbstractSortArray {
 	}
 	
 	
-	/* Field getters */
+	/* Initialization getters */
 	
 	public Canvas getCanvas() {
 		return canvas;

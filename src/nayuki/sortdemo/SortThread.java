@@ -7,9 +7,10 @@ final class SortThread extends Thread {
 	private VisualSortArray array;
 	
 	
-	public SortThread(SortAlgorithm algo, VisualSortArray array) {
-		this.algorithm = algo;
+	public SortThread(VisualSortArray array, SortAlgorithm algo) {
 		this.array = array;
+		this.algorithm = algo;
+		new SortFrame(algorithm.getName(), array.getCanvas(), this);
 	}
 	
 	

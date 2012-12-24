@@ -11,7 +11,6 @@
 package nayuki.sortdemo;
 
 import java.awt.Button;
-import java.awt.Canvas;
 import java.awt.Choice;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
@@ -172,11 +171,8 @@ public final class SortDemo extends Frame implements ActionListener {
 				return;
 			
 			VisualSortArray array = new VisualSortArray(size, scale, delay);
-			Canvas canvas = array.getCanvas();
 			SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
-			SortThread thread = new SortThread(algorithm, array);
-			new SortFrame(canvas, algorithm, thread);
-			thread.start();
+			new SortThread(array, algorithm).start();
 		} catch (NumberFormatException e) {}
 	}
 	

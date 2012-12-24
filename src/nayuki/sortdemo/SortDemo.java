@@ -122,14 +122,14 @@ public final class SortDemo extends Frame implements ActionListener {
 		add(algorithmInput);
 		
 		// Array size
-		arraySizeInput = new TextField("32");
+		arraySizeInput = new TextField("30");
 		arraySizeInput.addActionListener(this);
 		gbc.gridy = 1;
 		gbl.setConstraints(arraySizeInput, gbc);
 		add(arraySizeInput);
 		
 		// Scale
-		scaleInput = new TextField("8");
+		scaleInput = new TextField("12");
 		scaleInput.addActionListener(this);
 		gbc.gridy = 2;
 		gbl.setConstraints(scaleInput, gbc);

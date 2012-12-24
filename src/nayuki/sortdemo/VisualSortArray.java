@@ -18,13 +18,18 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	// Graphics
 	private int scale;
-	private int delay;
 	private BufferedCanvas canvas;
 	private Graphics graphics;
 	
 	// Statistics
 	private volatile int comparisonCount;
 	private volatile int swapCount;
+	
+	// Speed regulation
+	private int stepsToExecute;
+	private int stepsSinceRepaint;
+	private int delay;
+	private boolean enableLazyDrawing;
 	
 	// Colors
 	private static Color[] COLORS = {
@@ -37,7 +42,7 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	
 	
-	public VisualSortArray(int size, int scale, int delay) {
+	public VisualSortArray(int size, int scale, double speed) {
 		// Initialize in order, then permute randomly
 		super(size);
 		Utils.shuffle(values);
@@ -47,11 +52,15 @@ final class VisualSortArray extends AbstractSortArray {
 		swapCount = 0;
 		isStopRequested = false;
 		
+		delay = Math.max((int)Math.round(1000 / speed), 20);
+		stepsToExecute = Math.max((int)Math.round(speed / 50), 1);
+		stepsSinceRepaint = 0;
+		enableLazyDrawing = stepsToExecute > size;
+		
 		this.scale = scale;
-		this.delay = delay;
 		canvas = new BufferedCanvas(size * scale);
 		graphics = canvas.getBufferGraphics();
-		redraw(0, values.length);
+		redraw(0, values.length, true);
 	}
 	
 	
@@ -68,18 +77,15 @@ final class VisualSortArray extends AbstractSortArray {
 		if (isStopRequested)
 			throw new StopException();
 		
-		// Do repaint here
-		setRange(i, i + 1, 2);
-		setRange(j, j + 1, 2);
-		sleep(delay);
+		comparisonCount++;
+		setIndex(i, 2);
+		setIndex(j, 2);
+		requestRepaint();
 		
 		// No repaint here
-		state[i] = 0;
-		state[j] = 0;
-		redraw(i, i + 1);
-		redraw(j, j + 1);
+		setActive(i);
+		setActive(j);
 		
-		comparisonCount++;
 		return super.compare(i, j);
 	}
 	
@@ -93,7 +99,7 @@ final class VisualSortArray extends AbstractSortArray {
 		
 		setActive(i);
 		setActive(j);
-		sleep(delay);
+		requestRepaint();
 	}
 	
 	
@@ -106,19 +112,23 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	/* Array visualization */
 	
-	public void setActive  (int index) { setRange(index, index + 1, 0); }
-	public void setInactive(int index) { setRange(index, index + 1, 1); }
-	public void setDone    (int index) { setRange(index, index + 1, 3); }
+	public void setActive  (int index) { setIndex(index, 0); }
+	public void setInactive(int index) { setIndex(index, 1); }
+	public void setDone    (int index) { setIndex(index, 3); }
 	
 	public void setActive  (int start, int end) { setRange(start, end, 0); }
 	public void setInactive(int start, int end) { setRange(start, end, 1); }
 	public void setDone    (int start, int end) { setRange(start, end, 3); }
 	
+	private void setIndex(int index, int st) {
+		state[index] = st;
+		redraw(index, index + 1, false);
+	}
+	
 	private void setRange(int start, int end, int st) {
 		for (int i = start; i < end; i++)
 			state[i] = st;
-		redraw(start, end);
-		canvas.repaint();
+		redraw(start, end, false);
 	}
 	
 	
@@ -139,12 +149,16 @@ final class VisualSortArray extends AbstractSortArray {
 			if (values[i - 1] > values[i])
 				throw new AssertionError();
 		}
+		redraw(0, values.length, true);
+		canvas.repaint();
 	}
 	
 	
 	/* Canvas drawing. The method does not call repaint()! */
 	
-	private void redraw(int start, int end) {
+	private void redraw(int start, int end, boolean force) {
+		if (!force && enableLazyDrawing)
+			return;  // Wait for lazy full drawing instead
 		graphics.setColor(BACKGROUND_COLOR);
 		graphics.fillRect(0, start * scale, values.length * scale, (end - start) * scale);
 		if (scale == 1) {
@@ -161,13 +175,20 @@ final class VisualSortArray extends AbstractSortArray {
 	}
 	
 	
-	/* Utilities */
+	/* Speed regulation */
 	
-	private static void sleep(long time) {
-		try {
-			Thread.sleep(time);
-		} catch (InterruptedException e) {
-			throw new StopException();
+	private void requestRepaint() {
+		stepsSinceRepaint++;
+		if (stepsSinceRepaint >= stepsToExecute) {
+			if (enableLazyDrawing)  // Lazy full drawing
+				redraw(0, values.length, true);
+			canvas.repaint();
+			try {
+				Thread.sleep(delay);
+			} catch (InterruptedException e) {
+				throw new StopException();
+			}
+			stepsSinceRepaint = 0;
 		}
 	}
 	

@@ -60,7 +60,7 @@ public final class SortDemo extends Frame implements ActionListener {
 	
 	private TextField arraySizeInput;
 	private TextField scaleInput;
-	private TextField delayInput;
+	private TextField speedInput;
 	private Choice algorithmInput;
 	private Button runButton;
 	
@@ -105,7 +105,7 @@ public final class SortDemo extends Frame implements ActionListener {
 		gbl.setConstraints(label, gbc);
 		add(label);
 		
-		label = new Label("Delay (ms):");
+		label = new Label("Speed:");
 		gbc.gridy = 3;
 		gbl.setConstraints(label, gbc);
 		add(label);
@@ -135,12 +135,12 @@ public final class SortDemo extends Frame implements ActionListener {
 		gbl.setConstraints(scaleInput, gbc);
 		add(scaleInput);
 		
-		// Delay
-		delayInput = new TextField("100");
-		delayInput.addActionListener(this);
+		// Speed
+		speedInput = new TextField("10");
+		speedInput.addActionListener(this);
 		gbc.gridy = 3;
-		gbl.setConstraints(delayInput, gbc);
-		add(delayInput);
+		gbl.setConstraints(speedInput, gbc);
+		add(speedInput);
 		
 		// Run button
 		runButton = new Button("Run");
@@ -166,11 +166,11 @@ public final class SortDemo extends Frame implements ActionListener {
 		try {
 			int size = Integer.parseInt(arraySizeInput.getText());
 			int scale = Integer.parseInt(scaleInput.getText());
-			int delay = Integer.parseInt(delayInput.getText());
-			if (size <= 0 || scale <= 0 || delay < 0)
+			double speed = Double.parseDouble(speedInput.getText());
+			if (size <= 0 || scale <= 0 || speed <= 0 || Double.isInfinite(speed))
 				return;
 			
-			VisualSortArray array = new VisualSortArray(size, scale, delay);
+			VisualSortArray array = new VisualSortArray(size, scale, speed);
 			SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
 			new SortThread(array, algorithm).start();
 		} catch (NumberFormatException e) {}

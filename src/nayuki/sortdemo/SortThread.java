@@ -16,6 +16,7 @@ final class SortThread extends Thread {
 	
 	public void run() {
 		try {
+			Thread.sleep(1000);
 			algorithm.sort(array);
 			try {
 				array.assertSorted();
@@ -23,7 +24,9 @@ final class SortThread extends Thread {
 			} catch (AssertionError e) {
 				System.out.printf("%s: Sorting failed%n", algorithm.getName());
 			}
-		} catch (StopException e) {}
+		}
+		catch (StopException e) {}
+		catch (InterruptedException e) {}
 	}
 	
 	

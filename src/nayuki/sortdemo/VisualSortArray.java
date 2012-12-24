@@ -10,6 +10,9 @@ import java.awt.Graphics;
  */
 final class VisualSortArray extends AbstractSortArray {
 	
+	// Visual state per element: 0=active, 1=inactive, 2=comparing, 3=done
+	private int[] state;
+	
 	// Control
 	private volatile boolean isStopRequested;
 	
@@ -24,11 +27,13 @@ final class VisualSortArray extends AbstractSortArray {
 	private volatile int swapCount;
 	
 	// Colors
-	private Color activeColor     = new Color(0x294099);  // Blue
-	private Color inactiveColor   = new Color(0x959EBF);  // Gray
-	private Color comparingColor  = new Color(0xD4BA0D);  // Yellow
-	private Color doneColor       = new Color(0x25963D);  // Green
-	private Color backgroundColor = new Color(0xFFFFFF);  // White
+	private static Color[] COLORS = {
+		new Color(0x294099),  // Active: Blue
+		new Color(0x959EBF),  // Inactive: Gray
+		new Color(0xD4BA0D),  // Comparing: Yellow
+		new Color(0x25963D),  // Done: Green
+	};
+	private static Color BACKGROUND_COLOR = new Color(0xFFFFFF);  // White
 	
 	
 	
@@ -36,6 +41,7 @@ final class VisualSortArray extends AbstractSortArray {
 		// Initialize in order, then permute randomly
 		super(size);
 		Utils.shuffle(values);
+		state = new int[size];
 		
 		comparisonCount = 0;
 		swapCount = 0;
@@ -45,7 +51,7 @@ final class VisualSortArray extends AbstractSortArray {
 		this.delay = delay;
 		canvas = new BufferedCanvas(size * scale);
 		graphics = canvas.getBufferGraphics();
-		redrawRange(0, values.length, activeColor);
+		redraw(0, values.length);
 	}
 	
 	
@@ -62,14 +68,16 @@ final class VisualSortArray extends AbstractSortArray {
 		if (isStopRequested)
 			throw new StopException();
 		
-		redrawElement(i, comparingColor);
-		redrawElement(j, comparingColor);
-		canvas.repaint();
+		// Do repaint here
+		setRange(i, i + 1, 2);
+		setRange(j, j + 1, 2);
 		sleep(delay);
 		
-		redrawElement(i, activeColor);
-		redrawElement(j, activeColor);
 		// No repaint here
+		state[i] = 0;
+		state[j] = 0;
+		redraw(i, i + 1);
+		redraw(j, j + 1);
 		
 		comparisonCount++;
 		return super.compare(i, j);
@@ -83,9 +91,8 @@ final class VisualSortArray extends AbstractSortArray {
 		super.swap(i, j);
 		swapCount++;
 		
-		redrawElement(i, activeColor);
-		redrawElement(j, activeColor);
-		canvas.repaint();
+		setActive(i);
+		setActive(j);
 		sleep(delay);
 	}
 	
@@ -99,13 +106,20 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	/* Array visualization */
 	
-	public void setActive  (int index) { redrawElement(index, activeColor  ); canvas.repaint(); }
-	public void setInactive(int index) { redrawElement(index, inactiveColor); canvas.repaint(); }
-	public void setDone    (int index) { redrawElement(index, doneColor    ); canvas.repaint(); }
+	public void setActive  (int index) { setRange(index, index + 1, 0); }
+	public void setInactive(int index) { setRange(index, index + 1, 1); }
+	public void setDone    (int index) { setRange(index, index + 1, 3); }
 	
-	public void setActive  (int start, int end) { redrawRange(start, end, activeColor  ); canvas.repaint(); }
-	public void setInactive(int start, int end) { redrawRange(start, end, inactiveColor); canvas.repaint(); }
-	public void setDone    (int start, int end) { redrawRange(start, end, doneColor    ); canvas.repaint(); }
+	public void setActive  (int start, int end) { setRange(start, end, 0); }
+	public void setInactive(int start, int end) { setRange(start, end, 1); }
+	public void setDone    (int start, int end) { setRange(start, end, 3); }
+	
+	private void setRange(int start, int end, int st) {
+		for (int i = start; i < end; i++)
+			state[i] = st;
+		redraw(start, end);
+		canvas.repaint();
+	}
 	
 	
 	/* After sorting */
@@ -128,29 +142,21 @@ final class VisualSortArray extends AbstractSortArray {
 	}
 	
 	
-	/* Canvas drawing. These methods do not call repaint()! */
+	/* Canvas drawing. The method does not call repaint()! */
 	
-	private void redrawElement(int index, Color color) {
-		graphics.setColor(backgroundColor);
-		if (scale == 1) graphics.drawLine(values[index] + 1, index, values.length, index);
-		else graphics.fillRect((values[index] + 1) * scale, index * scale, values.length * scale, scale);
-		
-		graphics.setColor(color);
-		if (scale == 1) graphics.drawLine(0, index, values[index], index);
-		else graphics.fillRect(0, index * scale, (values[index] + 1) * scale, scale);
-	}
-	
-	
-	private void redrawRange(int start, int end, Color color) {
-		graphics.setColor(backgroundColor);
+	private void redraw(int start, int end) {
+		graphics.setColor(BACKGROUND_COLOR);
 		graphics.fillRect(0, start * scale, values.length * scale, (end - start) * scale);
-		graphics.setColor(color);
 		if (scale == 1) {
-			for (int i = start; i < end; i++)
+			for (int i = start; i < end; i++) {
+				graphics.setColor(COLORS[state[i]]);
 				graphics.drawLine(0, i, values[i], i);
+			}
 		} else {
-			for (int i = start; i < end; i++)
+			for (int i = start; i < end; i++) {
+				graphics.setColor(COLORS[state[i]]);
 				graphics.fillRect(0, i * scale, (values[i] + 1) * scale, scale);
+			}
 		}
 	}
 	

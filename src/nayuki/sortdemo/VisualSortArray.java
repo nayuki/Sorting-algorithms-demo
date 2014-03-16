@@ -3,6 +3,7 @@ package nayuki.sortdemo;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Arrays;
 
 
 /**
@@ -126,8 +127,7 @@ final class VisualSortArray extends AbstractSortArray {
 	}
 	
 	private void setRange(int start, int end, int st) {
-		for (int i = start; i < end; i++)
-			state[i] = st;
+		Arrays.fill(state, start, end, st);
 		redraw(start, end, false);
 	}
 	

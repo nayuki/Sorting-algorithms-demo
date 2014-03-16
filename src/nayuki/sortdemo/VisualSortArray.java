@@ -27,6 +27,7 @@ final class VisualSortArray extends AbstractSortArray {
 	private volatile int swapCount;
 	
 	// Speed regulation
+	private static double MAX_FPS = 60;
 	private int stepsToExecute;
 	private int stepsSinceRepaint;
 	private int delay;
@@ -46,6 +47,8 @@ final class VisualSortArray extends AbstractSortArray {
 	public VisualSortArray(int size, int scale, double speed) {
 		// Initialize in order, then permute randomly
 		super(size);
+		if (speed <= 0)
+			throw new IllegalArgumentException("Speed must be positive");
 		Utils.shuffle(values);
 		state = new int[size];
 		
@@ -53,8 +56,8 @@ final class VisualSortArray extends AbstractSortArray {
 		swapCount = 0;
 		isStopRequested = false;
 		
-		delay = Math.max((int)Math.round(1000 / speed), 20);
-		stepsToExecute = Math.max((int)Math.round(speed / 50), 1);
+		delay = (int)Math.round(1000 / Math.min(speed, MAX_FPS));
+		stepsToExecute = (int)Math.round(Math.max(speed / MAX_FPS, 1));
 		stepsSinceRepaint = 0;
 		enableLazyDrawing = stepsToExecute > size;
 		

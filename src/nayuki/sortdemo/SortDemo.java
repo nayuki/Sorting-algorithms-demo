@@ -48,6 +48,7 @@ public final class SortDemo extends Frame implements ActionListener {
 			new HeapSort(),
 			new QuickSortDoubleEnded(),
 			new QuickSortSliding(),
+			new SlowSort(),
 			new StoogeSort(),
 			new StupidSort(),
 			new BozoSort());

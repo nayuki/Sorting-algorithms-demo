@@ -4,7 +4,7 @@ Sorting algorithms demo
 This package is a Java program that shows an animation of various sorting
 algorithms in action, such as bubble sort or quicksort.
 
-Home page: [http://nayuki.eigenstate.org/page/sorting-algorithms-demo-java](http://nayuki.eigenstate.org/page/sorting-algorithms-demo-java)
+Home page: [http://www.nayuki.io/page/sorting-algorithms-demo-java](http://www.nayuki.io/page/sorting-algorithms-demo-java)
 
 
 How to run
@@ -21,7 +21,7 @@ main class `nayuki.sortdemo.SortDemo`.
 License
 -------
 
-Copyright © 2012 Nayuki Minase
+Copyright © 2014 Project Nayuki
 
 (MIT License)
 

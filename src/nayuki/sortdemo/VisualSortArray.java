@@ -97,13 +97,13 @@ final class VisualSortArray extends SortArray {
 	public void swap(int i, int j) {
 		if (isStopRequested)
 			throw new StopException();
-		
 		super.swap(i, j);
-		swapCount++;
-		
-		setActive(i);
-		setActive(j);
-		requestRepaint();
+		if (state != null) {  // If outside the constructor
+			swapCount++;
+			setActive(i);
+			setActive(j);
+			requestRepaint();
+		}
 	}
 	
 	

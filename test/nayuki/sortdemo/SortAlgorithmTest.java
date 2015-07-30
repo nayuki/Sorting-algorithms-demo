@@ -34,7 +34,7 @@ public abstract class SortAlgorithmTest {
 	
 	@Test public void testRandomSizes() {
 		for (int i = 0; i < 100; i++)
-			testRandom(Utils.random.nextInt(100) + 1);
+			testRandom(SortArray.random.nextInt(100) + 1);
 	}
 	
 	protected void testRandom(int size) {

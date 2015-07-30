@@ -1,5 +1,7 @@
 package nayuki.sortdemo;
 
+import java.util.Random;
+
 
 /**
  * An array that can be sorted and have the sorting process visualized.
@@ -59,6 +61,13 @@ public abstract class SortArray {
 	}
 	
 	
+	public void shuffle() {
+		// Fisher-Yates / Knuth shuffle
+		for (int i = length() - 1; i >= 0; i--)
+			swap(i, random.nextInt(i + 1));
+	}
+	
+	
 	/* Sorting progress visualization */
 	
 	public abstract void setActive(int index);
@@ -68,5 +77,8 @@ public abstract class SortArray {
 	public abstract void setActive(int start, int end);
 	public abstract void setInactive(int start, int end);
 	public abstract void setDone(int start, int end);
+	
+	
+	public static final Random random = new Random();
 	
 }

@@ -17,10 +17,6 @@ final class TestSortArray extends SortArray {
 			swap(i, values.length - 1 - i);
 	}
 	
-	public void shuffle() {
-		Utils.shuffle(values);
-	}
-	
 	
 	/* Test */
 	

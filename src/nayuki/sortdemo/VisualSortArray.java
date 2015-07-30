@@ -49,7 +49,7 @@ final class VisualSortArray extends SortArray {
 		super(size);
 		if (speed <= 0)
 			throw new IllegalArgumentException("Speed must be positive");
-		Utils.shuffle(values);
+		shuffle();
 		state = new int[size];
 		
 		comparisonCount = 0;

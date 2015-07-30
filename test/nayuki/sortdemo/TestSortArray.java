@@ -1,6 +1,6 @@
 package nayuki.sortdemo;
 
-import static org.junit.Assert.fail;
+import org.junit.Assert;
 
 
 // An array for test purposes, not supporting graphics.
@@ -25,10 +25,8 @@ final class TestSortArray extends AbstractSortArray {
 	/* Test */
 	
 	public void assertSorted() {
-		for (int i = 0; i < values.length - 1; i++) {
-			if (values[i] > values[i + 1])
-				fail("Not sorted");
-		}
+		for (int i = 0; i < values.length - 1; i++)
+			Assert.assertTrue(values[i] <= values[i + 1]);
 	}
 	
 	

@@ -3,6 +3,7 @@ package nayuki.sortdemo;
 import org.junit.Test;
 
 
+// Contains test cases with larger arrays, appropriate for O(n log n) sort algorithms.
 public abstract class FastSortAlgorithmTest extends SortAlgorithmTest {
 	
 	@Test

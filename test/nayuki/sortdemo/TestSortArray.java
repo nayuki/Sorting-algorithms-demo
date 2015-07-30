@@ -3,6 +3,7 @@ package nayuki.sortdemo;
 import static org.junit.Assert.fail;
 
 
+// An array for test purposes, not supporting graphics.
 final class TestSortArray extends AbstractSortArray {
 	
 	/* Initialization */

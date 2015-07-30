@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
+// Common superclass containing test cases appropriate for all sort algorithms.
 public abstract class SortAlgorithmTest {
 	
 	// For subclasses to implement

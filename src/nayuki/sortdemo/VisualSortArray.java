@@ -9,7 +9,7 @@ import java.util.Arrays;
 /**
  * An array to be sorted. Elements can be compared and swapped, but their values cannot be accessed directly.
  */
-final class VisualSortArray extends AbstractSortArray {
+final class VisualSortArray extends SortArray {
 	
 	// Visual state per element: 0=active, 1=inactive, 2=comparing, 3=done
 	private int[] state;

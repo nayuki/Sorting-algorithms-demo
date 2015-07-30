@@ -4,7 +4,7 @@ import org.junit.Assert;
 
 
 // An array for test purposes, not supporting graphics.
-final class TestSortArray extends AbstractSortArray {
+final class TestSortArray extends SortArray {
 	
 	/* Initialization */
 	

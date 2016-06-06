@@ -27,6 +27,14 @@ public abstract class SortArray {
 		return values.length;
 	}
 	
+	public int getValue(int position) {
+		return values[position];
+	}
+
+	public void setValue(int position, int value) {
+		values[position] = value;
+		
+	}
 	
 	/* Comparison and swapping */
 	
@@ -80,5 +88,7 @@ public abstract class SortArray {
 	
 	
 	public static final Random random = new Random();
-	
+
+
+
 }

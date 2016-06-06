@@ -51,11 +51,10 @@ public final class SortDemo extends Frame implements ActionListener {
 			new SlowSort(),
 			new StoogeSort(),
 			new StupidSort(),
-			new BozoSort());
+			new BozoSort(),
+			new MergeSort());
 		new SortDemo(algos);
 	}
-	
-	
 	
 	private List<SortAlgorithm> algorithms;
 	
@@ -64,7 +63,6 @@ public final class SortDemo extends Frame implements ActionListener {
 	private TextField speedInput;
 	private Choice algorithmInput;
 	private Button runButton;
-	
 	
 	
 	public SortDemo(List<SortAlgorithm> algos) {

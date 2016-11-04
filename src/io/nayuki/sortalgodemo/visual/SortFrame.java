@@ -47,7 +47,7 @@ final class SortFrame extends Frame {
 		
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				SortFrame.this.thread.requestStop();
+				SortFrame.this.thread.interrupt();
 				dispose();
 			}
 		});

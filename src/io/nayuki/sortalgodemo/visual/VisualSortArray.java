@@ -39,9 +39,6 @@ final class VisualSortArray extends AbstractSortArray {
 	// Visual state per element: 0=active, 1=inactive, 2=comparing, 3=done
 	private int[] state;
 	
-	// Control
-	private volatile boolean isStopRequested;
-	
 	// Graphics
 	private int scale;
 	private BufferedCanvas canvas;
@@ -79,7 +76,6 @@ final class VisualSortArray extends AbstractSortArray {
 		
 		comparisonCount = 0;
 		swapCount = 0;
-		isStopRequested = false;
 		
 		delay = (int)Math.round(1000 / Math.min(speed, MAX_FPS));
 		stepsToExecute = (int)Math.round(Math.max(speed / MAX_FPS, 1));
@@ -103,7 +99,7 @@ final class VisualSortArray extends AbstractSortArray {
 	/* Comparison and swapping */
 	
 	public int compare(int i, int j) {
-		if (isStopRequested)
+		if (Thread.interrupted())
 			throw new StopException();
 		
 		comparisonCount++;
@@ -120,7 +116,7 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	
 	public void swap(int i, int j) {
-		if (isStopRequested)
+		if (Thread.interrupted())
 			throw new StopException();
 		super.swap(i, j);
 		if (state != null) {  // If outside the constructor
@@ -129,13 +125,6 @@ final class VisualSortArray extends AbstractSortArray {
 			setActive(j);
 			requestRepaint();
 		}
-	}
-	
-	
-	/* Control */
-	
-	public void requestStop() {
-		isStopRequested = true;
 	}
 	
 	

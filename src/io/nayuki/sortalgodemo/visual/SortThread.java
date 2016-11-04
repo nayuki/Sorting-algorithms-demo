@@ -55,10 +55,4 @@ final class SortThread extends Thread {
 		catch (InterruptedException e) {}
 	}
 	
-	
-	public void requestStop() {
-		interrupt();
-		array.requestStop();
-	}
-	
 }

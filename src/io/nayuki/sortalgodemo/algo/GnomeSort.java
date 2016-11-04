@@ -35,14 +35,15 @@ public final class GnomeSort extends AbstractSortAlgorithm {
 	
 	
 	public void sort(SortArray array) {
-		array.setRange(0, array.length(), SortArray.ElementState.INACTIVE);
-		for (int i = 0; i < array.length() - 1; ) {
+		int length = array.length();
+		array.setRange(0, length, SortArray.ElementState.INACTIVE);
+		for (int i = 0; i < length - 1; ) {
 			if (!array.compareAndSwap(i, i + 1) || i == 0)
 				i++;
 			else
 				i--;
 		}
-		array.setRange(0, array.length(), SortArray.ElementState.DONE);
+		array.setRange(0, length, SortArray.ElementState.DONE);
 	}
 	
 	

@@ -35,14 +35,15 @@ public final class QuasiPancakeSort extends AbstractSortAlgorithm {
 	
 	
 	public void sort(SortArray array) {
-		for (int i = 1; i < array.length(); i++) {
+		int length = array.length();
+		for (int i = 1; i < length; i++) {
 			int j = i;
 			while (j >= 1 && array.compare(j - 1, i) > 0)
 				j--;
 			reverse(array, j, i);
 			reverse(array, j, i + 1);
 		}
-		array.setRange(0, array.length(), SortArray.ElementState.DONE);
+		array.setRange(0, length, SortArray.ElementState.DONE);
 	}
 	
 	

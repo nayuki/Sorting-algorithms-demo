@@ -41,12 +41,13 @@ public final class HeapSort extends AbstractSortAlgorithm {
 	
 	public void sort(SortArray array) {
 		// Heapify
-		array.setRange(0, array.length(), SortArray.ElementState.INACTIVE);
-		for (int i = array.length() - 1; i >= 0; i--)
-			siftDown(array, i, array.length());
+		int length = array.length();
+		array.setRange(0, length, SortArray.ElementState.INACTIVE);
+		for (int i = length - 1; i >= 0; i--)
+			siftDown(array, i, length);
 		
 		// Extract maximum repeatedly
-		for (int i = array.length() - 1; i >= 0; i--) {
+		for (int i = length - 1; i >= 0; i--) {
 			array.swap(0, i);
 			array.setElement(i, SortArray.ElementState.DONE);
 			siftDown(array, 0, i);

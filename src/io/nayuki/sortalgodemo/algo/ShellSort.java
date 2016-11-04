@@ -42,15 +42,16 @@ public final class ShellSort extends AbstractSortAlgorithm {
 	
 	
 	public void sort(SortArray array) {
+		int length = array.length();
 		for (int step : GAP_SEQUENCE) {
-			array.setRange(0, array.length(), SortArray.ElementState.INACTIVE);
+			array.setRange(0, length, SortArray.ElementState.INACTIVE);
 			
 			// Do an insertion sort with this step size
-			for (int j = 0; j < array.length(); j++) {
+			for (int j = 0; j < length; j++) {
 				for (int k = j; k >= step && array.compareAndSwap(k - step, k); k -= step);
 			}
 		}
-		array.setRange(0, array.length(), SortArray.ElementState.DONE);
+		array.setRange(0, length, SortArray.ElementState.DONE);
 	}
 	
 	

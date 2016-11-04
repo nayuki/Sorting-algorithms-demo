@@ -49,15 +49,4 @@ final class TestSortArray extends AbstractSortArray {
 			Assert.assertTrue(values[i] <= values[i + 1]);
 	}
 	
-	
-	/* Ignore graphics visualization calls */
-	
-	public void setActive(int index) {}
-	public void setInactive(int index) {}
-	public void setDone(int index) {}
-	
-	public void setActive(int start, int end) {}
-	public void setInactive(int start, int end) {}
-	public void setDone(int start, int end) {}
-	
 }

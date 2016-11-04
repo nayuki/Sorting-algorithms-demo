@@ -71,13 +71,4 @@ final class SimpleSortArray extends AbstractSortArray implements Cloneable {
 		}
 	}
 	
-	
-	public void setActive(int index) {}
-	public void setInactive(int index) {}
-	public void setDone(int index) {}
-	
-	public void setActive(int start, int end) {}
-	public void setInactive(int start, int end) {}
-	public void setDone(int start, int end) {}
-	
 }

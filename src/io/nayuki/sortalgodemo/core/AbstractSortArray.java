@@ -94,13 +94,13 @@ public abstract class AbstractSortArray implements SortArray {
 	
 	/* Sorting progress visualization */
 	
-	public abstract void setActive(int index);
-	public abstract void setInactive(int index);
-	public abstract void setDone(int index);
+	public void setActive(int index) {}
+	public void setInactive(int index) {}
+	public void setDone(int index) {}
 	
-	public abstract void setActive(int start, int end);
-	public abstract void setInactive(int start, int end);
-	public abstract void setDone(int start, int end);
+	public void setActive(int start, int end) {}
+	public void setInactive(int start, int end) {}
+	public void setDone(int start, int end) {}
 	
 	
 	public static final Random random = new Random();

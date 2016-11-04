@@ -22,41 +22,24 @@
  *   Software.
  */
 
-package io.nayuki.sortalgodemo;
+package io.nayuki.sortalgodemo.core;
+
+import org.junit.Test;
 
 
-final class SortThread extends Thread {
+// Contains test cases with larger arrays, appropriate for O(n log n) sort algorithms.
+public abstract class FastSortAlgorithmTest extends SortAlgorithmTest {
 	
-	private SortAlgorithm algorithm;
-	private VisualSortArray array;
-	
-	
-	public SortThread(VisualSortArray array, SortAlgorithm algo) {
-		this.array = array;
-		this.algorithm = algo;
-		new SortFrame(algorithm.getName(), array.getCanvas(), this);
+	@Test public void testRandom1e3() {
+		testRandom(1 * 1000);
 	}
 	
-	
-	public void run() {
-		try {
-			Thread.sleep(1000);
-			algorithm.sort(array);
-			try {
-				array.assertSorted();
-				System.out.printf("%s: %d comparisons, %d swaps%n", algorithm.getName(), array.getComparisonCount(), array.getSwapCount());
-			} catch (AssertionError e) {
-				System.out.printf("%s: Sorting failed%n", algorithm.getName());
-			}
-		}
-		catch (StopException e) {}
-		catch (InterruptedException e) {}
+	@Test public void testRandom1e4() {
+		testRandom(10 * 1000);
 	}
 	
-	
-	public void requestStop() {
-		interrupt();
-		array.requestStop();
+	@Test public void testRandom1e5() {
+		testRandom(100 * 1000);
 	}
 	
 }

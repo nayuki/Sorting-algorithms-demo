@@ -22,12 +22,16 @@
  *   Software.
  */
 
-package io.nayuki.sortalgodemo;
+package io.nayuki.sortalgodemo.core;
 
 
-@SuppressWarnings("serial")
-final class StopException extends RuntimeException {
+/**
+ * A sorting algorithm, which is a sort of function object. Each subclass should have only a singleton instance, and the instance must be stateless.
+ */
+public abstract class SortAlgorithm {
 	
-	public StopException() {}
+	public abstract void sort(SortArray array);
+	
+	public abstract String getName();
 	
 }

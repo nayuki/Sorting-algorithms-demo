@@ -22,43 +22,39 @@
  *   Software.
  */
 
-package io.nayuki.sortalgodemo;
+package io.nayuki.sortalgodemo.visual;
 
-import org.junit.Assert;
-import io.nayuki.sortalgodemo.SortArray;
+import java.awt.Component;
+import java.awt.Frame;
+import java.awt.Rectangle;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
-// An array for test purposes, not supporting graphics.
-final class TestSortArray extends SortArray {
+@SuppressWarnings("serial")
+final class SortFrame extends Frame {
 	
-	/* Initialization */
+	private SortThread thread;
 	
-	public TestSortArray(int size) {
-		super(size);
+	
+	
+	public SortFrame(String name, Component maincomp, SortThread thread) {
+		super(name);
+		this.thread = thread;
+		add(maincomp);
+		setResizable(false);
+		pack();
+		
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				SortFrame.this.thread.requestStop();
+				dispose();
+			}
+		});
+		
+		Rectangle rect = getGraphicsConfiguration().getBounds();
+		setLocation((rect.width - getWidth()) / 8, (rect.height - getHeight()) / 8);
+		setVisible(true);
 	}
-	
-	public void reverse() {
-		for (int i = 0; i < values.length / 2; i++)
-			swap(i, values.length - 1 - i);
-	}
-	
-	
-	/* Test */
-	
-	public void assertSorted() {
-		for (int i = 0; i < values.length - 1; i++)
-			Assert.assertTrue(values[i] <= values[i + 1]);
-	}
-	
-	
-	/* Ignore graphics visualization calls */
-	
-	public void setActive(int index) {}
-	public void setInactive(int index) {}
-	public void setDone(int index) {}
-	
-	public void setActive(int start, int end) {}
-	public void setInactive(int start, int end) {}
-	public void setDone(int start, int end) {}
 	
 }

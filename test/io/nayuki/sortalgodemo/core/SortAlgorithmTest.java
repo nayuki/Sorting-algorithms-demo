@@ -22,24 +22,67 @@
  *   Software.
  */
 
-package io.nayuki.sortalgodemo;
+package io.nayuki.sortalgodemo.core;
 
+import org.junit.Before;
 import org.junit.Test;
+import io.nayuki.sortalgodemo.core.SortAlgorithm;
+import io.nayuki.sortalgodemo.core.SortArray;
 
 
-// Contains test cases with larger arrays, appropriate for O(n log n) sort algorithms.
-public abstract class FastSortAlgorithmTest extends SortAlgorithmTest {
+// Common superclass containing test cases appropriate for all sort algorithms.
+public abstract class SortAlgorithmTest {
 	
-	@Test public void testRandom1e3() {
-		testRandom(1 * 1000);
+	// For subclasses to implement
+	public abstract SortAlgorithm getInstance();
+	
+	// Actual algorithm under test
+	protected SortAlgorithm algo;
+	
+	@Before public void setUp() {
+		algo = getInstance();
 	}
 	
-	@Test public void testRandom1e4() {
-		testRandom(10 * 1000);
+	
+	/* Test cases */
+	
+	@Test public void testRandom10() {
+		testRandom(10);
 	}
 	
-	@Test public void testRandom1e5() {
-		testRandom(100 * 1000);
+	@Test public void testRandom30() {
+		testRandom(30);
+	}
+	
+	@Test public void testRandom100() {
+		testRandom(100);
+	}
+	
+	@Test public void testRandomSizes() {
+		for (int i = 0; i < 100; i++)
+			testRandom(SortArray.random.nextInt(100) + 1);
+	}
+	
+	protected void testRandom(int size) {
+		TestSortArray arr = new TestSortArray(size);
+		arr.shuffle();
+		algo.sort(arr);
+		arr.assertSorted();
+	}
+	
+	
+	@Test public void testForward100() {
+		TestSortArray arr = new TestSortArray(100);
+		algo.sort(arr);
+		arr.assertSorted();
+	}
+	
+	
+	@Test public void testReverse100() {
+		TestSortArray arr = new TestSortArray(100);
+		arr.reverse();
+		algo.sort(arr);
+		arr.assertSorted();
 	}
 	
 }

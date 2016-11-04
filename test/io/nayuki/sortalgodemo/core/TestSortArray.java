@@ -22,39 +22,43 @@
  *   Software.
  */
 
-package io.nayuki.sortalgodemo;
+package io.nayuki.sortalgodemo.core;
 
-import java.awt.Canvas;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
+import org.junit.Assert;
+import io.nayuki.sortalgodemo.core.SortArray;
 
 
-@SuppressWarnings("serial")
-final class BufferedCanvas extends Canvas {
+// An array for test purposes, not supporting graphics.
+final class TestSortArray extends SortArray {
 	
-	private BufferedImage buffer;
-	private Graphics bufferg;
+	/* Initialization */
 	
+	public TestSortArray(int size) {
+		super(size);
+	}
 	
-	public BufferedCanvas(int size) {
-		setSize(size, size);
-		buffer = new BufferedImage(size, size, BufferedImage.TYPE_INT_BGR);
-		bufferg = buffer.getGraphics();
+	public void reverse() {
+		for (int i = 0; i < values.length / 2; i++)
+			swap(i, values.length - 1 - i);
 	}
 	
 	
-	public Graphics getBufferGraphics() {
-		return bufferg;
+	/* Test */
+	
+	public void assertSorted() {
+		for (int i = 0; i < values.length - 1; i++)
+			Assert.assertTrue(values[i] <= values[i + 1]);
 	}
 	
 	
-	public void update(Graphics g) {
-		paint(g);
-	}
+	/* Ignore graphics visualization calls */
 	
+	public void setActive(int index) {}
+	public void setInactive(int index) {}
+	public void setDone(int index) {}
 	
-	public void paint(Graphics g) {
-		g.drawImage(buffer, 0, 0, this);
-	}
+	public void setActive(int start, int end) {}
+	public void setInactive(int start, int end) {}
+	public void setDone(int start, int end) {}
 	
 }

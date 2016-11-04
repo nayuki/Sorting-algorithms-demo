@@ -24,9 +24,9 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.SortAlgorithm;
-import io.nayuki.sortalgodemo.SortAlgorithmTest;
 import io.nayuki.sortalgodemo.algo.GnomeSort;
+import io.nayuki.sortalgodemo.core.SortAlgorithm;
+import io.nayuki.sortalgodemo.core.SortAlgorithmTest;
 
 
 public final class GnomeSortTest extends SortAlgorithmTest {

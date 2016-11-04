@@ -24,8 +24,8 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.SortAlgorithm;
-import io.nayuki.sortalgodemo.SortArray;
+import io.nayuki.sortalgodemo.core.SortAlgorithm;
+import io.nayuki.sortalgodemo.core.SortArray;
 
 
 public final class QuasiPancakeSort extends SortAlgorithm {

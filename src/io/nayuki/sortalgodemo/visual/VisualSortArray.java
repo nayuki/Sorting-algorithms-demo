@@ -22,12 +22,13 @@
  *   Software.
  */
 
-package io.nayuki.sortalgodemo;
+package io.nayuki.sortalgodemo.visual;
 
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Arrays;
+import io.nayuki.sortalgodemo.core.SortArray;
 
 
 /**

@@ -22,7 +22,7 @@
  *   Software.
  */
 
-package io.nayuki.sortalgodemo;
+package io.nayuki.sortalgodemo.core;
 
 import java.util.Random;
 

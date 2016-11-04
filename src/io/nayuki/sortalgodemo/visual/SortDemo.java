@@ -32,7 +32,7 @@
  * - Gray: Inactive
  */
 
-package io.nayuki.sortalgodemo;
+package io.nayuki.sortalgodemo.visual;
 
 import java.awt.Button;
 import java.awt.Choice;
@@ -51,6 +51,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import io.nayuki.sortalgodemo.algo.*;
+import io.nayuki.sortalgodemo.core.SortAlgorithm;
 
 
 @SuppressWarnings("serial")

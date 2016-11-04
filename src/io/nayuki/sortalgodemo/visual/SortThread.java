@@ -22,67 +22,43 @@
  *   Software.
  */
 
-package io.nayuki.sortalgodemo;
+package io.nayuki.sortalgodemo.visual;
 
-import org.junit.Before;
-import org.junit.Test;
-import io.nayuki.sortalgodemo.SortAlgorithm;
-import io.nayuki.sortalgodemo.SortArray;
+import io.nayuki.sortalgodemo.core.SortAlgorithm;
 
 
-// Common superclass containing test cases appropriate for all sort algorithms.
-public abstract class SortAlgorithmTest {
+final class SortThread extends Thread {
 	
-	// For subclasses to implement
-	public abstract SortAlgorithm getInstance();
+	private SortAlgorithm algorithm;
+	private VisualSortArray array;
 	
-	// Actual algorithm under test
-	protected SortAlgorithm algo;
 	
-	@Before public void setUp() {
-		algo = getInstance();
+	public SortThread(VisualSortArray array, SortAlgorithm algo) {
+		this.array = array;
+		this.algorithm = algo;
+		new SortFrame(algorithm.getName(), array.getCanvas(), this);
 	}
 	
 	
-	/* Test cases */
-	
-	@Test public void testRandom10() {
-		testRandom(10);
-	}
-	
-	@Test public void testRandom30() {
-		testRandom(30);
-	}
-	
-	@Test public void testRandom100() {
-		testRandom(100);
-	}
-	
-	@Test public void testRandomSizes() {
-		for (int i = 0; i < 100; i++)
-			testRandom(SortArray.random.nextInt(100) + 1);
-	}
-	
-	protected void testRandom(int size) {
-		TestSortArray arr = new TestSortArray(size);
-		arr.shuffle();
-		algo.sort(arr);
-		arr.assertSorted();
+	public void run() {
+		try {
+			Thread.sleep(1000);
+			algorithm.sort(array);
+			try {
+				array.assertSorted();
+				System.out.printf("%s: %d comparisons, %d swaps%n", algorithm.getName(), array.getComparisonCount(), array.getSwapCount());
+			} catch (AssertionError e) {
+				System.out.printf("%s: Sorting failed%n", algorithm.getName());
+			}
+		}
+		catch (StopException e) {}
+		catch (InterruptedException e) {}
 	}
 	
 	
-	@Test public void testForward100() {
-		TestSortArray arr = new TestSortArray(100);
-		algo.sort(arr);
-		arr.assertSorted();
-	}
-	
-	
-	@Test public void testReverse100() {
-		TestSortArray arr = new TestSortArray(100);
-		arr.reverse();
-		algo.sort(arr);
-		arr.assertSorted();
+	public void requestStop() {
+		interrupt();
+		array.requestStop();
 	}
 	
 }

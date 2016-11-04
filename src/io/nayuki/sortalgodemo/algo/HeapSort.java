@@ -30,7 +30,9 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 
 /**
- * Sorts by building a binary max-heap, then repeatedly extracting the maximum element and prepending it to the sorted subarray at the end of the array. The time complexity is in <var>O</var>(<var>n</var> log <var>n</var>).
+ * Sorts by building a binary max-heap, then repeatedly extracting the maximum element
+ * and prepending it to the sorted subarray at the end of the array.
+ * The time complexity is in <var>O</var>(<var>n</var> log <var>n</var>).
  */
 public final class HeapSort extends AbstractSortAlgorithm {
 	

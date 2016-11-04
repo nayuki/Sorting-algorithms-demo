@@ -30,7 +30,9 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 
 /**
- * Sorts by finding the smallest element in the unsorted subarray and swapping it to end of the sorted subarray. The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
+ * Sorts by finding the smallest element in the unsorted subarray
+ * and swapping it to end of the sorted subarray.
+ * The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
  */
 public final class SelectionSort extends AbstractSortAlgorithm {
 	

@@ -30,7 +30,8 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 
 /**
- * Sorts by swapping the next unsorted item into the correct position in the sorted subarray. The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
+ * Sorts by swapping the next unsorted item into the correct position in the sorted subarray.
+ * The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
  */
 public final class InsertionSort extends AbstractSortAlgorithm {
 	

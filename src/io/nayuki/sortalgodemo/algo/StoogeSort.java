@@ -30,7 +30,8 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 
 /**
- * A silly but simple, recursive sorting algorithm. The time complexity is in <var>O</var>(<var>n</var><sup>2.71</sup>).
+ * A silly but simple, recursive sorting algorithm.
+ * The time complexity is in <var>O</var>(<var>n</var><sup>2.71</sup>).
  */
 public final class StoogeSort extends AbstractSortAlgorithm {
 	

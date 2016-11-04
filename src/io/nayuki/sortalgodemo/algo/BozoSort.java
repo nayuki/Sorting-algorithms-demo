@@ -31,7 +31,9 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 
 /**
- * Sorts by randomly selecting two elements and swapping them if they are in inverted order, until the array is sorted. The time complexity is in <var>O</var>(<var>n</var><sup>3</sup> log <var>n</var>).
+ * Sorts by randomly selecting two elements and swapping them
+ * if they are in inverted order, until the array is sorted.
+ * The time complexity is in <var>O</var>(<var>n</var><sup>3</sup> log <var>n</var>).
  */
 public final class BozoSort extends AbstractSortAlgorithm {
 	

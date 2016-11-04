@@ -30,7 +30,8 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 
 /**
- * Sorts by recursively partitioning the array around a pivot. The average time complexity is in <var>O</var>(<var>n</var> log <var>n</var>).
+ * Sorts by recursively partitioning the array around a pivot.
+ * The average time complexity is in <var>O</var>(<var>n</var> log <var>n</var>).
  */
 public final class QuickSortSliding extends AbstractSortAlgorithm {
 	

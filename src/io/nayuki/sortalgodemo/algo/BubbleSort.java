@@ -30,7 +30,8 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 
 /**
- * Sorts by scanning forward and swapping inverted adjacent elements. The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
+ * Sorts by scanning forward and swapping inverted adjacent elements.
+ * The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
  */
 public final class BubbleSort extends AbstractSortAlgorithm {
 	

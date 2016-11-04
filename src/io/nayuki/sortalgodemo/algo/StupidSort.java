@@ -30,7 +30,8 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 
 /**
- * Sorts by swapping the first adjacent inversion and going back to the beginning, until the array is sorted. The time complexity is in <var>O</var>(<var>n</var><sup>3</sup>). Insertion sort is the optimized form.
+ * Sorts by swapping the first adjacent inversion and going back to the beginning, until the array is sorted.
+ * The time complexity is in <var>O</var>(<var>n</var><sup>3</sup>). Insertion sort is the optimized form.
  */
 public final class StupidSort extends AbstractSortAlgorithm {
 	

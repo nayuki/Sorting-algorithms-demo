@@ -40,9 +40,9 @@ final class SimpleSortArray extends AbstractSortArray implements Cloneable {
 	
 	public SimpleSortArray(int size) {
 		super(size);
+		shuffle();
 		comparisonCount = 0;
 		swapCount = 0;
-		shuffle();
 	}
 	
 	

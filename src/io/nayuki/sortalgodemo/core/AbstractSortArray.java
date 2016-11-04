@@ -58,12 +58,7 @@ public abstract class AbstractSortArray implements SortArray {
 	// Returns a negative number if array[i] < array[j], zero if array[i] == array[j], or a positive number if array[i] > array[j].
 	// Do not assume that this returns only -1, 0, or 1.
 	public int compare(int i, int j) {
-		if (values[i] < values[j])
-			return -1;
-		else if (values[i] > values[j])
-			return 1;
-		else
-			return 0;
+		return Integer.compare(values[i], values[j]);
 	}
 	
 	

@@ -47,9 +47,8 @@ public final class QuasiPancakeSort extends AbstractSortAlgorithm {
 	
 	
 	private static void reverse(SortArray array, int start, int end) {
-		int half = (end - start) / 2;
-		for (int i = 0; i < half; i++)
-			array.swap(start + i, end - 1 - i);
+		for (end--; start < end; start++, end--)
+			array.swap(start, end);
 	}
 	
 	

@@ -48,7 +48,7 @@ public final class BozoSort extends AbstractSortAlgorithm {
 	}
 	
 	
-	private boolean isSorted(SortArray array) {
+	private static boolean isSorted(SortArray array) {
 		for (int i = 0; i < array.length() - 1; i++) {
 			if (array.compare(i, i + 1) > 0)
 				return false;

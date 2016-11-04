@@ -42,7 +42,7 @@ public final class QuasiPancakeSort extends AbstractSortAlgorithm {
 			reverse(array, j, i);
 			reverse(array, j, i + 1);
 		}
-		array.setDone(0, array.length());
+		array.setRange(0, array.length(), SortArray.ElementState.DONE);
 	}
 	
 	

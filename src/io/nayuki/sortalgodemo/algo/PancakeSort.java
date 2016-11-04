@@ -43,7 +43,7 @@ public final class PancakeSort extends AbstractSortAlgorithm {
 			}
 			reverse(array, 0, maxIndex + 1);
 			reverse(array, 0, i + 1);
-			array.setDone(i);
+			array.setElement(i, SortArray.ElementState.DONE);
 		}
 	}
 	

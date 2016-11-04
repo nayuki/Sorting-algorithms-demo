@@ -38,7 +38,7 @@ public final class SlowSort extends AbstractSortAlgorithm {
 	
 	
 	public void sort(SortArray array) {
-		array.setInactive(0, array.length());
+		array.setRange(0, array.length(), SortArray.ElementState.INACTIVE);
 		sort(array, 0, array.length(), true);
 	}
 	
@@ -49,12 +49,12 @@ public final class SlowSort extends AbstractSortAlgorithm {
 			int mid = start + length / 2;
 			sort(array, start, mid, false);
 			sort(array, mid, end, false);
-			array.setActive(start, end);
+			array.setRange(start, end, SortArray.ElementState.ACTIVE);
 			array.compareAndSwap(mid - 1, end - 1);
-			array.setInactive(start, end);
+			array.setRange(start, end, SortArray.ElementState.INACTIVE);
 		}
 		if (isMain)
-			array.setDone(end - 1);
+			array.setElement(end - 1, SortArray.ElementState.DONE);
 		if (length >= 2)
 			sort(array, start, end - 1, isMain);
 	}

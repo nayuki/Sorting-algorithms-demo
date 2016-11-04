@@ -89,13 +89,9 @@ public abstract class AbstractSortArray implements SortArray {
 	
 	/* Sorting progress visualization */
 	
-	public void setActive(int index) {}
-	public void setInactive(int index) {}
-	public void setDone(int index) {}
+	public void setElement(int index, SortArray.ElementState state) {}
 	
-	public void setActive(int start, int end) {}
-	public void setInactive(int start, int end) {}
-	public void setDone(int start, int end) {}
+	public void setRange(int start, int end, SortArray.ElementState state) {}
 	
 	
 	public static final Random random = new Random();

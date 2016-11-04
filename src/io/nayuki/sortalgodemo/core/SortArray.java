@@ -51,12 +51,14 @@ public interface SortArray {
 	public void shuffle();
 	
 	
-	public void setActive(int index);
-	public void setInactive(int index);
-	public void setDone(int index);
+	public void setElement(int index, ElementState state);
 	
-	public void setActive(int start, int end);
-	public void setInactive(int start, int end);
-	public void setDone(int start, int end);
+	public void setRange(int start, int end, ElementState state);
+	
+	
+	
+	public enum ElementState {
+		ACTIVE, INACTIVE, COMPARING, DONE;
+	}
 	
 }

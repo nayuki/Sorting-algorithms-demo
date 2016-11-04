@@ -47,21 +47,21 @@ public final class QuickSortSliding extends AbstractSortAlgorithm {
 		if (start == end)
 			return;
 		
-		array.setInactive(start, end);
+		array.setRange(start, end, SortArray.ElementState.INACTIVE);
 		int partition = start;
 		int pivot = end - 1;  // Do not change this!
 		for (int i = start; i < end - 1; i++) {
 			if (array.compare(i, pivot) < 0) {
 				array.swap(i, partition);
-				array.setInactive(partition);
+				array.setElement(partition, SortArray.ElementState.INACTIVE);
 				partition++;
 			}
 		}
 		
 		array.swap(pivot, partition);
 		pivot = partition;
-		array.setDone(pivot);
-		array.setInactive(pivot + 1, end);
+		array.setElement(pivot, SortArray.ElementState.DONE);
+		array.setRange(pivot + 1, end, SortArray.ElementState.INACTIVE);
 		
 		sort(array, start, pivot);
 		sort(array, pivot + 1, end);

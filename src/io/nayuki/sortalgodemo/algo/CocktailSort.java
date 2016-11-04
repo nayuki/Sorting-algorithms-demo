@@ -42,7 +42,7 @@ public final class CocktailSort extends AbstractSortAlgorithm {
 			// Scan right
 			for (; i + 1 < right; i++)
 				array.compareAndSwap(i, i + 1);
-			array.setDone(i);
+			array.setElement(i, SortArray.ElementState.DONE);
 			right--;
 			i--;
 			if (left == right)
@@ -51,7 +51,7 @@ public final class CocktailSort extends AbstractSortAlgorithm {
 			// Scan left
 			for (; i > left; i--)
 				array.compareAndSwap(i - 1, i);
-			array.setDone(i);
+			array.setElement(i, SortArray.ElementState.DONE);
 			left++;
 			i++;
 		}

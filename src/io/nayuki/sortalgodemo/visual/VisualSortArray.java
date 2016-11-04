@@ -103,13 +103,13 @@ final class VisualSortArray extends AbstractSortArray {
 			throw new StopException();
 		
 		comparisonCount++;
-		setIndex(i, 2);
-		setIndex(j, 2);
+		setElement(i, ElementState.COMPARING);
+		setElement(j, ElementState.COMPARING);
 		requestRepaint();
 		
 		// No repaint here
-		setActive(i);
-		setActive(j);
+		setElement(i, ElementState.ACTIVE);
+		setElement(j, ElementState.ACTIVE);
 		
 		return super.compare(i, j);
 	}
@@ -121,8 +121,8 @@ final class VisualSortArray extends AbstractSortArray {
 		super.swap(i, j);
 		if (state != null) {  // If outside the constructor
 			swapCount++;
-			setActive(i);
-			setActive(j);
+			setElement(i, ElementState.ACTIVE);
+			setElement(j, ElementState.ACTIVE);
 			requestRepaint();
 		}
 	}
@@ -130,21 +130,14 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	/* Array visualization */
 	
-	public void setActive  (int index) { setIndex(index, 0); }
-	public void setInactive(int index) { setIndex(index, 1); }
-	public void setDone    (int index) { setIndex(index, 3); }
-	
-	public void setActive  (int start, int end) { setRange(start, end, 0); }
-	public void setInactive(int start, int end) { setRange(start, end, 1); }
-	public void setDone    (int start, int end) { setRange(start, end, 3); }
-	
-	private void setIndex(int index, int st) {
-		state[index] = st;
+	public void setElement(int index, ElementState state) {
+		this.state[index] = state.ordinal();
 		redraw(index, index + 1, false);
 	}
 	
-	private void setRange(int start, int end, int st) {
-		Arrays.fill(state, start, end, st);
+	
+	public void setRange(int start, int end, ElementState state) {
+		Arrays.fill(this.state, start, end, state.ordinal());
 		redraw(start, end, false);
 	}
 	

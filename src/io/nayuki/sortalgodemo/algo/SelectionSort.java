@@ -47,7 +47,7 @@ public final class SelectionSort extends AbstractSortAlgorithm {
 					minIndex = j;
 			}
 			array.swap(i, minIndex);
-			array.setDone(i);
+			array.setElement(i, SortArray.ElementState.DONE);
 		}
 	}
 	

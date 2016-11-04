@@ -40,14 +40,14 @@ public final class StoogeSort extends AbstractSortAlgorithm {
 	
 	public void sort(SortArray array) {
 		sort(array, 0, array.length());
-		array.setDone(0, array.length());
+		array.setRange(0, array.length(), SortArray.ElementState.DONE);
 	}
 	
 	
 	private static void sort(SortArray array, int start, int end) {
-		array.setActive(start, end);
+		array.setRange(start, end, SortArray.ElementState.ACTIVE);
 		array.compareAndSwap(start, end - 1);
-		array.setInactive(start, end);
+		array.setRange(start, end, SortArray.ElementState.INACTIVE);
 		int length = end - start;
 		if (length < 3)
 			return;

@@ -39,7 +39,7 @@ public final class StupidSort extends AbstractSortAlgorithm {
 	
 	
 	public void sort(SortArray array) {
-		array.setInactive(0, array.length());
+		array.setRange(0, array.length(), SortArray.ElementState.INACTIVE);
 		int i = 0;
 		while (i < array.length() - 1) {
 			if (array.compareAndSwap(i, i + 1))
@@ -47,7 +47,7 @@ public final class StupidSort extends AbstractSortAlgorithm {
 			else
 				i++;
 		}
-		array.setDone(0, array.length());
+		array.setRange(0, array.length(), SortArray.ElementState.DONE);
 	}
 	
 	

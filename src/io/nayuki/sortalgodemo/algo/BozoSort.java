@@ -46,7 +46,7 @@ public final class BozoSort extends AbstractSortAlgorithm {
 			int j = AbstractSortArray.random.nextInt(array.length());
 			array.compareAndSwap(Math.min(i, j), Math.max(i, j));
 		}
-		array.setDone(0, array.length());
+		array.setRange(0, array.length(), SortArray.ElementState.DONE);
 	}
 	
 	

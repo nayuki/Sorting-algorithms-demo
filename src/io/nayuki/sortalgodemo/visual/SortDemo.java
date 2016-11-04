@@ -61,22 +61,22 @@ public final class SortDemo extends Frame implements ActionListener {
 		// Set up list of algorithms and go
 		List<SortAlgorithm> algos = new ArrayList<SortAlgorithm>();
 		Collections.addAll(algos,
-			new BubbleSort(),
-			new CocktailSort(),
-			new SelectionSort(),
-			new PancakeSort(),
-			new QuasiPancakeSort(),
-			new GnomeSort(),
-			new InsertionSort(),
-			new InsertionSortBinarySearch(),
-			new ShellSort(),
-			new HeapSort(),
-			new QuickSortDoubleEnded(),
-			new QuickSortSliding(),
-			new SlowSort(),
-			new StoogeSort(),
-			new StupidSort(),
-			new BozoSort());
+			BubbleSort.INSTANCE,
+			CocktailSort.INSTANCE,
+			SelectionSort.INSTANCE,
+			PancakeSort.INSTANCE,
+			QuasiPancakeSort.INSTANCE,
+			GnomeSort.INSTANCE,
+			InsertionSort.INSTANCE,
+			InsertionSortBinarySearch.INSTANCE,
+			ShellSort.INSTANCE,
+			HeapSort.INSTANCE,
+			QuickSortDoubleEnded.INSTANCE,
+			QuickSortSliding.INSTANCE,
+			SlowSort.INSTANCE,
+			StoogeSort.INSTANCE,
+			StupidSort.INSTANCE,
+			BozoSort.INSTANCE);
 		new SortDemo(algos);
 	}
 	

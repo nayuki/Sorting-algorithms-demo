@@ -24,6 +24,7 @@
 
 package io.nayuki.sortalgodemo.algo;
 
+import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -31,7 +32,10 @@ import io.nayuki.sortalgodemo.core.SortArray;
 /**
  * Sorts by finding the smallest element in the unsorted subarray and swapping it to end of the sorted subarray.
  */
-public final class SelectionSort extends SortAlgorithm {
+public final class SelectionSort extends AbstractSortAlgorithm {
+	
+	public static final SortAlgorithm INSTANCE = new SelectionSort();
+	
 	
 	public void sort(SortArray array) {
 		for (int i = 0; i < array.length(); i++) {
@@ -46,8 +50,8 @@ public final class SelectionSort extends SortAlgorithm {
 	}
 	
 	
-	public String getName() {
-		return "Selection sort";
+	private SelectionSort() {
+		super("Selection sort");
 	}
 	
 }

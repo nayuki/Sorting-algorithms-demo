@@ -32,7 +32,7 @@ import io.nayuki.sortalgodemo.core.SortAlgorithm;
 public final class QuickSortSlidingTest extends FastSortAlgorithmTest {
 	
 	public SortAlgorithm getInstance() {
-		return new QuickSortSliding();
+		return QuickSortSliding.INSTANCE;
 	}
 	
 }

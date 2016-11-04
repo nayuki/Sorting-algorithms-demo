@@ -32,7 +32,7 @@ import io.nayuki.sortalgodemo.core.SortAlgorithmTest;
 public final class QuasiPancakeSortTest extends SortAlgorithmTest {
 	
 	public SortAlgorithm getInstance() {
-		return new QuasiPancakeSort();
+		return QuasiPancakeSort.INSTANCE;
 	}
 	
 }

@@ -32,7 +32,7 @@ import io.nayuki.sortalgodemo.core.SortAlgorithmTest;
 public final class StupidSortTest extends SortAlgorithmTest {
 	
 	public SortAlgorithm getInstance() {
-		return new StupidSort();
+		return StupidSort.INSTANCE;
 	}
 	
 }

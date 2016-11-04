@@ -32,7 +32,7 @@ import io.nayuki.sortalgodemo.core.SortAlgorithmTest;
 public final class InsertionSortTest extends SortAlgorithmTest {
 	
 	public SortAlgorithm getInstance() {
-		return new InsertionSort();
+		return InsertionSort.INSTANCE;
 	}
 	
 }

@@ -24,6 +24,7 @@
 
 package io.nayuki.sortalgodemo.algo;
 
+import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -31,7 +32,10 @@ import io.nayuki.sortalgodemo.core.SortArray;
 /**
  * Sorts by swapping the next unsorted item into the correct position in the sorted subarray. The time complexity is in <var>O</var>(<var>n</var><sup>3</sup>).
  */
-public final class InsertionSort extends SortAlgorithm {
+public final class InsertionSort extends AbstractSortAlgorithm {
+	
+	public static final SortAlgorithm INSTANCE = new InsertionSort();
+	
 	
 	public void sort(SortArray array) {
 		array.setInactive(0, array.length());
@@ -42,8 +46,8 @@ public final class InsertionSort extends SortAlgorithm {
 	}
 	
 	
-	public String getName() {
-		return "Insertion sort";
+	private InsertionSort() {
+		super("Insertion sort");
 	}
 	
 }

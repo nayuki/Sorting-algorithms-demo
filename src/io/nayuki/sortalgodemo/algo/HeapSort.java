@@ -24,6 +24,7 @@
 
 package io.nayuki.sortalgodemo.algo;
 
+import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -31,7 +32,10 @@ import io.nayuki.sortalgodemo.core.SortArray;
 /**
  * Sorts by building a binary max-heap, then repeatedly extracting the maximum element and prepending it to the sorted subarray at the end of the array. The time complexity is in <var>O</var>(<var>n</var> log <var>n</var>).
  */
-public final class HeapSort extends SortAlgorithm {
+public final class HeapSort extends AbstractSortAlgorithm {
+	
+	public static final SortAlgorithm INSTANCE = new HeapSort();
+	
 	
 	public void sort(SortArray array) {
 		// Heapify
@@ -60,8 +64,8 @@ public final class HeapSort extends SortAlgorithm {
 	}
 	
 	
-	public String getName() {
-		return "Heap sort";
+	private HeapSort() {
+		super("Heap sort");
 	}
 	
 }

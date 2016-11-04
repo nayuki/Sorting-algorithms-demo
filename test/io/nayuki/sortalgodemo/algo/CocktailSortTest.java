@@ -32,7 +32,7 @@ import io.nayuki.sortalgodemo.core.SortAlgorithmTest;
 public final class CocktailSortTest extends SortAlgorithmTest {
 	
 	public SortAlgorithm getInstance() {
-		return new CocktailSort();
+		return CocktailSort.INSTANCE;
 	}
 	
 }

@@ -32,7 +32,7 @@ import io.nayuki.sortalgodemo.core.SortAlgorithm;
 public final class QuickSortDoubleEndedTest extends FastSortAlgorithmTest {
 	
 	public SortAlgorithm getInstance() {
-		return new QuickSortDoubleEnded();
+		return QuickSortDoubleEnded.INSTANCE;
 	}
 	
 }

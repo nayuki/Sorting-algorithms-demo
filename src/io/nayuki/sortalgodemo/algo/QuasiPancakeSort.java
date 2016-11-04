@@ -24,11 +24,15 @@
 
 package io.nayuki.sortalgodemo.algo;
 
+import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
 
-public final class QuasiPancakeSort extends SortAlgorithm {
+public final class QuasiPancakeSort extends AbstractSortAlgorithm {
+	
+	public static final SortAlgorithm INSTANCE = new QuasiPancakeSort();
+	
 	
 	public void sort(SortArray array) {
 		for (int i = 1; i < array.length(); i++) {
@@ -49,8 +53,8 @@ public final class QuasiPancakeSort extends SortAlgorithm {
 	}
 	
 	
-	public String getName() {
-		return "Quasi-pancake sort";
+	private QuasiPancakeSort() {
+		super("Quasi-pancake sort");
 	}
 	
 }

@@ -32,7 +32,7 @@ import io.nayuki.sortalgodemo.core.SortAlgorithm;
 public final class HeapSortTest extends FastSortAlgorithmTest {
 	
 	public SortAlgorithm getInstance() {
-		return new HeapSort();
+		return HeapSort.INSTANCE;
 	}
 	
 }

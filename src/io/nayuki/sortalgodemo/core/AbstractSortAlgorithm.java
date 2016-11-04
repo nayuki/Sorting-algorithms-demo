@@ -26,12 +26,30 @@ package io.nayuki.sortalgodemo.core;
 
 
 /**
- * A sorting algorithm, which is a stateless function object.
+ * A convenience base class for sort algorithms.
  */
-public interface SortAlgorithm {
+public abstract class AbstractSortAlgorithm implements SortAlgorithm {
 	
-	public void sort(SortArray array);
+	/*---- Fields ----*/
 	
-	public String getName();
+	private final String name;
+	
+	
+	
+	/*---- Constructors ----*/
+	
+	protected AbstractSortAlgorithm(String name) {
+		if (name == null)
+			throw new NullPointerException();
+		this.name = name;
+	}
+	
+	
+	
+	/*---- Methods ----*/
+	
+	public final String getName() {
+		return name;
+	}
 	
 }

@@ -32,7 +32,7 @@ import io.nayuki.sortalgodemo.core.SortAlgorithmTest;
 public final class BozoSortTest extends SortAlgorithmTest {
 	
 	public SortAlgorithm getInstance() {
-		return new BozoSort();
+		return BozoSort.INSTANCE;
 	}
 	
 }

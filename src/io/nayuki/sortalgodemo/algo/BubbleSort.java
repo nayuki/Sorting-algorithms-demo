@@ -24,6 +24,7 @@
 
 package io.nayuki.sortalgodemo.algo;
 
+import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -31,7 +32,10 @@ import io.nayuki.sortalgodemo.core.SortArray;
 /**
  * Sorts by scanning forward and swapping inverted adjacent elements. The time complexity is in <var>O</var>(<var>n</var><sup>3</sup>).
  */
-public final class BubbleSort extends SortAlgorithm {
+public final class BubbleSort extends AbstractSortAlgorithm {
+	
+	public static final SortAlgorithm INSTANCE = new BubbleSort();
+	
 	
 	public void sort(SortArray array) {
 		for (int i = array.length(); i >= 1; i--) {
@@ -43,8 +47,8 @@ public final class BubbleSort extends SortAlgorithm {
 	}
 	
 	
-	public String getName() {
-		return "Bubble sort";
+	private BubbleSort() {
+		super("Bubble sort");
 	}
 	
 }

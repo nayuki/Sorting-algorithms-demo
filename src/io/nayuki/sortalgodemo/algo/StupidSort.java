@@ -24,6 +24,7 @@
 
 package io.nayuki.sortalgodemo.algo;
 
+import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -31,7 +32,10 @@ import io.nayuki.sortalgodemo.core.SortArray;
 /**
  * Sorts by swapping the first adjacent inversion and going back to the beginning, until the array is sorted. The time complexity is in <var>O</var>(<var>n</var><sup>3</sup>). Insertion sort is the optimized form.
  */
-public final class StupidSort extends SortAlgorithm {
+public final class StupidSort extends AbstractSortAlgorithm {
+	
+	public static final SortAlgorithm INSTANCE = new StupidSort();
+	
 	
 	public void sort(SortArray array) {
 		array.setInactive(0, array.length());
@@ -46,8 +50,8 @@ public final class StupidSort extends SortAlgorithm {
 	}
 	
 	
-	public String getName() {
-		return "Stupid sort";
+	private StupidSort() {
+		super("Stupid sort");
 	}
 	
 }

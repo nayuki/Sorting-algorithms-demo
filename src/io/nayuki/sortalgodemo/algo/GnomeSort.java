@@ -24,11 +24,15 @@
 
 package io.nayuki.sortalgodemo.algo;
 
+import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
 
-public final class GnomeSort extends SortAlgorithm {
+public final class GnomeSort extends AbstractSortAlgorithm {
+	
+	public static final SortAlgorithm INSTANCE = new GnomeSort();
+	
 	
 	public void sort(SortArray array) {
 		array.setInactive(0, array.length());
@@ -42,8 +46,8 @@ public final class GnomeSort extends SortAlgorithm {
 	}
 	
 	
-	public String getName() {
-		return "Gnome sort";
+	private GnomeSort() {
+		super("Gnome sort");
 	}
 	
 }

@@ -24,6 +24,7 @@
 
 package io.nayuki.sortalgodemo.algo;
 
+import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -31,7 +32,10 @@ import io.nayuki.sortalgodemo.core.SortArray;
 /**
  * Sorts by recursively partitioning the array around a pivot. The average time complexity is in <var>O</var>(<var>n</var> log <var>n</var>).
  */
-public final class QuickSortSliding extends SortAlgorithm {
+public final class QuickSortSliding extends AbstractSortAlgorithm {
+	
+	public static final SortAlgorithm INSTANCE = new QuickSortSliding();
+	
 	
 	public void sort(SortArray array) {
 		sort(array, 0, array.length());
@@ -63,8 +67,8 @@ public final class QuickSortSliding extends SortAlgorithm {
 	}
 	
 	
-	public String getName() {
-		return "Quick sort (sliding)";
+	private QuickSortSliding() {
+		super("Quick sort (sliding)");
 	}
 	
 }

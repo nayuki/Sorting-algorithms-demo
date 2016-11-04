@@ -44,7 +44,7 @@ public final class ShellSort extends AbstractSortAlgorithm {
 		for (int step : GAP_SEQUENCE) {
 			array.setInactive(0, array.length());
 			
-			// Do an insertion sort with a step size of h
+			// Do an insertion sort with this step size
 			for (int j = 0; j < array.length(); j++) {
 				for (int k = j; k >= step && array.compareAndSwap(k - step, k); k -= step);
 			}

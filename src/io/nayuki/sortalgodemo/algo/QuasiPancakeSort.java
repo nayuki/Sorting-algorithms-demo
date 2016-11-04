@@ -46,6 +46,7 @@ public final class QuasiPancakeSort extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Reverses the elements in the array subrange of [start, end).
 	private static void reverse(SortArray array, int start, int end) {
 		for (end--; start < end; start++, end--)
 			array.swap(start, end);

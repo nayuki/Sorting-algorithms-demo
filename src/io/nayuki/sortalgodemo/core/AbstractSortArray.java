@@ -81,7 +81,7 @@ public abstract class AbstractSortArray implements SortArray {
 	
 	
 	public void shuffle() {
-		// Fisher-Yates / Knuth shuffle
+		// Durstenfeld shuffle algorithm
 		for (int i = length() - 1; i >= 0; i--)
 			swap(i, random.nextInt(i + 1));
 	}

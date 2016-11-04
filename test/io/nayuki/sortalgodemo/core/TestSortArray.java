@@ -25,11 +25,10 @@
 package io.nayuki.sortalgodemo.core;
 
 import org.junit.Assert;
-import io.nayuki.sortalgodemo.core.SortArray;
 
 
 // An array for test purposes, not supporting graphics.
-final class TestSortArray extends SortArray {
+final class TestSortArray extends AbstractSortArray {
 	
 	/* Initialization */
 	

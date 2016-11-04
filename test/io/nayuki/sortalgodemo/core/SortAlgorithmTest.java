@@ -26,8 +26,6 @@ package io.nayuki.sortalgodemo.core;
 
 import org.junit.Before;
 import org.junit.Test;
-import io.nayuki.sortalgodemo.core.SortAlgorithm;
-import io.nayuki.sortalgodemo.core.SortArray;
 
 
 // Common superclass containing test cases appropriate for all sort algorithms.
@@ -60,7 +58,7 @@ public abstract class SortAlgorithmTest {
 	
 	@Test public void testRandomSizes() {
 		for (int i = 0; i < 100; i++)
-			testRandom(SortArray.random.nextInt(100) + 1);
+			testRandom(AbstractSortArray.random.nextInt(100) + 1);
 	}
 	
 	protected void testRandom(int size) {

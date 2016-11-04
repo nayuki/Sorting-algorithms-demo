@@ -25,6 +25,7 @@
 package io.nayuki.sortalgodemo.algo;
 
 import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
+import io.nayuki.sortalgodemo.core.AbstractSortArray;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -39,8 +40,8 @@ public final class BozoSort extends AbstractSortAlgorithm {
 	
 	public void sort(SortArray array) {
 		while (!isSorted(array)) {
-			int i = SortArray.random.nextInt(array.length());
-			int j = SortArray.random.nextInt(array.length());
+			int i = AbstractSortArray.random.nextInt(array.length());
+			int j = AbstractSortArray.random.nextInt(array.length());
 			array.compareAndSwap(Math.min(i, j), Math.max(i, j));
 		}
 		array.setDone(0, array.length());

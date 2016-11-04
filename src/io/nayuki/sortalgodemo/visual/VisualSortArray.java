@@ -28,13 +28,13 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Arrays;
-import io.nayuki.sortalgodemo.core.SortArray;
+import io.nayuki.sortalgodemo.core.AbstractSortArray;
 
 
 /**
  * An array to be sorted. Elements can be compared and swapped, but their values cannot be accessed directly.
  */
-final class VisualSortArray extends SortArray {
+final class VisualSortArray extends AbstractSortArray {
 	
 	// Visual state per element: 0=active, 1=inactive, 2=comparing, 3=done
 	private int[] state;

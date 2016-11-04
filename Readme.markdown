@@ -15,7 +15,7 @@ the JAR file in Windows Explorer and the program will run. Otherwise to run from
 the JAR file, run this from a command line: `java -jar TheJarFile.jar`
 
 Otherwise, compile the source code on the command line or in an IDE, and run the
-main class `nayuki.sortdemo.SortDemo`.
+main class `io.nayuki.sortalgodemo.SortDemo`.
 
 
 License

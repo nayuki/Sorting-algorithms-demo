@@ -37,16 +37,16 @@ public final class ShellSort extends AbstractSortAlgorithm {
 	public static final SortAlgorithm INSTANCE = new ShellSort();
 	
 	
-	private static int[] gapSequence = {1750, 701, 301, 132, 57, 23, 10, 4, 1};
+	private static int[] GAP_SEQUENCE = {1750, 701, 301, 132, 57, 23, 10, 4, 1};
 	
 	
 	public void sort(SortArray array) {
-		for (int h : gapSequence) {
+		for (int step : GAP_SEQUENCE) {
 			array.setInactive(0, array.length());
 			
 			// Do an insertion sort with a step size of h
 			for (int j = 0; j < array.length(); j++) {
-				for (int k = j; k >= h && array.compareAndSwap(k - h, k); k -= h);
+				for (int k = j; k >= step && array.compareAndSwap(k - step, k); k -= step);
 			}
 		}
 		array.setDone(0, array.length());

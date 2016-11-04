@@ -39,12 +39,12 @@ public final class SelectionSort extends AbstractSortAlgorithm {
 	
 	public void sort(SortArray array) {
 		for (int i = 0; i < array.length(); i++) {
-			int minindex = i;
+			int minIndex = i;
 			for (int j = i; j < array.length(); j++) {
-				if (array.compare(j, minindex) < 0)
-					minindex = j;
+				if (array.compare(j, minIndex) < 0)
+					minIndex = j;
 			}
-			array.swap(i, minindex);
+			array.swap(i, minIndex);
 			array.setDone(i);
 		}
 	}

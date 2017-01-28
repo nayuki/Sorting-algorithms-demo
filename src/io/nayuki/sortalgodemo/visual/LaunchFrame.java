@@ -68,7 +68,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 		super("Sort Demo");
 		
 		// Set window closing action
-		addWindowListener(new WindowAdapter() {
+		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
@@ -77,7 +77,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 		// Create layout manager and set default values
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
-		setLayout(gbl);
+		this.setLayout(gbl);
 		gbc.anchor = GridBagConstraints.WEST;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.ipadx = 0;
@@ -95,22 +95,22 @@ final class LaunchFrame extends Frame implements ActionListener {
 		gbc.weightx = 1;
 		gbc.gridy = 0;
 		gbl.setConstraints(label, gbc);
-		add(label);
+		this.add(label);
 		
 		label = new Label("Array size:");
 		gbc.gridy = 1;
 		gbl.setConstraints(label, gbc);
-		add(label);
+		this.add(label);
 		
 		label = new Label("Scale:");
 		gbc.gridy = 2;
 		gbl.setConstraints(label, gbc);
-		add(label);
+		this.add(label);
 		
 		label = new Label("Speed:");
 		gbc.gridy = 3;
 		gbl.setConstraints(label, gbc);
-		add(label);
+		this.add(label);
 		
 		
 		/*-- Second column --*/
@@ -124,28 +124,28 @@ final class LaunchFrame extends Frame implements ActionListener {
 			algorithmInput.add(algo.getName());
 		gbc.gridy = 0;
 		gbl.setConstraints(algorithmInput, gbc);
-		add(algorithmInput);
+		this.add(algorithmInput);
 		
 		// Text field for array size
 		arraySizeInput = new TextField("30");
 		arraySizeInput.addActionListener(this);
 		gbc.gridy = 1;
 		gbl.setConstraints(arraySizeInput, gbc);
-		add(arraySizeInput);
+		this.add(arraySizeInput);
 		
 		// Text field for scale
 		scaleInput = new TextField("12");
 		scaleInput.addActionListener(this);
 		gbc.gridy = 2;
 		gbl.setConstraints(scaleInput, gbc);
-		add(scaleInput);
+		this.add(scaleInput);
 		
 		// Text field for speed
 		speedInput = new TextField("10");
 		speedInput.addActionListener(this);
 		gbc.gridy = 3;
 		gbl.setConstraints(speedInput, gbc);
-		add(speedInput);
+		this.add(speedInput);
 		
 		// Run button
 		runButton = new Button("Run");
@@ -157,13 +157,15 @@ final class LaunchFrame extends Frame implements ActionListener {
 		gbc.gridwidth = 2;
 		gbc.weighty = 1;
 		gbl.setConstraints(runButton, gbc);
-		add(runButton);
+		this.add(runButton);
 		
 		// Do layout and show
-		pack();
+		this.pack();
 		Rectangle rect = getGraphicsConfiguration().getBounds();
-		setLocation((rect.width - getWidth()) / 2, (rect.height - getHeight()) / 3);
-		setVisible(true);
+		this.setLocation(
+			(rect.width - this.getWidth()) / 2,
+			(rect.height - this.getHeight()) / 3);
+		this.setVisible(true);
 	}
 	
 	

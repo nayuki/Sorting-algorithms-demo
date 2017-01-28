@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.algo.QuickSortDoubleEnded;
 import io.nayuki.sortalgodemo.core.FastSortAlgorithmTest;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 

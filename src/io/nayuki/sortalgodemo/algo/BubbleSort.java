@@ -35,6 +35,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
  */
 public final class BubbleSort extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new BubbleSort();
 	
 	
@@ -47,6 +48,7 @@ public final class BubbleSort extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private BubbleSort() {
 		super("Bubble sort");
 	}

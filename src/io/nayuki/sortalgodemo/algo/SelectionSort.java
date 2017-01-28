@@ -36,6 +36,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
  */
 public final class SelectionSort extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new SelectionSort();
 	
 	
@@ -53,6 +54,7 @@ public final class SelectionSort extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private SelectionSort() {
 		super("Selection sort");
 	}

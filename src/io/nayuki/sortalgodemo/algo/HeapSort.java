@@ -36,6 +36,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
  */
 public final class HeapSort extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new HeapSort();
 	
 	
@@ -67,6 +68,7 @@ public final class HeapSort extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private HeapSort() {
 		super("Heap sort");
 	}

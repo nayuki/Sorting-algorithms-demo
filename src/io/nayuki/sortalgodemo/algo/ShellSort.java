@@ -35,6 +35,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
  */
 public final class ShellSort extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new ShellSort();
 	
 	
@@ -55,6 +56,7 @@ public final class ShellSort extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private ShellSort() {
 		super("Shell sort");
 	}

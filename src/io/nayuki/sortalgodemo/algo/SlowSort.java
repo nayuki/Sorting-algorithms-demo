@@ -34,6 +34,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
  */
 public final class SlowSort extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new SlowSort();
 	
 	
@@ -60,6 +61,7 @@ public final class SlowSort extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private SlowSort() {
 		super("Slow sort");
 	}

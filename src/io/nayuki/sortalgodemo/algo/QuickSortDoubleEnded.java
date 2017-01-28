@@ -35,6 +35,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
  */
 public final class QuickSortDoubleEnded extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new QuickSortDoubleEnded();
 	
 	
@@ -84,6 +85,7 @@ public final class QuickSortDoubleEnded extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private QuickSortDoubleEnded() {
 		super("Quick sort (double-ended)");
 	}

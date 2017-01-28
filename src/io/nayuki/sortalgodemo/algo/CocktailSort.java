@@ -31,6 +31,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 public final class CocktailSort extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new CocktailSort();
 	
 	
@@ -58,6 +59,7 @@ public final class CocktailSort extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private CocktailSort() {
 		super("Cocktail sort");
 	}

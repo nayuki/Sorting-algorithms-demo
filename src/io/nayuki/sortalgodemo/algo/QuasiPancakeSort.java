@@ -31,6 +31,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 public final class QuasiPancakeSort extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new QuasiPancakeSort();
 	
 	
@@ -54,6 +55,7 @@ public final class QuasiPancakeSort extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private QuasiPancakeSort() {
 		super("Quasi-pancake sort");
 	}

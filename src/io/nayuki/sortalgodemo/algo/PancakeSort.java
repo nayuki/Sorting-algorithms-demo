@@ -31,6 +31,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 public final class PancakeSort extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new PancakeSort();
 	
 	
@@ -55,6 +56,7 @@ public final class PancakeSort extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private PancakeSort() {
 		super("Pancake sort");
 	}

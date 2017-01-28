@@ -35,6 +35,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
  */
 public final class QuickSortSliding extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new QuickSortSliding();
 	
 	
@@ -68,6 +69,7 @@ public final class QuickSortSliding extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private QuickSortSliding() {
 		super("Quick sort (sliding)");
 	}

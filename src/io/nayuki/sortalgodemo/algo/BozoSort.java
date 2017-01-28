@@ -37,6 +37,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
  */
 public final class BozoSort extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new BozoSort();
 	
 	
@@ -61,6 +62,7 @@ public final class BozoSort extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private BozoSort() {
 		super("Bozo sort");
 	}

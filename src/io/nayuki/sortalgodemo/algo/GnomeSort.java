@@ -31,6 +31,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 public final class GnomeSort extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new GnomeSort();
 	
 	
@@ -47,6 +48,7 @@ public final class GnomeSort extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private GnomeSort() {
 		super("Gnome sort");
 	}

@@ -35,6 +35,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
  */
 public final class StupidSort extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new StupidSort();
 	
 	
@@ -52,6 +53,7 @@ public final class StupidSort extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private StupidSort() {
 		super("Stupid sort");
 	}

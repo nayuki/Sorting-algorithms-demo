@@ -35,6 +35,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
  */
 public final class StoogeSort extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new StoogeSort();
 	
 	
@@ -59,6 +60,7 @@ public final class StoogeSort extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private StoogeSort() {
 		super("Stooge sort");
 	}

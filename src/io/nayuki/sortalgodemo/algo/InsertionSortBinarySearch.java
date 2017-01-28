@@ -36,6 +36,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
  */
 public final class InsertionSortBinarySearch extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new InsertionSortBinarySearch();
 	
 	
@@ -66,6 +67,7 @@ public final class InsertionSortBinarySearch extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private InsertionSortBinarySearch() {
 		super("Insertion sort (binary search)");
 	}

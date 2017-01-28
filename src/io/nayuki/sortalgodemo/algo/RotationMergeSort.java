@@ -37,6 +37,7 @@ import io.nayuki.sortalgodemo.core.SortArray.ElementState;
  */
 public final class RotationMergeSort extends AbstractSortAlgorithm {
 	
+	// The singleton instance.
 	public static final SortAlgorithm INSTANCE = new RotationMergeSort();
 	
 	
@@ -89,6 +90,7 @@ public final class RotationMergeSort extends AbstractSortAlgorithm {
 	}
 	
 	
+	// Private constructor.
 	private RotationMergeSort() {
 		super("Rotation merge sort");
 	}

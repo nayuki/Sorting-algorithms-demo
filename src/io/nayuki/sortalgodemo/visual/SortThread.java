@@ -29,9 +29,13 @@ import io.nayuki.sortalgodemo.core.SortAlgorithm;
 
 final class SortThread extends Thread {
 	
+	/*---- Fields ----*/
+	
 	private SortAlgorithm algorithm;
 	private VisualSortArray array;
 	
+	
+	/*---- Constructors ----*/
 	
 	public SortThread(VisualSortArray array, SortAlgorithm algo) {
 		this.array = array;
@@ -39,6 +43,8 @@ final class SortThread extends Thread {
 		new SortFrame(algorithm.getName(), array.getCanvas(), this);
 	}
 	
+	
+	/*---- Methods ----*/
 	
 	public void run() {
 		try {

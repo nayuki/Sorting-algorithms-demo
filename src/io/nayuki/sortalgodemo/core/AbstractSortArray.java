@@ -32,9 +32,13 @@ import java.util.Random;
  */
 public abstract class AbstractSortArray implements SortArray {
 	
+	/*---- Fields ----*/
+	
 	protected int[] values;
 	
 	
+	
+	/*---- Constructors ----*/
 	
 	public AbstractSortArray(int size) {
 		// Initialize in order: [0, 1, 2, ..., size-1]
@@ -44,6 +48,8 @@ public abstract class AbstractSortArray implements SortArray {
 	}
 	
 	
+	
+	/*---- Methods ----*/
 	
 	/* Field getters */
 	
@@ -93,6 +99,9 @@ public abstract class AbstractSortArray implements SortArray {
 	
 	public void setRange(int start, int end, SortArray.ElementState state) {}
 	
+	
+	
+	/*---- Static utilities ----*/
 	
 	public static final Random random = new Random();
 	

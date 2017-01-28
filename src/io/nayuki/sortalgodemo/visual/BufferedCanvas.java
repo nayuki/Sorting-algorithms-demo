@@ -32,9 +32,13 @@ import java.awt.image.BufferedImage;
 @SuppressWarnings("serial")
 final class BufferedCanvas extends Canvas {
 	
+	/*---- Fields ----*/
+	
 	private BufferedImage buffer;
 	private Graphics bufferg;
 	
+	
+	/*---- Constructors ----*/
 	
 	public BufferedCanvas(int size) {
 		setSize(size, size);
@@ -42,6 +46,8 @@ final class BufferedCanvas extends Canvas {
 		bufferg = buffer.getGraphics();
 	}
 	
+	
+	/*---- Methods ----*/
 	
 	public Graphics getBufferGraphics() {
 		return bufferg;

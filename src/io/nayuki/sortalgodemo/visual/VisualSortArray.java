@@ -36,6 +36,8 @@ import io.nayuki.sortalgodemo.core.AbstractSortArray;
  */
 final class VisualSortArray extends AbstractSortArray {
 	
+	/*---- Fields and constants ----*/
+	
 	// Visual state per element: 0=active, 1=inactive, 2=comparing, 3=done
 	private int[] state;
 	
@@ -66,6 +68,8 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	
 	
+	/*---- Constructors ----*/
+	
 	public VisualSortArray(int size, int scale, double speed) {
 		// Initialize in order, then permute randomly
 		super(size);
@@ -88,6 +92,9 @@ final class VisualSortArray extends AbstractSortArray {
 		redraw(0, values.length, true);
 	}
 	
+	
+	
+	/*---- Methods ----*/
 	
 	/* Initialization getters */
 	

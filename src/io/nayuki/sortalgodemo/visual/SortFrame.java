@@ -34,9 +34,12 @@ import java.awt.event.WindowEvent;
 @SuppressWarnings("serial")
 final class SortFrame extends Frame {
 	
+	/*---- Fields ----*/
+	
 	private SortThread thread;
 	
 	
+	/*---- Constructors ----*/
 	
 	public SortFrame(String name, Component maincomp, SortThread thread) {
 		super(name);

@@ -50,14 +50,14 @@ final class LaunchFrame extends Frame implements ActionListener {
 	
 	/*---- Fields ----*/
 	
-	private List<SortAlgorithm> algorithms;
+	private final List<SortAlgorithm> algorithms;
 	
-	private TextField arraySizeInput;
-	private TextField scaleInput;
-	private TextField speedInput;
+	private final TextField arraySizeInput;
+	private final TextField scaleInput;
+	private final TextField speedInput;
 	
-	private Choice algorithmInput;
-	private Button runButton;
+	private final Choice algorithmInput;
+	private final Button runButton;
 	
 	
 	
@@ -87,12 +87,12 @@ final class LaunchFrame extends Frame implements ActionListener {
 		
 		
 		/*-- First column --*/
+		gbc.gridx = 0;
+		gbc.weightx = 1;
 		
 		// Create and add label elements
 		Label label;
-		gbc.gridx = 0;
 		label = new Label("Algorithm:");
-		gbc.weightx = 1;
 		gbc.gridy = 0;
 		gbl.setConstraints(label, gbc);
 		this.add(label);
@@ -118,7 +118,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 		gbc.weightx = 2;
 		
 		// Drop-down selector for sort algorithm
-		algorithms = new ArrayList<SortAlgorithm>(algos);
+		algorithms = new ArrayList<>(algos);
 		algorithmInput = new Choice();
 		for (SortAlgorithm algo : algos)
 			algorithmInput.add(algo.getName());

@@ -60,9 +60,9 @@ public abstract class AbstractSortArray implements SortArray {
 	
 	/* Comparison and swapping */
 	
-	// Compares the values at the two given array indices.
-	// Returns a negative number if array[i] < array[j], zero if array[i] == array[j], or a positive number if array[i] > array[j].
-	// Do not assume that this returns only -1, 0, or 1.
+	// Compares the values at the two given array indices. Returns a negative number
+	// if array[i] < array[j], zero if array[i] == array[j], or a positive number
+	// if array[i] > array[j]. Do not assume that this returns only -1, 0, or 1.
 	public int compare(int i, int j) {
 		return Integer.compare(values[i], values[j]);
 	}
@@ -76,7 +76,8 @@ public abstract class AbstractSortArray implements SortArray {
 	}
 	
 	
-	// Compares the values at the two given array indices, swaps if and only if array[i] > array[j], and returns whether a swap occurred.
+	// Compares the values at the two given array indices, swaps if and
+	// only if array[i] > array[j], and returns whether a swap occurred.
 	public boolean compareAndSwap(int i, int j) {
 		if (compare(j, i) < 0) {
 			swap(i, j);

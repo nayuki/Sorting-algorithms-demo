@@ -29,6 +29,7 @@ import java.util.Objects;
 
 /**
  * A convenience base class for sort algorithms.
+ * This class implements {@link #getName()} so that subclasses don't need to.
  */
 public abstract class AbstractSortAlgorithm implements SortAlgorithm {
 	

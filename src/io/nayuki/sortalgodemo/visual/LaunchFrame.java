@@ -42,29 +42,39 @@ import java.util.List;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 
 
+/**
+ * The window (frame) for choosing which sorting algorithm, array size, etc. to launch.
+ */
 @SuppressWarnings("serial")
 final class LaunchFrame extends Frame implements ActionListener {
+	
+	/*---- Fields ----*/
 	
 	private List<SortAlgorithm> algorithms;
 	
 	private TextField arraySizeInput;
 	private TextField scaleInput;
 	private TextField speedInput;
+	
 	private Choice algorithmInput;
 	private Button runButton;
 	
 	
 	
+	/*---- Constructor ----*/
+	
 	public LaunchFrame(List<SortAlgorithm> algos) {
+		// Set window title
 		super("Sort Demo");
 		
+		// Set window closing action
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
 		});
 		
-		// Add widgets
+		// Create layout manager and set default values
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
 		setLayout(gbl);
@@ -75,7 +85,10 @@ final class LaunchFrame extends Frame implements ActionListener {
 		gbc.insets = new Insets(4, 4, 4, 4);
 		gbc.weighty = 0;
 		
-		// Labels
+		
+		/*-- First column --*/
+		
+		// Create and add label elements
 		Label label;
 		gbc.gridx = 0;
 		label = new Label("Algorithm:");
@@ -99,9 +112,12 @@ final class LaunchFrame extends Frame implements ActionListener {
 		gbl.setConstraints(label, gbc);
 		add(label);
 		
-		// Algorithm
+		
+		/*-- Second column --*/
 		gbc.gridx = 1;
 		gbc.weightx = 2;
+		
+		// Drop-down selector for sort algorithm
 		algorithms = new ArrayList<SortAlgorithm>(algos);
 		algorithmInput = new Choice();
 		for (SortAlgorithm algo : algos)
@@ -110,21 +126,21 @@ final class LaunchFrame extends Frame implements ActionListener {
 		gbl.setConstraints(algorithmInput, gbc);
 		add(algorithmInput);
 		
-		// Array size
+		// Text field for array size
 		arraySizeInput = new TextField("30");
 		arraySizeInput.addActionListener(this);
 		gbc.gridy = 1;
 		gbl.setConstraints(arraySizeInput, gbc);
 		add(arraySizeInput);
 		
-		// Scale
+		// Text field for scale
 		scaleInput = new TextField("12");
 		scaleInput.addActionListener(this);
 		gbc.gridy = 2;
 		gbl.setConstraints(scaleInput, gbc);
 		add(scaleInput);
 		
-		// Speed
+		// Text field for speed
 		speedInput = new TextField("10");
 		speedInput.addActionListener(this);
 		gbc.gridy = 3;
@@ -151,6 +167,10 @@ final class LaunchFrame extends Frame implements ActionListener {
 	}
 	
 	
+	
+	/*---- Methods ----*/
+	
+	// Called when the run button is clicked or entered is pressed in a text field.
 	public void actionPerformed(ActionEvent ev) {
 		try {
 			int size = Integer.parseInt(arraySizeInput.getText());

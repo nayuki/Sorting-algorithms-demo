@@ -42,12 +42,16 @@ final class SortFrame extends Frame {
 	/*---- Constructors ----*/
 	
 	public SortFrame(String name, Component maincomp, SortThread thread) {
+		// Initialize
 		super(name);
 		this.thread = thread;
+		
+		// Do component layout
 		add(maincomp);
 		setResizable(false);
 		pack();
 		
+		// Set window closing action
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				SortFrame.this.thread.interrupt();
@@ -55,6 +59,7 @@ final class SortFrame extends Frame {
 			}
 		});
 		
+		// Set window position and show
 		Rectangle rect = getGraphicsConfiguration().getBounds();
 		setLocation((rect.width - getWidth()) / 8, (rect.height - getHeight()) / 8);
 		setVisible(true);

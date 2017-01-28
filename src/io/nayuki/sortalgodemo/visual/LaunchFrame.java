@@ -175,17 +175,24 @@ final class LaunchFrame extends Frame implements ActionListener {
 	// Called when the run button is clicked or entered is pressed in a text field.
 	// Called by the AWT event loop, not by user code.
 	public void actionPerformed(ActionEvent ev) {
+		// Try to parse input numbers from text fields
+		int size, scale;
+		double speed;
 		try {
-			int size = Integer.parseInt(arraySizeInput.getText());
-			int scale = Integer.parseInt(scaleInput.getText());
-			double speed = Double.parseDouble(speedInput.getText());
-			if (size <= 0 || scale <= 0 || speed <= 0 || Double.isInfinite(speed) || Double.isNaN(speed))
-				return;
-			
-			VisualSortArray array = new VisualSortArray(size, scale, speed);
-			SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
-			new SortThread(array, algorithm).start();
-		} catch (NumberFormatException e) {}
+			size = Integer.parseInt(arraySizeInput.getText());
+			scale = Integer.parseInt(scaleInput.getText());
+			speed = Double.parseDouble(speedInput.getText());
+		} catch (NumberFormatException e) {
+			return;
+		}
+		
+		// Check number ranges
+		if (size <= 0 || scale <= 0 || speed <= 0 || Double.isInfinite(speed) || Double.isNaN(speed))
+			return;
+		
+		VisualSortArray array = new VisualSortArray(size, scale, speed);
+		SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
+		new SortThread(array, algorithm).start();
 	}
 	
 }

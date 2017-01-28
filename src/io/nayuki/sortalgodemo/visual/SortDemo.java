@@ -69,6 +69,7 @@ public final class SortDemo extends Frame implements ActionListener {
 			GnomeSort.INSTANCE,
 			InsertionSort.INSTANCE,
 			InsertionSortBinarySearch.INSTANCE,
+			RotationMergeSort.INSTANCE,
 			ShellSort.INSTANCE,
 			HeapSort.INSTANCE,
 			QuickSortDoubleEnded.INSTANCE,

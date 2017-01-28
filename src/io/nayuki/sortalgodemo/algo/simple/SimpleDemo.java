@@ -37,6 +37,7 @@ public final class SimpleDemo {
 		QuickSortDoubleEnded.INSTANCE,
 		QuickSortSliding.INSTANCE,
 		ShellSort.INSTANCE,
+		RotationMergeSort.INSTANCE,
 		BubbleSort.INSTANCE,
 		CocktailSort.INSTANCE,
 		SelectionSort.INSTANCE,

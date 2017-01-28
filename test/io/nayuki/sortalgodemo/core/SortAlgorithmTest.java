@@ -24,6 +24,7 @@
 
 package io.nayuki.sortalgodemo.core;
 
+import java.util.Objects;
 import org.junit.Test;
 
 
@@ -37,42 +38,62 @@ public abstract class SortAlgorithmTest {
 	/* Test cases */
 	
 	@Test public void testRandom10() {
-		testRandom(10);
+		testSorting(10, ArrayOrder.RANDOM);
 	}
 	
 	@Test public void testRandom30() {
-		testRandom(30);
+		testSorting(30, ArrayOrder.RANDOM);
 	}
 	
 	@Test public void testRandom100() {
-		testRandom(100);
-	}
-	
-	@Test public void testRandomSizes() {
-		for (int i = 0; i < 100; i++)
-			testRandom(AbstractSortArray.random.nextInt(100) + 1);
-	}
-	
-	protected void testRandom(int size) {
-		TestSortArray arr = new TestSortArray(size);
-		arr.shuffle();
-		getInstance().sort(arr);
-		arr.assertSorted();
+		testSorting(100, ArrayOrder.RANDOM);
 	}
 	
 	
 	@Test public void testForward100() {
-		TestSortArray arr = new TestSortArray(100);
+		testSorting(100, ArrayOrder.FORWARD);
+	}
+	
+	@Test public void testReverse100() {
+		testSorting(100, ArrayOrder.REVERSE);
+	}
+	
+	
+	@Test public void testRandomSizes() {
+		final int trials = 100;
+		for (int i = 0; i < trials; i++) {
+			int size = AbstractSortArray.random.nextInt(trials) + 1;
+			testSorting(size, ArrayOrder.RANDOM);
+		}
+	}
+	
+	
+	
+	/*---- Utilities ----*/
+	
+	protected void testSorting(int size, ArrayOrder type) {
+		// Check arguments
+		if (size <= 0)
+			throw new IllegalArgumentException();
+		Objects.requireNonNull(type);
+		
+		// Create array
+		TestSortArray arr = new TestSortArray(size);
+		switch (type) {
+			case FORWARD:  break;
+			case REVERSE:  arr.reverse();  break;
+			case RANDOM :  arr.shuffle();  break;
+			default:  throw new AssertionError();
+		}
+		
+		// Sort and check
 		getInstance().sort(arr);
 		arr.assertSorted();
 	}
 	
 	
-	@Test public void testReverse100() {
-		TestSortArray arr = new TestSortArray(100);
-		arr.reverse();
-		getInstance().sort(arr);
-		arr.assertSorted();
+	protected enum ArrayOrder {
+		FORWARD, REVERSE, RANDOM;
 	}
 	
 }

@@ -64,10 +64,8 @@ final class LaunchFrame extends Frame implements ActionListener {
 	/*---- Constructor ----*/
 	
 	public LaunchFrame(List<SortAlgorithm> algos) {
-		// Set window title
+		// Set window title and closing action
 		super("Sort Demo");
-		
-		// Set window closing action
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
@@ -91,26 +89,27 @@ final class LaunchFrame extends Frame implements ActionListener {
 		gbc.weightx = 1;
 		
 		// Create and add label elements
-		Label label;
-		label = new Label("Algorithm:");
-		gbc.gridy = 0;
-		gbl.setConstraints(label, gbc);
-		this.add(label);
-		
-		label = new Label("Array size:");
-		gbc.gridy = 1;
-		gbl.setConstraints(label, gbc);
-		this.add(label);
-		
-		label = new Label("Scale:");
-		gbc.gridy = 2;
-		gbl.setConstraints(label, gbc);
-		this.add(label);
-		
-		label = new Label("Speed:");
-		gbc.gridy = 3;
-		gbl.setConstraints(label, gbc);
-		this.add(label);
+		{
+			Label label = new Label("Algorithm:");
+			gbc.gridy = 0;
+			gbl.setConstraints(label, gbc);
+			this.add(label);
+			
+			label = new Label("Array size:");
+			gbc.gridy = 1;
+			gbl.setConstraints(label, gbc);
+			this.add(label);
+			
+			label = new Label("Scale:");
+			gbc.gridy = 2;
+			gbl.setConstraints(label, gbc);
+			this.add(label);
+			
+			label = new Label("Speed:");
+			gbc.gridy = 3;
+			gbl.setConstraints(label, gbc);
+			this.add(label);
+		}
 		
 		
 		/*-- Second column --*/
@@ -175,7 +174,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 	// Called when the run button is clicked or entered is pressed in a text field.
 	// Called by the AWT event loop, not by user code.
 	public void actionPerformed(ActionEvent ev) {
-		// Try to parse input numbers from text fields
+		// Parse and check input numbers from text fields
 		int size, scale;
 		double speed;
 		try {
@@ -185,8 +184,6 @@ final class LaunchFrame extends Frame implements ActionListener {
 		} catch (NumberFormatException e) {
 			return;
 		}
-		
-		// Check number ranges
 		if (size <= 0 || scale <= 0 || speed <= 0 || Double.isInfinite(speed) || Double.isNaN(speed))
 			return;
 		
@@ -198,6 +195,11 @@ final class LaunchFrame extends Frame implements ActionListener {
 			public Thread thread = this;
 			
 			public void run() {
+				initFrame();
+				doSort();
+			}
+			
+			private void initFrame() {
 				// Do component layout
 				final Frame sortFrame = new Frame(algorithm.getName());
 				sortFrame.add(array.getCanvas());
@@ -218,13 +220,18 @@ final class LaunchFrame extends Frame implements ActionListener {
 					(rect.width - sortFrame.getWidth()) / 8,
 					(rect.height - sortFrame.getHeight()) / 8);
 				sortFrame.setVisible(true);
-				
+			}
+			
+			private void doSort() {
+				// Wait and sort
 				try {
 					Thread.sleep(startDelay);
 					algorithm.sort(array);
 				} catch (StopException|InterruptedException e) {
 					return;
 				}
+				
+				// Check and print
 				String msg;
 				try {
 					array.assertSorted();

@@ -27,23 +27,28 @@ package io.nayuki.sortalgodemo.core;
 import org.junit.Assert;
 
 
-// An array for test purposes, not supporting graphics.
+/**
+ * A simple array, not supporting graphics, for the purpose of testing correct sorting.
+ */
 final class TestSortArray extends AbstractSortArray {
 	
-	/* Initialization */
+	/*---- Constructors ----*/
 	
 	public TestSortArray(int size) {
 		super(size);
 	}
 	
+	
+	/*---- Methods ----*/
+	
+	// Reverses the order of the current state of the array.
 	public void reverse() {
 		for (int i = 0; i < values.length / 2; i++)
 			swap(i, values.length - 1 - i);
 	}
 	
 	
-	/* Test */
-	
+	// Tests whether the array is in sorted order, either returning silently or throwing AssertionError.
 	public void assertSorted() {
 		for (int i = 0; i < values.length - 1; i++)
 			Assert.assertTrue(values[i] <= values[i + 1]);

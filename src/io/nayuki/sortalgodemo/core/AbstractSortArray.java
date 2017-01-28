@@ -28,7 +28,7 @@ import java.util.Random;
 
 
 /**
- * An array that can be sorted and have the sorting process visualized.
+ * A convenience abstract base class that manages an array and implements most of the methods.
  */
 public abstract class AbstractSortArray implements SortArray {
 	
@@ -60,15 +60,11 @@ public abstract class AbstractSortArray implements SortArray {
 	
 	/* Comparison and swapping */
 	
-	// Compares the values at the two given array indices. Returns a negative number
-	// if array[i] < array[j], zero if array[i] == array[j], or a positive number
-	// if array[i] > array[j]. Do not assume that this returns only -1, 0, or 1.
 	public int compare(int i, int j) {
 		return Integer.compare(values[i], values[j]);
 	}
 	
 	
-	// Swaps the values at the two given array indices.
 	public void swap(int i, int j) {
 		int temp = values[i];
 		values[i] = values[j];
@@ -76,8 +72,6 @@ public abstract class AbstractSortArray implements SortArray {
 	}
 	
 	
-	// Compares the values at the two given array indices, swaps if and
-	// only if array[i] > array[j], and returns whether a swap occurred.
 	public boolean compareAndSwap(int i, int j) {
 		if (compare(j, i) < 0) {
 			swap(i, j);
@@ -96,8 +90,10 @@ public abstract class AbstractSortArray implements SortArray {
 	
 	/* Sorting progress visualization */
 	
+	// Does nothing by default; can be overridden.
 	public void setElement(int index, SortArray.ElementState state) {}
 	
+	// Does nothing by default; can be overridden.
 	public void setRange(int start, int end, SortArray.ElementState state) {}
 	
 	

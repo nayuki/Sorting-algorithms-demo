@@ -29,6 +29,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 
+/**
+ * A canvas with an off-screen image and a graphics object.
+ */
 @SuppressWarnings("serial")
 final class BufferedCanvas extends Canvas {
 	
@@ -36,6 +39,7 @@ final class BufferedCanvas extends Canvas {
 	
 	private BufferedImage buffer;
 	private Graphics bufferg;
+	
 	
 	
 	/*---- Constructors ----*/
@@ -47,18 +51,22 @@ final class BufferedCanvas extends Canvas {
 	}
 	
 	
+	
 	/*---- Methods ----*/
 	
+	// Returns the graphics object for the off-screen image, not null.
 	public Graphics getBufferGraphics() {
 		return bufferg;
 	}
 	
 	
+	// Called by the AWT event loop, not by user code.
 	public void update(Graphics g) {
 		paint(g);
 	}
 	
 	
+	// Called by the AWT event loop, not by user code.
 	public void paint(Graphics g) {
 		g.drawImage(buffer, 0, 0, this);
 	}

@@ -27,7 +27,10 @@ package io.nayuki.sortalgodemo.core;
 import org.junit.Test;
 
 
-// Contains test cases with larger arrays, appropriate for O(n log n) sort algorithms.
+/**
+ * Adds test cases involving large arrays, which are appropriate for fast sort algorithms that run in
+ * O(n log n) time. Actual sort algos need to extend this abstract base class for this to be useful.
+ */
 public abstract class FastSortAlgorithmTest extends SortAlgorithmTest {
 	
 	@Test public void testRandom1e3() {

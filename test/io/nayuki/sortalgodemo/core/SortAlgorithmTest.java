@@ -28,14 +28,17 @@ import java.util.Objects;
 import org.junit.Test;
 
 
-// Common superclass containing test cases appropriate for all sort algorithms.
+/**
+ * A suite of test cases that are appropriate for all sorting algorithms.
+ * Each sort algo needs to extend this common base class and implement {@link #getInstance()}.
+ */
 public abstract class SortAlgorithmTest {
 	
-	// For subclasses to implement
+	// Returns an instance of the sorting algorithm to be tested.
 	public abstract SortAlgorithm getInstance();
 	
 	
-	/* Test cases */
+	/*---- Test cases ----*/
 	
 	@Test public void testRandom10() {
 		testSorting(10, ArrayOrder.RANDOM);

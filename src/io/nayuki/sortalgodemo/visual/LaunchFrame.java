@@ -173,6 +173,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 	/*---- Methods ----*/
 	
 	// Called when the run button is clicked or entered is pressed in a text field.
+	// Called by the AWT event loop, not by user code.
 	public void actionPerformed(ActionEvent ev) {
 		try {
 			int size = Integer.parseInt(arraySizeInput.getText());

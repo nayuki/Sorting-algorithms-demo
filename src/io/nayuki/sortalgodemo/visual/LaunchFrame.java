@@ -195,8 +195,30 @@ final class LaunchFrame extends Frame implements ActionListener {
 		final SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
 		final int startDelay = 1000;  // In milliseconds
 		new Thread() {
+			public Thread thread = this;
+			
 			public void run() {
-				new SortFrame(algorithm.getName(), array.getCanvas(), this);
+				// Do component layout
+				final Frame sortFrame = new Frame(algorithm.getName());
+				sortFrame.add(array.getCanvas());
+				sortFrame.setResizable(false);
+				sortFrame.pack();
+				
+				// Set window closing action
+				sortFrame.addWindowListener(new WindowAdapter() {
+					public void windowClosing(WindowEvent e) {
+						thread.interrupt();
+						sortFrame.dispose();
+					}
+				});
+				
+				// Set window position and show
+				Rectangle rect = getGraphicsConfiguration().getBounds();
+				sortFrame.setLocation(
+					(rect.width - sortFrame.getWidth()) / 8,
+					(rect.height - sortFrame.getHeight()) / 8);
+				sortFrame.setVisible(true);
+				
 				try {
 					Thread.sleep(startDelay);
 					algorithm.sort(array);

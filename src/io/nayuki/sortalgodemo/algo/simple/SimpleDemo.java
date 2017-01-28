@@ -74,11 +74,12 @@ public final class SimpleDemo {
 			throw new IllegalArgumentException("Array size must be positive");
 		
 		// Sort with each algorithm, and print statistics
+		System.err.println("Algorithm name\tNumber of comparisons\tNumber of swaps");
 		SimpleSortArray referenceArray = new SimpleSortArray(size);
 		for (SortAlgorithm algo : ALGORITHMS) {
 			SimpleSortArray array = referenceArray.clone();
 			algo.sort(array);
-			System.err.printf("%s:  %d comparisons, %d swaps%n", algo.getName(), array.comparisonCount, array.swapCount);
+			System.err.printf("%s\t%d\t%d%n", algo.getName(), array.comparisonCount, array.swapCount);
 		}
 	}
 	

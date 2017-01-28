@@ -43,8 +43,8 @@ final class TestSortArray extends AbstractSortArray {
 	
 	// Reverses the order of the current state of the array.
 	public void reverse() {
-		for (int i = 0; i < values.length / 2; i++)
-			swap(i, values.length - 1 - i);
+		for (int i = 0, j = values.length - 1; i < j; i++, j--)
+			swap(i, j);
 	}
 	
 	

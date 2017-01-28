@@ -57,7 +57,8 @@ final class SortThread extends Thread {
 			algorithm.sort(array);
 			try {
 				array.assertSorted();
-				System.out.printf("%s: %d comparisons, %d swaps%n", algorithm.getName(), array.getComparisonCount(), array.getSwapCount());
+				System.out.printf("%s: %d comparisons, %d swaps%n",
+					algorithm.getName(), array.getComparisonCount(), array.getSwapCount());
 			} catch (AssertionError e) {
 				System.out.printf("%s: Sorting failed%n", algorithm.getName());
 			}

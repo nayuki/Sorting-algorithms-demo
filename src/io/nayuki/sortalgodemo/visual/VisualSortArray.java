@@ -28,6 +28,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Arrays;
+import java.util.Objects;
 import io.nayuki.sortalgodemo.core.AbstractSortArray;
 
 
@@ -138,12 +139,14 @@ final class VisualSortArray extends AbstractSortArray {
 	/* Array visualization */
 	
 	public void setElement(int index, ElementState state) {
+		Objects.requireNonNull(state);
 		this.state[index] = state.ordinal();
 		redraw(index, index + 1, false);
 	}
 	
 	
 	public void setRange(int start, int end, ElementState state) {
+		Objects.requireNonNull(state);
 		Arrays.fill(this.state, start, end, state.ordinal());
 		redraw(start, end, false);
 	}

@@ -38,7 +38,7 @@ final class BufferedCanvas extends Canvas {
 	/*---- Fields ----*/
 	
 	private BufferedImage buffer;
-	private Graphics bufferg;
+	private Graphics bufGfx;
 	
 	
 	
@@ -47,7 +47,7 @@ final class BufferedCanvas extends Canvas {
 	public BufferedCanvas(int size) {
 		setSize(size, size);
 		buffer = new BufferedImage(size, size, BufferedImage.TYPE_INT_BGR);
-		bufferg = buffer.getGraphics();
+		bufGfx = buffer.getGraphics();
 	}
 	
 	
@@ -56,7 +56,7 @@ final class BufferedCanvas extends Canvas {
 	
 	// Returns the graphics object for the off-screen image, not null.
 	public Graphics getBufferGraphics() {
-		return bufferg;
+		return bufGfx;
 	}
 	
 	

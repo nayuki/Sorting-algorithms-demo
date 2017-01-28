@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.core;
 
-import org.junit.Before;
 import org.junit.Test;
 
 
@@ -33,13 +32,6 @@ public abstract class SortAlgorithmTest {
 	
 	// For subclasses to implement
 	public abstract SortAlgorithm getInstance();
-	
-	// Actual algorithm under test
-	protected SortAlgorithm algo;
-	
-	@Before public void setUp() {
-		algo = getInstance();
-	}
 	
 	
 	/* Test cases */
@@ -64,14 +56,14 @@ public abstract class SortAlgorithmTest {
 	protected void testRandom(int size) {
 		TestSortArray arr = new TestSortArray(size);
 		arr.shuffle();
-		algo.sort(arr);
+		getInstance().sort(arr);
 		arr.assertSorted();
 	}
 	
 	
 	@Test public void testForward100() {
 		TestSortArray arr = new TestSortArray(100);
-		algo.sort(arr);
+		getInstance().sort(arr);
 		arr.assertSorted();
 	}
 	
@@ -79,7 +71,7 @@ public abstract class SortAlgorithmTest {
 	@Test public void testReverse100() {
 		TestSortArray arr = new TestSortArray(100);
 		arr.reverse();
-		algo.sort(arr);
+		getInstance().sort(arr);
 		arr.assertSorted();
 	}
 	

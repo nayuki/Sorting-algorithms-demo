@@ -24,6 +24,8 @@
 
 package io.nayuki.sortalgodemo.core;
 
+import java.util.Objects;
+
 
 /**
  * A convenience base class for sort algorithms.
@@ -39,8 +41,7 @@ public abstract class AbstractSortAlgorithm implements SortAlgorithm {
 	/*---- Constructors ----*/
 	
 	protected AbstractSortAlgorithm(String name) {
-		if (name == null)
-			throw new NullPointerException();
+		Objects.requireNonNull(name);
 		this.name = name;
 	}
 	

@@ -29,6 +29,11 @@ import io.nayuki.sortalgodemo.core.SortAlgorithm;
 
 final class SortThread extends Thread {
 	
+	/*---- Static constants ----*/
+	
+	private static final int STARTING_DELAY = 1000;  // In milliseconds
+	
+	
 	/*---- Fields ----*/
 	
 	private SortAlgorithm algorithm;
@@ -48,7 +53,7 @@ final class SortThread extends Thread {
 	
 	public void run() {
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(STARTING_DELAY);
 			algorithm.sort(array);
 			try {
 				array.assertSorted();
@@ -57,8 +62,7 @@ final class SortThread extends Thread {
 				System.out.printf("%s: Sorting failed%n", algorithm.getName());
 			}
 		}
-		catch (StopException e) {}
-		catch (InterruptedException e) {}
+		catch (StopException|InterruptedException e) {}
 	}
 	
 }

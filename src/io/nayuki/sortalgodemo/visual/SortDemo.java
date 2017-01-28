@@ -48,7 +48,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import io.nayuki.sortalgodemo.algo.*;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
@@ -59,8 +59,7 @@ public final class SortDemo extends Frame implements ActionListener {
 	
 	public static void main(String[] args) {
 		// Set up list of algorithms and go
-		List<SortAlgorithm> algos = new ArrayList<SortAlgorithm>();
-		Collections.addAll(algos,
+		SortAlgorithm[] algos = {
 			BubbleSort.INSTANCE,
 			CocktailSort.INSTANCE,
 			SelectionSort.INSTANCE,
@@ -77,8 +76,9 @@ public final class SortDemo extends Frame implements ActionListener {
 			SlowSort.INSTANCE,
 			StoogeSort.INSTANCE,
 			StupidSort.INSTANCE,
-			BozoSort.INSTANCE);
-		new SortDemo(algos);
+			BozoSort.INSTANCE,
+		};
+		new SortDemo(Arrays.asList(algos));
 	}
 	
 	
@@ -194,7 +194,7 @@ public final class SortDemo extends Frame implements ActionListener {
 			int size = Integer.parseInt(arraySizeInput.getText());
 			int scale = Integer.parseInt(scaleInput.getText());
 			double speed = Double.parseDouble(speedInput.getText());
-			if (size <= 0 || scale <= 0 || speed <= 0 || Double.isInfinite(speed))
+			if (size <= 0 || scale <= 0 || speed <= 0 || Double.isInfinite(speed) || Double.isNaN(speed))
 				return;
 			
 			VisualSortArray array = new VisualSortArray(size, scale, speed);

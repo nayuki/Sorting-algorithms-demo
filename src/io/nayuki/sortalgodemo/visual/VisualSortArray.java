@@ -74,8 +74,8 @@ final class VisualSortArray extends AbstractSortArray {
 	public VisualSortArray(int size, int scale, double speed) {
 		// Initialize in order, then permute randomly
 		super(size);
-		if (speed <= 0)
-			throw new IllegalArgumentException("Speed must be positive");
+		if (scale <= 0 || speed <= 0 || Double.isInfinite(speed) || Double.isNaN(speed))
+			throw new IllegalArgumentException();
 		shuffle();
 		state = new int[size];
 		

@@ -41,6 +41,9 @@ public abstract class AbstractSortArray implements SortArray {
 	/*---- Constructors ----*/
 	
 	public AbstractSortArray(int size) {
+		if (size < 0)
+			throw new IllegalArgumentException();
+		
 		// Initialize in order: [0, 1, 2, ..., size-1]
 		values = new int[size];
 		for (int i = 0; i < values.length; i++)
@@ -61,11 +64,15 @@ public abstract class AbstractSortArray implements SortArray {
 	/* Comparison and swapping */
 	
 	public int compare(int i, int j) {
+		if (i < 0 || j < 0 || i >= values.length || j >= values.length)
+			throw new IndexOutOfBoundsException();
 		return Integer.compare(values[i], values[j]);
 	}
 	
 	
 	public void swap(int i, int j) {
+		if (i < 0 || j < 0 || i >= values.length || j >= values.length)
+			throw new IndexOutOfBoundsException();
 		int temp = values[i];
 		values[i] = values[j];
 		values[j] = temp;

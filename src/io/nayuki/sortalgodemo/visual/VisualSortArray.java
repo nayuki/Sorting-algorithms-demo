@@ -37,7 +37,7 @@ import io.nayuki.sortalgodemo.core.AbstractSortArray;
  */
 final class VisualSortArray extends AbstractSortArray {
 	
-	/*---- Fields and constants ----*/
+	/*---- Fields ----*/
 	
 	// Visual state per element: 0=active, 1=inactive, 2=comparing, 3=done
 	private int[] state;
@@ -57,15 +57,6 @@ final class VisualSortArray extends AbstractSortArray {
 	private int stepsSinceRepaint;
 	private int delay;
 	private boolean enableLazyDrawing;
-	
-	// Colors
-	private static Color[] COLORS = {
-		new Color(0x294099),  // Active: Blue
-		new Color(0x959EBF),  // Inactive: Gray
-		new Color(0xD4BA0D),  // Comparing: Yellow
-		new Color(0x25963D),  // Done: Green
-	};
-	private static Color BACKGROUND_COLOR = new Color(0xFFFFFF);  // White
 	
 	
 	
@@ -183,12 +174,12 @@ final class VisualSortArray extends AbstractSortArray {
 		graphics.fillRect(0, start * scale, values.length * scale, (end - start) * scale);
 		if (scale == 1) {
 			for (int i = start; i < end; i++) {
-				graphics.setColor(COLORS[state[i]]);
+				graphics.setColor(STATE_COLORS[state[i]]);
 				graphics.drawLine(0, i, values[i], i);
 			}
 		} else {
 			for (int i = start; i < end; i++) {
-				graphics.setColor(COLORS[state[i]]);
+				graphics.setColor(STATE_COLORS[state[i]]);
 				graphics.fillRect(0, i * scale, (values[i] + 1) * scale, scale);
 			}
 		}
@@ -211,5 +202,18 @@ final class VisualSortArray extends AbstractSortArray {
 			stepsSinceRepaint = 0;
 		}
 	}
+	
+	
+	
+	/*---- Color constants ----*/
+	
+	private static Color[] STATE_COLORS = {
+		new Color(0x294099),  // Active: Blue
+		new Color(0x959EBF),  // Inactive: Gray
+		new Color(0xD4BA0D),  // Comparing: Yellow
+		new Color(0x25963D),  // Done: Green
+	};
+	
+	private static Color BACKGROUND_COLOR = new Color(0xFFFFFF);  // White
 	
 }

@@ -45,8 +45,15 @@ final class BufferedCanvas extends Canvas {
 	/*---- Constructors ----*/
 	
 	public BufferedCanvas(int size) {
-		setSize(size, size);
-		buffer = new BufferedImage(size, size, BufferedImage.TYPE_INT_BGR);
+		this(size, size);
+	}
+	
+	
+	public BufferedCanvas(int width, int height) {
+		if (width <= 0 || height <= 0)
+			throw new IllegalArgumentException();
+		this.setSize(width, height);
+		buffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR);
 		bufGfx = buffer.getGraphics();
 	}
 	

@@ -22,7 +22,7 @@
  *   Software.
  */
 
-package io.nayuki.sortalgodemo.algo.simple;
+package io.nayuki.sortalgodemo.simple;
 
 import io.nayuki.sortalgodemo.algo.*;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;

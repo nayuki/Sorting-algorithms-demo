@@ -36,12 +36,12 @@ final class SortFrame extends Frame {
 	
 	/*---- Fields ----*/
 	
-	private SortThread thread;
+	private Thread thread;
 	
 	
 	/*---- Constructors ----*/
 	
-	public SortFrame(String name, Component maincomp, SortThread thread) {
+	public SortFrame(String name, Component maincomp, Thread thread) {
 		// Initialize
 		super(name);
 		this.thread = thread;

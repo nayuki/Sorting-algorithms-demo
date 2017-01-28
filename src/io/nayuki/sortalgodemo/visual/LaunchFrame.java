@@ -190,9 +190,28 @@ final class LaunchFrame extends Frame implements ActionListener {
 		if (size <= 0 || scale <= 0 || speed <= 0 || Double.isInfinite(speed) || Double.isNaN(speed))
 			return;
 		
-		VisualSortArray array = new VisualSortArray(size, scale, speed);
-		SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
-		new SortThread(array, algorithm).start();
+		// Initialize objects and worker thread
+		final VisualSortArray array = new VisualSortArray(size, scale, speed);
+		final SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
+		final int startDelay = 1000;  // In milliseconds
+		new Thread() {
+			public void run() {
+				new SortFrame(algorithm.getName(), array.getCanvas(), this);
+				try {
+					Thread.sleep(startDelay);
+					algorithm.sort(array);
+				} catch (StopException|InterruptedException e) {
+					return;
+				}
+				try {
+					array.assertSorted();
+					System.out.printf("%s: %d comparisons, %d swaps%n",
+						algorithm.getName(), array.getComparisonCount(), array.getSwapCount());
+				} catch (AssertionError e) {
+					System.out.printf("%s: Sorting failed%n", algorithm.getName());
+				}
+			}
+		}.start();
 	}
 	
 }

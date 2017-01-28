@@ -203,12 +203,16 @@ final class LaunchFrame extends Frame implements ActionListener {
 				} catch (StopException|InterruptedException e) {
 					return;
 				}
+				String msg;
 				try {
 					array.assertSorted();
-					System.out.printf("%s: %d comparisons, %d swaps%n",
+					msg = String.format("%s: %d comparisons, %d swaps",
 						algorithm.getName(), array.getComparisonCount(), array.getSwapCount());
 				} catch (AssertionError e) {
-					System.out.printf("%s: Sorting failed%n", algorithm.getName());
+					msg = algorithm.getName() + ": Sorting failed";
+				}
+				synchronized (System.err) {
+					System.err.println(msg);
 				}
 			}
 		}.start();

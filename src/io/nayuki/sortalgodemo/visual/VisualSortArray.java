@@ -51,10 +51,10 @@ final class VisualSortArray extends AbstractSortArray {
 	private volatile int swapCount;
 	
 	// Speed regulation
-	private static double MAX_FPS = 60;
-	private int stepsToExecute;
-	private int stepsSinceRepaint;
-	private int delay;
+	private final double targetFrameRate = 60;
+	private final double stepsPerFrame;
+	private double remainingStepsAllowed;
+	private long nextRepaintTime;
 	private final boolean drawIncrementally;
 	
 	
@@ -72,10 +72,10 @@ final class VisualSortArray extends AbstractSortArray {
 		// Initialize various numbers
 		comparisonCount = 0;
 		swapCount = 0;
-		delay = (int)Math.round(1000 / Math.min(speed, MAX_FPS));
-		stepsToExecute = (int)Math.round(Math.max(speed / MAX_FPS, 1));
-		stepsSinceRepaint = 0;
-		drawIncrementally = stepsToExecute <= size;
+		stepsPerFrame = speed / targetFrameRate;
+		remainingStepsAllowed = 0;
+		nextRepaintTime = System.nanoTime();
+		drawIncrementally = stepsPerFrame < size;
 		
 		// Initialize graphics
 		this.scale = scale;
@@ -178,17 +178,27 @@ final class VisualSortArray extends AbstractSortArray {
 	/* Speed regulation */
 	
 	private void requestRepaint() {
-		stepsSinceRepaint++;
-		if (stepsSinceRepaint >= stepsToExecute) {
+		long currentTime = System.nanoTime();
+		if (currentTime >= nextRepaintTime) {
 			if (!drawIncrementally)
 				redraw(0, values.length);
 			canvas.repaint();
+			nextRepaintTime += Math.round(1e9 / targetFrameRate);
+			if (nextRepaintTime <= currentTime)
+				nextRepaintTime = currentTime + Math.round(1e9 / targetFrameRate);
+			remainingStepsAllowed += stepsPerFrame;
+		}
+		
+		remainingStepsAllowed--;
+		if (remainingStepsAllowed < 0) {
 			try {
-				Thread.sleep(delay);
+				double curFrameRemain = Math.max((System.nanoTime() - nextRepaintTime) / 1e6, 0);
+				double extraFrames = Math.floor(-remainingStepsAllowed / stepsPerFrame);
+				Thread.sleep(Math.round(1000.0 / targetFrameRate * extraFrames + curFrameRemain));
+				remainingStepsAllowed += extraFrames * stepsPerFrame;
 			} catch (InterruptedException e) {
 				throw new StopException();
 			}
-			stepsSinceRepaint = 0;
 		}
 	}
 	

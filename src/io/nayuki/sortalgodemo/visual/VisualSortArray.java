@@ -63,21 +63,22 @@ final class VisualSortArray extends AbstractSortArray {
 	/*---- Constructors ----*/
 	
 	public VisualSortArray(int size, int scale, double speed) {
-		// Initialize in order, then permute randomly
+		// Check arguments and initialize arrays
 		super(size);
 		if (scale <= 0 || speed <= 0 || Double.isInfinite(speed) || Double.isNaN(speed))
 			throw new IllegalArgumentException();
 		shuffle();
 		state = new int[size];
 		
+		// Initialize various numbers
 		comparisonCount = 0;
 		swapCount = 0;
-		
 		delay = (int)Math.round(1000 / Math.min(speed, MAX_FPS));
 		stepsToExecute = (int)Math.round(Math.max(speed / MAX_FPS, 1));
 		stepsSinceRepaint = 0;
 		enableLazyDrawing = stepsToExecute > size;
 		
+		// Initialize graphics
 		this.scale = scale;
 		canvas = new BufferedCanvas(size * scale);
 		graphics = canvas.getBufferGraphics();
@@ -165,8 +166,8 @@ final class VisualSortArray extends AbstractSortArray {
 	}
 	
 	
-	/* Canvas drawing. The method does not call repaint()! */
-	
+	// Redraws the given range of indices to the off-screen buffer image.
+	// Note that this does not call repaint() on the canvas element.
 	private void redraw(int start, int end, boolean force) {
 		if (!force && enableLazyDrawing)
 			return;  // Wait for lazy full drawing instead

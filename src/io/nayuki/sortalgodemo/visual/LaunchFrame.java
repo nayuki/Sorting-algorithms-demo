@@ -204,7 +204,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 			private void initFrame() {
 				// Do component layout
 				final Frame sortFrame = new Frame(algorithm.getName());
-				sortFrame.add(array.getCanvas());
+				sortFrame.add(array.canvas);
 				sortFrame.setResizable(false);
 				sortFrame.pack();
 				

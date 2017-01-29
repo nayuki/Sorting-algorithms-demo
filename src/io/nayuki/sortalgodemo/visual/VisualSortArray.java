@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.visual;
 
-import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Arrays;
@@ -43,9 +42,9 @@ final class VisualSortArray extends AbstractSortArray {
 	private int[] state;
 	
 	// Graphics
-	private int scale;
-	private BufferedCanvas canvas;
-	private Graphics graphics;
+	private final int scale;
+	public final BufferedCanvas canvas;
+	private final Graphics graphics;
 	
 	// Statistics
 	private volatile int comparisonCount;
@@ -88,13 +87,6 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	
 	/*---- Methods ----*/
-	
-	/* Initialization getters */
-	
-	public Canvas getCanvas() {
-		return canvas;
-	}
-	
 	
 	/* Comparison and swapping */
 	
@@ -173,16 +165,12 @@ final class VisualSortArray extends AbstractSortArray {
 			return;  // Wait for lazy full drawing instead
 		graphics.setColor(BACKGROUND_COLOR);
 		graphics.fillRect(0, start * scale, values.length * scale, (end - start) * scale);
-		if (scale == 1) {
-			for (int i = start; i < end; i++) {
-				graphics.setColor(STATE_COLORS[state[i]]);
+		for (int i = start; i < end; i++) {
+			graphics.setColor(STATE_COLORS[state[i]]);
+			if (scale == 1)
 				graphics.drawLine(0, i, values[i], i);
-			}
-		} else {
-			for (int i = start; i < end; i++) {
-				graphics.setColor(STATE_COLORS[state[i]]);
+			else  // scale > 1
 				graphics.fillRect(0, i * scale, (values[i] + 1) * scale, scale);
-			}
 		}
 	}
 	

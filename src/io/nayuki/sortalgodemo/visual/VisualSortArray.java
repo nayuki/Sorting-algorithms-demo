@@ -94,10 +94,10 @@ final class VisualSortArray extends AbstractSortArray {
 		if (Thread.interrupted())
 			throw new StopException();
 		
-		comparisonCount++;
 		setElement(i, ElementState.COMPARING);
 		setElement(j, ElementState.COMPARING);
-		requestRepaint();
+		beforeStep();
+		comparisonCount++;
 		
 		// No repaint here
 		setElement(i, ElementState.ACTIVE);
@@ -112,10 +112,10 @@ final class VisualSortArray extends AbstractSortArray {
 			throw new StopException();
 		super.swap(i, j);
 		if (state != null) {  // If outside the constructor
+			beforeStep();
 			swapCount++;
 			setElement(i, ElementState.ACTIVE);
 			setElement(j, ElementState.ACTIVE);
-			requestRepaint();
 		}
 	}
 	
@@ -175,31 +175,34 @@ final class VisualSortArray extends AbstractSortArray {
 	}
 	
 	
-	/* Speed regulation */
-	
-	private void requestRepaint() {
-		long currentTime = System.nanoTime();
-		if (currentTime >= nextRepaintTime) {
-			if (!drawIncrementally)
-				redraw(0, values.length);
-			canvas.repaint();
+	// Performs regulation of repaint intervals and stepping speed.
+	private void beforeStep() {
+		boolean first = true;
+		while (remainingStepsAllowed < 1) {
+			long currentTime;
+			while (true) {
+				currentTime = System.nanoTime();
+				if (currentTime >= nextRepaintTime)
+					break;
+				long delay = nextRepaintTime - currentTime;
+				try {
+					Thread.sleep(delay / 1000000, (int)(delay % 1000000));
+				} catch (InterruptedException e) {
+					throw new StopException();
+				}
+			}
+			if (first) {
+				if (!drawIncrementally)
+					redraw(0, values.length);
+				canvas.repaint();
+				first = false;
+			}
 			nextRepaintTime += Math.round(1e9 / targetFrameRate);
 			if (nextRepaintTime <= currentTime)
 				nextRepaintTime = currentTime + Math.round(1e9 / targetFrameRate);
 			remainingStepsAllowed += stepsPerFrame;
 		}
-		
 		remainingStepsAllowed--;
-		if (remainingStepsAllowed < 0) {
-			try {
-				double curFrameRemain = Math.max((System.nanoTime() - nextRepaintTime) / 1e6, 0);
-				double extraFrames = Math.floor(-remainingStepsAllowed / stepsPerFrame);
-				Thread.sleep(Math.round(1000.0 / targetFrameRate * extraFrames + curFrameRemain));
-				remainingStepsAllowed += extraFrames * stepsPerFrame;
-			} catch (InterruptedException e) {
-				throw new StopException();
-			}
-		}
 	}
 	
 	

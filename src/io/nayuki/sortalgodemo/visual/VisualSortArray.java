@@ -55,7 +55,7 @@ final class VisualSortArray extends AbstractSortArray {
 	private int stepsToExecute;
 	private int stepsSinceRepaint;
 	private int delay;
-	private boolean enableLazyDrawing;
+	private final boolean drawIncrementally;
 	
 	
 	
@@ -75,13 +75,13 @@ final class VisualSortArray extends AbstractSortArray {
 		delay = (int)Math.round(1000 / Math.min(speed, MAX_FPS));
 		stepsToExecute = (int)Math.round(Math.max(speed / MAX_FPS, 1));
 		stepsSinceRepaint = 0;
-		enableLazyDrawing = stepsToExecute > size;
+		drawIncrementally = stepsToExecute <= size;
 		
 		// Initialize graphics
 		this.scale = scale;
 		canvas = new BufferedCanvas(size * scale);
 		graphics = canvas.getBufferGraphics();
-		redraw(0, values.length, true);
+		redraw(0, values.length);
 	}
 	
 	
@@ -125,14 +125,16 @@ final class VisualSortArray extends AbstractSortArray {
 	public void setElement(int index, ElementState state) {
 		Objects.requireNonNull(state);
 		this.state[index] = state.ordinal();
-		redraw(index, index + 1, false);
+		if (drawIncrementally)
+			redraw(index, index + 1);
 	}
 	
 	
 	public void setRange(int start, int end, ElementState state) {
 		Objects.requireNonNull(state);
 		Arrays.fill(this.state, start, end, state.ordinal());
-		redraw(start, end, false);
+		if (drawIncrementally)
+			redraw(start, end);
 	}
 	
 	
@@ -153,16 +155,14 @@ final class VisualSortArray extends AbstractSortArray {
 			if (values[i - 1] > values[i])
 				throw new AssertionError();
 		}
-		redraw(0, values.length, true);
+		redraw(0, values.length);
 		canvas.repaint();
 	}
 	
 	
 	// Redraws the given range of indices to the off-screen buffer image.
 	// Note that this does not call repaint() on the canvas element.
-	private void redraw(int start, int end, boolean force) {
-		if (!force && enableLazyDrawing)
-			return;  // Wait for lazy full drawing instead
+	private void redraw(int start, int end) {
 		graphics.setColor(BACKGROUND_COLOR);
 		graphics.fillRect(0, start * scale, values.length * scale, (end - start) * scale);
 		for (int i = start; i < end; i++) {
@@ -180,8 +180,8 @@ final class VisualSortArray extends AbstractSortArray {
 	private void requestRepaint() {
 		stepsSinceRepaint++;
 		if (stepsSinceRepaint >= stepsToExecute) {
-			if (enableLazyDrawing)  // Lazy full drawing
-				redraw(0, values.length, true);
+			if (!drawIncrementally)
+				redraw(0, values.length);
 			canvas.repaint();
 			try {
 				Thread.sleep(delay);

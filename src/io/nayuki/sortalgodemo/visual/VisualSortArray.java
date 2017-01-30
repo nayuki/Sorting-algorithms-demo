@@ -194,6 +194,7 @@ final class VisualSortArray extends AbstractSortArray {
 			if (first) {
 				if (!drawIncrementally)
 					redraw(0, values.length);
+				canvas.synchronizer = canvas.synchronizer;
 				canvas.repaint();
 				first = false;
 			}

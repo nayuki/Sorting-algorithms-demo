@@ -39,6 +39,7 @@ final class BufferedCanvas extends Canvas {
 	
 	private BufferedImage buffer;
 	private Graphics bufGfx;
+	public volatile int synchronizer;
 	
 	
 	
@@ -75,6 +76,7 @@ final class BufferedCanvas extends Canvas {
 	
 	// Called by the AWT event loop, not by user code.
 	public void paint(Graphics g) {
+		synchronizer = synchronizer;
 		g.drawImage(buffer, 0, 0, this);
 	}
 	

@@ -22,52 +22,16 @@
  *   Software.
  */
 
-/* 
- * Sort demo main class
- * 
- * Color legend:
- * - Blue: Normal
- * - Green: In final position
- * - Yellow: Comparing
- * - Gray: Inactive
- */
+package io.nayuki.sortalgodemo.algo;
 
-package io.nayuki.sortalgodemo.visual;
-
-import java.util.Arrays;
-import io.nayuki.sortalgodemo.algo.*;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
+import io.nayuki.sortalgodemo.core.SortAlgorithmTest;
 
 
-/**
- * The main class for the sort demo desktop GUI application.
- */
-public final class SortDemo {
+public final class CombSortTest extends SortAlgorithmTest {
 	
-	// Run with no command line arguments.
-	public static void main(String[] args) {
-		// Set up list of algorithms and go
-		SortAlgorithm[] algos = {
-			BubbleSort.INSTANCE,
-			CocktailSort.INSTANCE,
-			CombSort.INSTANCE,
-			SelectionSort.INSTANCE,
-			PancakeSort.INSTANCE,
-			QuasiPancakeSort.INSTANCE,
-			GnomeSort.INSTANCE,
-			InsertionSort.INSTANCE,
-			InsertionSortBinarySearch.INSTANCE,
-			RotationMergeSort.INSTANCE,
-			ShellSort.INSTANCE,
-			HeapSort.INSTANCE,
-			QuickSortDoubleEnded.INSTANCE,
-			QuickSortSliding.INSTANCE,
-			SlowSort.INSTANCE,
-			StoogeSort.INSTANCE,
-			StupidSort.INSTANCE,
-			BozoSort.INSTANCE,
-		};
-		new LaunchFrame(Arrays.asList(algos));
+	public SortAlgorithm getInstance() {
+		return CombSort.INSTANCE;
 	}
 	
 }

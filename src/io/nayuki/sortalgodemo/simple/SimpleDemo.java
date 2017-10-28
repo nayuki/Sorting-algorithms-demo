@@ -40,6 +40,7 @@ public final class SimpleDemo {
 		RotationMergeSort.INSTANCE,
 		BubbleSort.INSTANCE,
 		CocktailSort.INSTANCE,
+		CombSort.INSTANCE,
 		SelectionSort.INSTANCE,
 		GnomeSort.INSTANCE,
 		InsertionSort.INSTANCE,

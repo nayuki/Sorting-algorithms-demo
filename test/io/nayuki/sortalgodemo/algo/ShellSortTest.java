@@ -24,11 +24,11 @@
 
 package io.nayuki.sortalgodemo.algo;
 
+import io.nayuki.sortalgodemo.core.FastSortAlgorithmTest;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
-import io.nayuki.sortalgodemo.core.SortAlgorithmTest;
 
 
-public final class ShellSortTest extends SortAlgorithmTest {
+public final class ShellSortTest extends FastSortAlgorithmTest {
 	
 	public SortAlgorithm getInstance() {
 		return ShellSort.INSTANCE;

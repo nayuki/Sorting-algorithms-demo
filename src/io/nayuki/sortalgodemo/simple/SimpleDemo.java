@@ -42,6 +42,7 @@ public final class SimpleDemo {
 		CocktailSort.INSTANCE,
 		CombSort.INSTANCE,
 		SelectionSort.INSTANCE,
+		CycleSort.INSTANCE,
 		GnomeSort.INSTANCE,
 		InsertionSort.INSTANCE,
 		InsertionSortBinarySearch.INSTANCE,

@@ -22,53 +22,50 @@
  *   Software.
  */
 
-/* 
- * Sort demo main class
- * 
- * Color legend:
- * - Blue: Normal
- * - Green: In final position
- * - Yellow: Comparing
- * - Gray: Inactive
- */
+package io.nayuki.sortalgodemo.algo;
 
-package io.nayuki.sortalgodemo.visual;
-
-import java.util.Arrays;
-import io.nayuki.sortalgodemo.algo.*;
+import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
+import io.nayuki.sortalgodemo.core.SortArray;
 
 
 /**
- * The main class for the sort demo desktop GUI application.
+ * Sorts by finding the final resting place of each element, swapping, and following
+ * cycles. The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
  */
-public final class SortDemo {
+public final class CycleSort extends AbstractSortAlgorithm {
 	
-	// Run with no command line arguments.
-	public static void main(String[] args) {
-		// Set up list of algorithms and go
-		SortAlgorithm[] algos = {
-			BubbleSort.INSTANCE,
-			CocktailSort.INSTANCE,
-			CombSort.INSTANCE,
-			SelectionSort.INSTANCE,
-			CycleSort.INSTANCE,
-			PancakeSort.INSTANCE,
-			QuasiPancakeSort.INSTANCE,
-			GnomeSort.INSTANCE,
-			InsertionSort.INSTANCE,
-			InsertionSortBinarySearch.INSTANCE,
-			RotationMergeSort.INSTANCE,
-			ShellSort.INSTANCE,
-			HeapSort.INSTANCE,
-			QuickSortDoubleEnded.INSTANCE,
-			QuickSortSliding.INSTANCE,
-			SlowSort.INSTANCE,
-			StoogeSort.INSTANCE,
-			StupidSort.INSTANCE,
-			BozoSort.INSTANCE,
-		};
-		new LaunchFrame(Arrays.asList(algos));
+	// The singleton instance.
+	public static final SortAlgorithm INSTANCE = new CycleSort();
+	
+	
+	public void sort(SortArray array) {
+		int length = array.length();
+		boolean[] done = new boolean[length];
+		for (int i = 0; i < length; i++) {
+			while (true) {
+				int target = 0;
+				for (int j = 0; j < length; j++) {
+					if (array.compare(j, i) < 0)
+						target++;
+					if (done[i])
+						array.setElement(i, SortArray.ElementState.DONE);
+					if (done[j])
+						array.setElement(j, SortArray.ElementState.DONE);
+				}
+				done[target] = true;
+				if (target == i)
+					break;
+				array.swap(i, target);
+				array.setElement(target, SortArray.ElementState.DONE);
+			}
+		}
+	}
+	
+	
+	// Private constructor.
+	private CycleSort() {
+		super("Cycle sort");
 	}
 	
 }

@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -33,10 +32,18 @@ import io.nayuki.sortalgodemo.core.SortArray;
  * Sorts by recursively partitioning the array around a pivot.
  * The average time complexity is in <var>O</var>(<var>n</var> log <var>n</var>).
  */
-public final class QuickSortDoubleEnded extends AbstractSortAlgorithm {
+public final class QuickSortDoubleEnded implements SortAlgorithm {
 	
-	// The singleton instance.
+	// Singleton
 	public static final SortAlgorithm INSTANCE = new QuickSortDoubleEnded();
+	
+	
+	private QuickSortDoubleEnded() {}
+	
+	
+	@Override public String getName() {
+		return "Quick sort (double-ended)";
+	}
 	
 	
 	public void sort(SortArray array) {
@@ -82,12 +89,6 @@ public final class QuickSortDoubleEnded extends AbstractSortAlgorithm {
 		array.setElement(pivot, SortArray.ElementState.DONE);
 		sort(array, start, pivot);
 		sort(array, pivot + 1, end);
-	}
-	
-	
-	// Private constructor.
-	private QuickSortDoubleEnded() {
-		super("Quick sort (double-ended)");
 	}
 	
 }

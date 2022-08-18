@@ -24,15 +24,22 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
 
-public final class CocktailSort extends AbstractSortAlgorithm {
+public final class CocktailSort implements SortAlgorithm {
 	
-	// The singleton instance.
+	// Singleton
 	public static final SortAlgorithm INSTANCE = new CocktailSort();
+	
+	
+	private CocktailSort() {}
+	
+	
+	@Override public String getName() {
+		return "Cocktail sort";
+	}
 	
 	
 	public void sort(SortArray array) {
@@ -56,12 +63,6 @@ public final class CocktailSort extends AbstractSortAlgorithm {
 			left++;
 			i++;
 		}
-	}
-	
-	
-	// Private constructor.
-	private CocktailSort() {
-		super("Cocktail sort");
 	}
 	
 }

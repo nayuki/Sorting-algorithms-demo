@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.AbstractSortArray;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
@@ -35,10 +34,18 @@ import io.nayuki.sortalgodemo.core.SortArray;
  * if they are in inverted order, until the array is sorted.
  * The time complexity is in <var>O</var>(<var>n</var><sup>3</sup> log <var>n</var>).
  */
-public final class BozoSort extends AbstractSortAlgorithm {
+public final class BozoSort implements SortAlgorithm {
 	
-	// The singleton instance.
+	// Singleton
 	public static final SortAlgorithm INSTANCE = new BozoSort();
+	
+	
+	private BozoSort() {}
+	
+	
+	@Override public String getName() {
+		return "Bozo sort";
+	}
 	
 	
 	public void sort(SortArray array) {
@@ -59,12 +66,6 @@ public final class BozoSort extends AbstractSortAlgorithm {
 				return false;
 		}
 		return true;
-	}
-	
-	
-	// Private constructor.
-	private BozoSort() {
-		super("Bozo sort");
 	}
 	
 }

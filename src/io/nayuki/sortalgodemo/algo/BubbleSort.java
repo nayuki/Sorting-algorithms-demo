@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -33,10 +32,18 @@ import io.nayuki.sortalgodemo.core.SortArray;
  * Sorts by scanning forward and swapping inverted adjacent elements.
  * The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
  */
-public final class BubbleSort extends AbstractSortAlgorithm {
+public final class BubbleSort implements SortAlgorithm {
 	
-	// The singleton instance.
+	// Singleton
 	public static final SortAlgorithm INSTANCE = new BubbleSort();
+	
+	
+	private BubbleSort() {}
+	
+	
+	@Override public String getName() {
+		return "Bubble sort";
+	}
 	
 	
 	public void sort(SortArray array) {
@@ -45,12 +52,6 @@ public final class BubbleSort extends AbstractSortAlgorithm {
 				array.compareAndSwap(j, j + 1);
 			array.setElement(i - 1, SortArray.ElementState.DONE);
 		}
-	}
-	
-	
-	// Private constructor.
-	private BubbleSort() {
-		super("Bubble sort");
 	}
 	
 }

@@ -24,15 +24,22 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
 
-public final class GnomeSort extends AbstractSortAlgorithm {
+public final class GnomeSort implements SortAlgorithm {
 	
-	// The singleton instance.
+	// Singleton
 	public static final SortAlgorithm INSTANCE = new GnomeSort();
+	
+	
+	private GnomeSort() {}
+	
+	
+	@Override public String getName() {
+		return "Gnome sort";
+	}
 	
 	
 	public void sort(SortArray array) {
@@ -45,12 +52,6 @@ public final class GnomeSort extends AbstractSortAlgorithm {
 				i--;
 		}
 		array.setRange(0, length, SortArray.ElementState.DONE);
-	}
-	
-	
-	// Private constructor.
-	private GnomeSort() {
-		super("Gnome sort");
 	}
 	
 }

@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -32,10 +31,18 @@ import io.nayuki.sortalgodemo.core.SortArray;
 /**
  * A pessimal "multiply and surrender" algorithm with superpolynomial time complexity.
  */
-public final class SlowSort extends AbstractSortAlgorithm {
+public final class SlowSort implements SortAlgorithm {
 	
-	// The singleton instance.
+	// Singleton
 	public static final SortAlgorithm INSTANCE = new SlowSort();
+	
+	
+	private SlowSort() {}
+	
+	
+	@Override public String getName() {
+		return "Slow sort";
+	}
 	
 	
 	public void sort(SortArray array) {
@@ -58,12 +65,6 @@ public final class SlowSort extends AbstractSortAlgorithm {
 			array.setElement(end - 1, SortArray.ElementState.DONE);
 		if (length >= 2)
 			sort(array, start, end - 1, isMain);
-	}
-	
-	
-	// Private constructor.
-	private SlowSort() {
-		super("Slow sort");
 	}
 	
 }

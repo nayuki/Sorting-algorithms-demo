@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -33,10 +32,18 @@ import io.nayuki.sortalgodemo.core.SortArray;
  * Sorts by running a sequence of insertion sorts with varying gaps.
  * The time complexity is in <var>O</var>(<var>n</var><sup>1.3</sup>).
  */
-public final class ShellSort extends AbstractSortAlgorithm {
+public final class ShellSort implements SortAlgorithm {
 	
-	// The singleton instance.
+	// Singleton
 	public static final SortAlgorithm INSTANCE = new ShellSort();
+	
+	
+	private ShellSort() {}
+	
+	
+	@Override public String getName() {
+		return "Shell sort";
+	}
 	
 	
 	private static int[] GAP_SEQUENCE = {1750, 701, 301, 132, 57, 23, 10, 4, 1};
@@ -53,12 +60,6 @@ public final class ShellSort extends AbstractSortAlgorithm {
 			}
 		}
 		array.setRange(0, length, SortArray.ElementState.DONE);
-	}
-	
-	
-	// Private constructor.
-	private ShellSort() {
-		super("Shell sort");
 	}
 	
 }

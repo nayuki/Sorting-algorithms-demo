@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -34,10 +33,18 @@ import io.nayuki.sortalgodemo.core.SortArray;
  * and prepending it to the sorted subarray at the end of the array.
  * The time complexity is in <var>O</var>(<var>n</var> log <var>n</var>).
  */
-public final class HeapSort extends AbstractSortAlgorithm {
+public final class HeapSort implements SortAlgorithm {
 	
-	// The singleton instance.
+	// Singleton
 	public static final SortAlgorithm INSTANCE = new HeapSort();
+	
+	
+	private HeapSort() {}
+	
+	
+	@Override public String getName() {
+		return "Heap sort";
+	}
 	
 	
 	public void sort(SortArray array) {
@@ -65,12 +72,6 @@ public final class HeapSort extends AbstractSortAlgorithm {
 				break;
 			node = child;
 		}
-	}
-	
-	
-	// Private constructor.
-	private HeapSort() {
-		super("Heap sort");
 	}
 	
 }

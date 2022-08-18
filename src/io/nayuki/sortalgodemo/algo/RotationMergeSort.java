@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 import io.nayuki.sortalgodemo.core.SortArray.ElementState;
@@ -35,10 +34,18 @@ import io.nayuki.sortalgodemo.core.SortArray.ElementState;
  * The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
  * See: https://xinok.wordpress.com/2014/08/17/in-place-merge-sort-demystified-2/
  */
-public final class RotationMergeSort extends AbstractSortAlgorithm {
+public final class RotationMergeSort implements SortAlgorithm {
 	
-	// The singleton instance.
+	// Singleton
 	public static final SortAlgorithm INSTANCE = new RotationMergeSort();
+	
+	
+	private RotationMergeSort() {}
+	
+	
+	@Override public String getName() {
+		return "Rotation merge sort";
+	}
 	
 	
 	public void sort(SortArray array) {
@@ -87,12 +94,6 @@ public final class RotationMergeSort extends AbstractSortAlgorithm {
 		merge(array, start, left + 1, mid);
 		array.setRange(start, mid, ElementState.INACTIVE);
 		merge(array, mid, right, end);
-	}
-	
-	
-	// Private constructor.
-	private RotationMergeSort() {
-		super("Rotation merge sort");
 	}
 	
 }

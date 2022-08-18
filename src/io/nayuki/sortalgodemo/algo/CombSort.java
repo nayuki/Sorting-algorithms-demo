@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -34,10 +33,18 @@ import io.nayuki.sortalgodemo.core.SortArray;
  * elements between a gap, and repeating with decreasing gaps.
  * The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>) or better.
  */
-public final class CombSort extends AbstractSortAlgorithm {
+public final class CombSort implements SortAlgorithm {
 	
-	// The singleton instance.
+	// Singleton
 	public static final SortAlgorithm INSTANCE = new CombSort();
+	
+	
+	private CombSort() {}
+	
+	
+	@Override public String getName() {
+		return "Comb sort";
+	}
 	
 	
 	public void sort(SortArray array) {
@@ -61,12 +68,6 @@ public final class CombSort extends AbstractSortAlgorithm {
 				array.setRange(end, length, SortArray.ElementState.DONE);
 		}
 		array.setRange(0, length, SortArray.ElementState.DONE);
-	}
-	
-	
-	// Private constructor.
-	private CombSort() {
-		super("Comb sort");
 	}
 	
 }

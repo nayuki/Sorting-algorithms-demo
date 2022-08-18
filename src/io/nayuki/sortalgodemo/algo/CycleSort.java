@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -33,10 +32,18 @@ import io.nayuki.sortalgodemo.core.SortArray;
  * Sorts by finding the final resting place of each element, swapping, and following
  * cycles. The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
  */
-public final class CycleSort extends AbstractSortAlgorithm {
+public final class CycleSort implements SortAlgorithm {
 	
-	// The singleton instance.
+	// Singleton
 	public static final SortAlgorithm INSTANCE = new CycleSort();
+	
+	
+	private CycleSort() {}
+	
+	
+	@Override public String getName() {
+		return "Cycle sort";
+	}
 	
 	
 	public void sort(SortArray array) {
@@ -60,12 +67,6 @@ public final class CycleSort extends AbstractSortAlgorithm {
 				array.setElement(target, SortArray.ElementState.DONE);
 			}
 		}
-	}
-	
-	
-	// Private constructor.
-	private CycleSort() {
-		super("Cycle sort");
 	}
 	
 }

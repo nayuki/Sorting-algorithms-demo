@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -34,10 +33,18 @@ import io.nayuki.sortalgodemo.core.SortArray;
  * The correct position is determined using binary search instead of linear search.
  * The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
  */
-public final class InsertionSortBinarySearch extends AbstractSortAlgorithm {
+public final class InsertionSortBinarySearch implements SortAlgorithm {
 	
-	// The singleton instance.
+	// Singleton
 	public static final SortAlgorithm INSTANCE = new InsertionSortBinarySearch();
+	
+	
+	private InsertionSortBinarySearch() {}
+	
+	
+	@Override public String getName() {
+		return "Insertion sort (binary search)";
+	}
 	
 	
 	public void sort(SortArray array) {
@@ -64,12 +71,6 @@ public final class InsertionSortBinarySearch extends AbstractSortAlgorithm {
 				return mid;
 		}
 		return start;
-	}
-	
-	
-	// Private constructor.
-	private InsertionSortBinarySearch() {
-		super("Insertion sort (binary search)");
 	}
 	
 }

@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -34,10 +33,18 @@ import io.nayuki.sortalgodemo.core.SortArray;
  * and swapping it to end of the sorted subarray.
  * The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
  */
-public final class SelectionSort extends AbstractSortAlgorithm {
+public final class SelectionSort implements SortAlgorithm {
 	
-	// The singleton instance.
+	// Singleton
 	public static final SortAlgorithm INSTANCE = new SelectionSort();
+	
+	
+	private SelectionSort() {}
+	
+	
+	@Override public String getName() {
+		return "Selection sort";
+	}
 	
 	
 	public void sort(SortArray array) {
@@ -51,12 +58,6 @@ public final class SelectionSort extends AbstractSortAlgorithm {
 			array.swap(i, minIndex);
 			array.setElement(i, SortArray.ElementState.DONE);
 		}
-	}
-	
-	
-	// Private constructor.
-	private SelectionSort() {
-		super("Selection sort");
 	}
 	
 }

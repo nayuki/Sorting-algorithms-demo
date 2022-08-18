@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.algo;
 
-import io.nayuki.sortalgodemo.core.AbstractSortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -33,10 +32,18 @@ import io.nayuki.sortalgodemo.core.SortArray;
  * A silly but simple, recursive sorting algorithm.
  * The time complexity is in <var>O</var>(<var>n</var><sup>2.71</sup>).
  */
-public final class StoogeSort extends AbstractSortAlgorithm {
+public final class StoogeSort implements SortAlgorithm {
 	
-	// The singleton instance.
+	// Singleton
 	public static final SortAlgorithm INSTANCE = new StoogeSort();
+	
+	
+	private StoogeSort() {}
+	
+	
+	@Override public String getName() {
+		return "Stooge sort";
+	}
 	
 	
 	public void sort(SortArray array) {
@@ -57,12 +64,6 @@ public final class StoogeSort extends AbstractSortAlgorithm {
 		sort(array, start, end - third);
 		sort(array, start + third, end);
 		sort(array, start, end - third);
-	}
-	
-	
-	// Private constructor.
-	private StoogeSort() {
-		super("Stooge sort");
 	}
 	
 }

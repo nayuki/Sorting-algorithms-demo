@@ -30,7 +30,7 @@ import io.nayuki.sortalgodemo.core.SortAlgorithm;
 
 public final class CombSortTest extends FastSortAlgorithmTest {
 	
-	public SortAlgorithm getInstance() {
+	@Override public SortAlgorithm getInstance() {
 		return CombSort.INSTANCE;
 	}
 	

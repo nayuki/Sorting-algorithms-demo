@@ -30,7 +30,7 @@ import io.nayuki.sortalgodemo.core.SortAlgorithmTest;
 
 public final class GnomeSortTest extends SortAlgorithmTest {
 	
-	public SortAlgorithm getInstance() {
+	@Override public SortAlgorithm getInstance() {
 		return GnomeSort.INSTANCE;
 	}
 	

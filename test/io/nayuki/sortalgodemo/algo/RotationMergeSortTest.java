@@ -30,7 +30,7 @@ import io.nayuki.sortalgodemo.core.SortAlgorithm;
 
 public final class RotationMergeSortTest extends FastSortAlgorithmTest {
 	
-	public SortAlgorithm getInstance() {
+	@Override public SortAlgorithm getInstance() {
 		return RotationMergeSort.INSTANCE;
 	}
 	

@@ -30,7 +30,7 @@ import io.nayuki.sortalgodemo.core.SortAlgorithmTest;
 
 public final class InsertionSortBinarySearchTest extends SortAlgorithmTest {
 	
-	public SortAlgorithm getInstance() {
+	@Override public SortAlgorithm getInstance() {
 		return InsertionSortBinarySearch.INSTANCE;
 	}
 	

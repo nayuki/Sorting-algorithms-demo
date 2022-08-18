@@ -46,6 +46,8 @@ public final class StoogeSort implements SortAlgorithm {
 	}
 	
 	
+	/*---- Algorithm ----*/
+	
 	@Override public void sort(SortArray array) {
 		sort(array, 0, array.length());
 		array.setRange(0, array.length(), SortArray.ElementState.DONE);

@@ -47,6 +47,8 @@ public final class InsertionSortBinarySearch implements SortAlgorithm {
 	}
 	
 	
+	/*---- Algorithm ----*/
+	
 	@Override public void sort(SortArray array) {
 		int length = array.length();
 		array.setRange(0, length, SortArray.ElementState.INACTIVE);

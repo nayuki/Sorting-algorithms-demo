@@ -46,6 +46,8 @@ public final class QuickSortDoubleEnded implements SortAlgorithm {
 	}
 	
 	
+	/*---- Algorithm ----*/
+	
 	@Override public void sort(SortArray array) {
 		sort(array, 0, array.length());
 	}

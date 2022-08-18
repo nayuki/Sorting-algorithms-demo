@@ -47,6 +47,8 @@ public final class SelectionSort implements SortAlgorithm {
 	}
 	
 	
+	/*---- Algorithm ----*/
+	
 	@Override public void sort(SortArray array) {
 		int length = array.length();
 		for (int i = 0; i < length; i++) {

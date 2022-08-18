@@ -46,6 +46,8 @@ public final class CycleSort implements SortAlgorithm {
 	}
 	
 	
+	/*---- Algorithm ----*/
+	
 	@Override public void sort(SortArray array) {
 		int length = array.length();
 		boolean[] done = new boolean[length];

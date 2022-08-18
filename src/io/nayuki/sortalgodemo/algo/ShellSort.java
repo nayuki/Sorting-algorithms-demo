@@ -51,6 +51,8 @@ public final class ShellSort implements SortAlgorithm {
 	}
 	
 	
+	/*---- Algorithm ----*/
+	
 	@Override public void sort(SortArray array) {
 		int length = array.length();
 		for (int step : gapSequence) {

@@ -47,6 +47,8 @@ public final class HeapSort implements SortAlgorithm {
 	}
 	
 	
+	/*---- Algorithm ----*/
+	
 	@Override public void sort(SortArray array) {
 		// Heapify
 		int length = array.length();

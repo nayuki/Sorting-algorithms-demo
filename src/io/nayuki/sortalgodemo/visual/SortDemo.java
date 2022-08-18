@@ -36,7 +36,6 @@ package io.nayuki.sortalgodemo.visual;
 
 import java.util.Arrays;
 import io.nayuki.sortalgodemo.algo.*;
-import io.nayuki.sortalgodemo.core.SortAlgorithm;
 
 
 /**
@@ -47,7 +46,7 @@ public final class SortDemo {
 	// Run with no command line arguments.
 	public static void main(String[] args) {
 		// Set up list of algorithms and go
-		SortAlgorithm[] algos = {
+		new LaunchFrame(Arrays.asList(
 			BubbleSort.INSTANCE,
 			CocktailSort.INSTANCE,
 			CombSort.INSTANCE,
@@ -66,9 +65,7 @@ public final class SortDemo {
 			SlowSort.INSTANCE,
 			StoogeSort.INSTANCE,
 			StupidSort.INSTANCE,
-			BozoSort.INSTANCE,
-		};
-		new LaunchFrame(Arrays.asList(algos));
+			BozoSort.INSTANCE));
 	}
 	
 }

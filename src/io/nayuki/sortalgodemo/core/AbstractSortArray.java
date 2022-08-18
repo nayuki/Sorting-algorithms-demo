@@ -25,6 +25,7 @@
 package io.nayuki.sortalgodemo.core;
 
 import java.util.Random;
+import java.util.stream.IntStream;
 
 
 /**
@@ -43,11 +44,8 @@ public abstract class AbstractSortArray implements SortArray {
 	public AbstractSortArray(int size) {
 		if (size < 0)
 			throw new IllegalArgumentException("Negative array size");
-		
 		// Initialize in order: [0, 1, 2, ..., size-1]
-		values = new int[size];
-		for (int i = 0; i < values.length; i++)
-			values[i] = i;
+		values = IntStream.range(0, size).toArray();
 	}
 	
 	

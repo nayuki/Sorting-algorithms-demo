@@ -186,7 +186,7 @@ final class VisualSortArray extends AbstractSortArray {
 					break;
 				long delay = nextRepaintTime - currentTime;
 				try {
-					Thread.sleep(delay / 1000000, (int)(delay % 1000000));
+					Thread.sleep(delay / 1_000_000, (int)(delay % 1_000_000));
 				} catch (InterruptedException e) {
 					throw new StopException();
 				}

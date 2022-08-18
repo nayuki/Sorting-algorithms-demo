@@ -34,15 +34,15 @@ import org.junit.Test;
 public abstract class FastSortAlgorithmTest extends SortAlgorithmTest {
 	
 	@Test public void testRandom1e3() {
-		testSorting(1 * 1000, ArrayOrder.RANDOM);
+		testSorting(1_000, ArrayOrder.RANDOM);
 	}
 	
 	@Test public void testRandom1e4() {
-		testSorting(10 * 1000, ArrayOrder.RANDOM);
+		testSorting(10_000, ArrayOrder.RANDOM);
 	}
 	
 	@Test public void testRandom1e5() {
-		testSorting(100 * 1000, ArrayOrder.RANDOM);
+		testSorting(100_000, ArrayOrder.RANDOM);
 	}
 	
 }

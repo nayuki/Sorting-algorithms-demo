@@ -55,6 +55,9 @@ public final class StoogeSort implements SortAlgorithm {
 	
 	
 	private static void sort(SortArray array, int start, int end) {
+		if (!(0 <= start && start <= end && end <= array.length()))
+			throw new IndexOutOfBoundsException();
+		
 		array.setRange(start, end, SortArray.ElementState.ACTIVE);
 		array.compareAndSwap(start, end - 1);
 		array.setRange(start, end, SortArray.ElementState.INACTIVE);

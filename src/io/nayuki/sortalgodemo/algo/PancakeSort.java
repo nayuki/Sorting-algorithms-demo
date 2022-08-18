@@ -60,6 +60,8 @@ public final class PancakeSort implements SortAlgorithm {
 	
 	// Reverses the elements in the array subrange of [start, end).
 	private static void reverse(SortArray array, int start, int end) {
+		if (!(0 <= start && start <= end && end <= array.length()))
+			throw new IndexOutOfBoundsException();
 		for (end--; start < end; start++, end--)
 			array.swap(start, end);
 	}

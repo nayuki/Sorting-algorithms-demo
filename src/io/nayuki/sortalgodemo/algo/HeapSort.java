@@ -66,6 +66,8 @@ public final class HeapSort implements SortAlgorithm {
 	
 	
 	private static void siftDown(SortArray array, int node, int end) {
+		if (!(0 <= node && node <= end && end <= array.length()))
+			throw new IndexOutOfBoundsException();
 		while (node * 2 + 1 < end) {
 			int child = node * 2 + 1;
 			if (child + 1 < end && array.compare(child + 1, child) > 0)

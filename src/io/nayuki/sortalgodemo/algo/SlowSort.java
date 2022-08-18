@@ -54,6 +54,9 @@ public final class SlowSort implements SortAlgorithm {
 	
 	
 	private static void sort(SortArray array, int start, int end, boolean isMain) {
+		if (!(0 <= start && start <= end && end <= array.length()))
+			throw new IndexOutOfBoundsException();
+		
 		int length = end - start;
 		if (length >= 2) {
 			int mid = start + length / 2;

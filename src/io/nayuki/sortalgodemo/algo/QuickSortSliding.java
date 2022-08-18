@@ -54,6 +54,8 @@ public final class QuickSortSliding implements SortAlgorithm {
 	
 	
 	private static void sort(SortArray array, int start, int end) {
+		if (!(0 <= start && start <= end && end <= array.length()))
+			throw new IndexOutOfBoundsException();
 		if (start == end)
 			return;
 		

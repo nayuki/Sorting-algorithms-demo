@@ -35,10 +35,15 @@ import io.nayuki.sortalgodemo.core.SortArray;
 public final class ShellSort implements SortAlgorithm {
 	
 	// Singleton
-	public static final SortAlgorithm INSTANCE = new ShellSort();
+	public static final SortAlgorithm INSTANCE = new ShellSort(new int[]{1750, 701, 301, 132, 57, 23, 10, 4, 1});
 	
 	
-	private ShellSort() {}
+	private final int[] gapSequence;
+	
+	
+	private ShellSort(int[] gaps) {
+		gapSequence = gaps;
+	}
 	
 	
 	@Override public String getName() {
@@ -46,12 +51,9 @@ public final class ShellSort implements SortAlgorithm {
 	}
 	
 	
-	private static int[] GAP_SEQUENCE = {1750, 701, 301, 132, 57, 23, 10, 4, 1};
-	
-	
 	@Override public void sort(SortArray array) {
 		int length = array.length();
-		for (int step : GAP_SEQUENCE) {
+		for (int step : gapSequence) {
 			array.setRange(0, length, SortArray.ElementState.INACTIVE);
 			
 			// Do an insertion sort with this step size

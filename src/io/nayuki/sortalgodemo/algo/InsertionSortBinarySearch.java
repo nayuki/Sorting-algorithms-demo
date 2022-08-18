@@ -57,7 +57,6 @@ public final class InsertionSortBinarySearch implements SortAlgorithm {
 			for (int j = i; j - 1 >= index; j--)
 				array.swap(j, j - 1);
 		}
-		array.setRange(0, length, SortArray.ElementState.DONE);
 	}
 	
 	

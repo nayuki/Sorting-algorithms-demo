@@ -53,7 +53,6 @@ public final class GnomeSort implements SortAlgorithm {
 			else
 				i--;
 		}
-		array.setRange(0, length, SortArray.ElementState.DONE);
 	}
 	
 }

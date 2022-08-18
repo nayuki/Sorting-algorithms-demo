@@ -53,7 +53,6 @@ public final class QuasiPancakeSort implements SortAlgorithm {
 			reverse(array, j, i);
 			reverse(array, j, i + 1);
 		}
-		array.setRange(0, length, SortArray.ElementState.DONE);
 	}
 	
 	

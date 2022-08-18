@@ -54,7 +54,6 @@ public final class InsertionSort implements SortAlgorithm {
 		for (int i = 0; i < length; i++) {
 			for (int j = i; j >= 1 && array.compareAndSwap(j - 1, j); j--);
 		}
-		array.setRange(0, length, SortArray.ElementState.DONE);
 	}
 	
 }

@@ -69,7 +69,6 @@ public final class CombSort implements SortAlgorithm {
 			if (end >= 0)
 				array.setRange(end, length, SortArray.ElementState.DONE);
 		}
-		array.setRange(0, length, SortArray.ElementState.DONE);
 	}
 	
 }

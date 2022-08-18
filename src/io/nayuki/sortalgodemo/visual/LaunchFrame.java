@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
+import io.nayuki.sortalgodemo.core.SortArray;
 
 
 /**
@@ -229,6 +230,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 				try {
 					Thread.sleep(startDelay);
 					algorithm.sort(array);
+					array.setRange(0, array.length(), SortArray.ElementState.DONE);
 				} catch (StopException|InterruptedException e) {
 					return;
 				}

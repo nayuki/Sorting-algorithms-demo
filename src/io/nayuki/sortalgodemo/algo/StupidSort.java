@@ -58,7 +58,6 @@ public final class StupidSort implements SortAlgorithm {
 			else
 				i++;
 		}
-		array.setRange(0, length, SortArray.ElementState.DONE);
 	}
 	
 }

@@ -63,7 +63,6 @@ public final class ShellSort implements SortAlgorithm {
 				for (int k = j; k >= step && array.compareAndSwap(k - step, k); k -= step);
 			}
 		}
-		array.setRange(0, length, SortArray.ElementState.DONE);
 	}
 	
 }

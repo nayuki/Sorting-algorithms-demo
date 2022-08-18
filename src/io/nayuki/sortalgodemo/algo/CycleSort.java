@@ -50,7 +50,7 @@ public final class CycleSort implements SortAlgorithm {
 	
 	@Override public void sort(SortArray array) {
 		int length = array.length();
-		boolean[] done = new boolean[length];
+		var done = new boolean[length];
 		for (int i = 0; i < length; i++) {
 			while (true) {
 				int target = 0;

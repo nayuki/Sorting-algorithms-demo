@@ -76,8 +76,8 @@ final class LaunchFrame extends Frame implements ActionListener {
 		});
 		
 		// Create layout manager and set default values
-		GridBagLayout gbl = new GridBagLayout();
-		GridBagConstraints gbc = new GridBagConstraints();
+		var gbl = new GridBagLayout();
+		var gbc = new GridBagConstraints();
 		this.setLayout(gbl);
 		gbc.anchor = GridBagConstraints.WEST;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -93,7 +93,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 		
 		// Create and add label elements
 		{
-			Label label = new Label("Algorithm:");
+			var label = new Label("Algorithm:");
 			gbc.gridy = 0;
 			gbl.setConstraints(label, gbc);
 			this.add(label);
@@ -191,7 +191,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 			return;
 		
 		// Initialize objects and worker thread
-		final VisualSortArray array = new VisualSortArray(size, scale, speed);
+		final var array = new VisualSortArray(size, scale, speed);
 		final SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
 		final int startDelay = 1000;  // In milliseconds
 		new Thread() {
@@ -204,7 +204,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 			
 			private void initFrame() {
 				// Do component layout
-				final Frame sortFrame = new Frame(algorithm.getName());
+				final var sortFrame = new Frame(algorithm.getName());
 				sortFrame.add(array.canvas);
 				sortFrame.setResizable(false);
 				sortFrame.pack();

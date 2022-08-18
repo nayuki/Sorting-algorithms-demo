@@ -77,7 +77,7 @@ public final class SimpleDemo {
 		
 		// Sort with each algorithm, and print statistics
 		System.err.println("Algorithm name\tNumber of comparisons\tNumber of swaps");
-		SimpleSortArray referenceArray = new SimpleSortArray(size);
+		var referenceArray = new SimpleSortArray(size);
 		for (SortAlgorithm algo : ALGORITHMS) {
 			SimpleSortArray array = referenceArray.clone();
 			algo.sort(array);

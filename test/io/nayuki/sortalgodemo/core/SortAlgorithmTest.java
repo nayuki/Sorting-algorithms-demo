@@ -82,7 +82,7 @@ public abstract class SortAlgorithmTest {
 		Objects.requireNonNull(type);
 		
 		// Create array
-		TestSortArray arr = new TestSortArray(size);
+		var arr = new TestSortArray(size);
 		switch (type) {
 			case FORWARD:  break;
 			case REVERSE:  arr.reverse();  break;

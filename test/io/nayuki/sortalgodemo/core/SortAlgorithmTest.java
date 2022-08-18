@@ -63,9 +63,10 @@ public abstract class SortAlgorithmTest {
 	
 	
 	@Test public void testRandomSizes() {
-		final int trials = 100;
-		for (int i = 0; i < trials; i++) {
-			int size = AbstractSortArray.random.nextInt(trials) + 1;
+		final int TRIALS = 100;
+		final int SIZE_LIMIT = 100;
+		for (int i = 0; i < TRIALS; i++) {
+			int size = AbstractSortArray.random.nextInt(SIZE_LIMIT) + 1;
 			testSorting(size, ArrayOrder.RANDOM);
 		}
 	}

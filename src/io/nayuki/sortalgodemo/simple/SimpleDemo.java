@@ -68,7 +68,7 @@ public final class SimpleDemo {
 		else if (args.length == 1)
 			size = Integer.parseInt(args[0]);
 		else {
-			System.err.println("Usage: java nayuki.sortalgodemo.algo.simple.SimpleDemo [ArraySize]");
+			System.err.println("Usage: java io.nayuki.sortalgodemo.simple.SimpleDemo [ArraySize]");
 			System.exit(1);
 			return;
 		}

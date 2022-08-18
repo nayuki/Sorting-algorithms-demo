@@ -33,24 +33,27 @@ public final class SimpleDemo {
 	/*---- Default configuration ----*/
 	
 	private static final SortAlgorithm[] ALGORITHMS = {
-		HeapSort.INSTANCE,
 		QuickSortDoubleEnded.INSTANCE,
 		QuickSortSliding.INSTANCE,
+		HeapSort.INSTANCE,
 		ShellSort.INSTANCE,
+		CombSort.INSTANCE,
 		RotationMergeSort.INSTANCE,
+		
 		BubbleSort.INSTANCE,
 		CocktailSort.INSTANCE,
-		CombSort.INSTANCE,
 		SelectionSort.INSTANCE,
-		CycleSort.INSTANCE,
 		GnomeSort.INSTANCE,
 		InsertionSort.INSTANCE,
 		InsertionSortBinarySearch.INSTANCE,
 		PancakeSort.INSTANCE,
 		QuasiPancakeSort.INSTANCE,
+		CycleSort.INSTANCE,
+		
 		StoogeSort.INSTANCE,
 		StupidSort.INSTANCE,
 		BozoSort.INSTANCE,
+		
 		SlowSort.INSTANCE,
 	};
 	

@@ -31,7 +31,10 @@ import io.nayuki.sortalgodemo.core.SortArray;
 /**
  * Sorts by scanning the array linearly, comparing and swapping
  * elements between a gap, and repeating with decreasing gaps.
- * The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>) or better.
+ * <ul>
+ *   <li>Time complexity, all cases: at most <var>O</var>(<var>n</var><sup>2</sup>).</li>
+ *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
+ * </ul>
  */
 public final class CombSort implements SortAlgorithm {
 	

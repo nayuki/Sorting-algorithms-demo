@@ -30,7 +30,14 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 /**
  * Sorts by scanning forward and swapping inverted adjacent elements.
- * The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
+ * <ul>
+ *   <li>Time complexity, all cases: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of comparisons, all cases: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of swaps, best case: &#x398;(1).</li>
+ *   <li>Number of swaps, average case: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of swaps, worst case: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
+ * </ul>
  */
 public final class BubbleSort implements SortAlgorithm {
 	

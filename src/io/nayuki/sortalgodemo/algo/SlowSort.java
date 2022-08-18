@@ -29,7 +29,11 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 
 /**
- * A pessimal "multiply and surrender" algorithm with superpolynomial time complexity.
+ * A pessimal "multiply and surrender" algorithm.
+ * <ul>
+ *   <li>Time complexity, all cases: superpolynomial.</li>
+ *   <li>Auxiliary space complexity, all cases: &#x398;(<var>n</var>).</li>
+ * </ul>
  */
 public final class SlowSort implements SortAlgorithm {
 	

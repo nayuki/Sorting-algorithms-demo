@@ -28,6 +28,13 @@ import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
 
+/**
+ * Sorts by growing a sorted prefix and only reversing suffixes of this prefix.
+ * <ul>
+ *   <li>Time complexity, all cases: at most <var>O</var>(<var>n</var><sup>2</sup>).</li>
+ *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
+ * </ul>
+ */
 public final class QuasiPancakeSort implements SortAlgorithm {
 	
 	// Singleton

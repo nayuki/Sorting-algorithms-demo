@@ -30,7 +30,20 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 /**
  * Sorts by recursively partitioning the array around a pivot.
- * The average time complexity is in <var>O</var>(<var>n</var> log <var>n</var>).
+ * <ul>
+ *   <li>Time complexity, best case: &#x398;(<var>n</var> log <var>n</var>).</li>
+ *   <li>Time complexity, average case: &#x398;(<var>n</var> log <var>n</var>).</li>
+ *   <li>Time complexity, worst case: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of comparisons, best case: &#x398;(<var>n</var> log <var>n</var>).</li>
+ *   <li>Number of comparisons, average case: &#x398;(<var>n</var> log <var>n</var>).</li>
+ *   <li>Number of comparisons, worst case: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of swaps, best case: &#x398;(<var>n</var> log <var>n</var>).</li>
+ *   <li>Number of swaps, average case: &#x398;(<var>n</var> log <var>n</var>).</li>
+ *   <li>Number of swaps, worst case: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Auxiliary space complexity, best case: &#x398;(log <var>n</var>).</li>
+ *   <li>Auxiliary space complexity, average case: &#x398;(log <var>n</var>).</li>
+ *   <li>Auxiliary space complexity, worst case: &#x398;(<var>n</var>).</li>
+ * </ul>
  */
 public final class QuickSortSliding implements SortAlgorithm {
 	

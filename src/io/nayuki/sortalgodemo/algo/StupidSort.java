@@ -29,8 +29,20 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 
 /**
- * Sorts by swapping the first adjacent inversion and going back to the beginning, until the array is sorted.
- * The time complexity is in <var>O</var>(<var>n</var><sup>3</sup>). Insertion sort is the optimized form.
+ * Sorts by swapping the first adjacent inversion and going back to the beginning,
+ * until the array is sorted. Insertion sort is the optimized form.
+ * <ul>
+ *   <li>Time complexity, best case: &#x398;(<var>n</var>).</li>
+ *   <li>Time complexity, average case: &#x398;(<var>n</var><sup>3</sup>).</li>
+ *   <li>Time complexity, worst case: &#x398;(<var>n</var><sup>3</sup>).</li>
+ *   <li>Number of comparisons, best case: &#x398;(<var>n</var>).</li>
+ *   <li>Number of comparisons, average case: &#x398;(<var>n</var><sup>3</sup>).</li>
+ *   <li>Number of comparisons, worst case: &#x398;(<var>n</var><sup>3</sup>).</li>
+ *   <li>Number of swaps, best case: &#x398;(1).</li>
+ *   <li>Number of swaps, average case: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of swaps, worst case: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
+ * </ul>
  */
 public final class StupidSort implements SortAlgorithm {
 	

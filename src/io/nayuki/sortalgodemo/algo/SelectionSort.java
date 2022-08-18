@@ -31,7 +31,12 @@ import io.nayuki.sortalgodemo.core.SortArray;
 /**
  * Sorts by finding the smallest element in the unsorted subarray
  * and swapping it to end of the sorted subarray.
- * The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
+ * <ul>
+ *   <li>Time complexity, all cases: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of comparisons, all cases: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of swaps, all cases: &#x398;(<var>n</var>).</li>
+ *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
+ * </ul>
  */
 public final class SelectionSort implements SortAlgorithm {
 	

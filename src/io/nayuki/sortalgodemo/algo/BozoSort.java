@@ -32,7 +32,18 @@ import io.nayuki.sortalgodemo.core.SortArray;
 /**
  * Sorts by randomly selecting two elements and swapping them
  * if they are in inverted order, until the array is sorted.
- * The time complexity is in <var>O</var>(<var>n</var><sup>3</sup> log <var>n</var>).
+ * <ul>
+ *   <li>Time complexity, best case: &#x398;(<var>n</var>).</li>
+ *   <li>Time complexity, average case: &#x398;(<var>n</var><sup>3</sup> log <var>n</var>).</li>
+ *   <li>Time complexity, worst case: &#x221E;.</li>
+ *   <li>Number of comparisons, best case: &#x398;(<var>n</var>).</li>
+ *   <li>Number of comparisons, average case: &#x398;(<var>n</var><sup>3</sup> log <var>n</var>).</li>
+ *   <li>Number of comparisons, worst case: &#x221E;.</li>
+ *   <li>Number of swaps, best case: &#x398;(1).</li>
+ *   <li>Number of swaps, average case: at most <var>O</var>(<var>n</var><sup>3</sup> log <var>n</var>).</li>
+ *   <li>Number of swaps, worst case: &#x221E;.</li>
+ *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
+ * </ul>
  */
 public final class BozoSort implements SortAlgorithm {
 	

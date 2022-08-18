@@ -31,8 +31,13 @@ import io.nayuki.sortalgodemo.core.SortArray.ElementState;
 
 /**
  * An in-place stable merge sort based on rotations.
- * The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
  * See: https://xinok.wordpress.com/2014/08/17/in-place-merge-sort-demystified-2/
+ * <ul>
+ *   <li>Time complexity, best case: &#x398;(<var>n</var> log <var>n</var>).</li>
+ *   <li>Time complexity, average case: &#x398;(<var>n</var> log <var>n</var>).</li>
+ *   <li>Time complexity, worst case: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
+ * </ul>
  */
 public final class RotationMergeSort implements SortAlgorithm {
 	

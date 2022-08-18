@@ -31,7 +31,16 @@ import io.nayuki.sortalgodemo.core.SortArray;
 /**
  * Sorts by swapping the next unsorted item into the correct position in the sorted subarray.
  * The correct position is determined using binary search instead of linear search.
- * The time complexity is in <var>O</var>(<var>n</var><sup>2</sup>).
+ * <ul>
+ *   <li>Time complexity, best case: &#x398;(<var>n</var> log <var>n</var>).</li>
+ *   <li>Time complexity, average case: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Time complexity, worst case: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of comparisons, all cases: &#x398;(<var>n</var> log <var>n</var>).</li>
+ *   <li>Number of swaps, best case: &#x398;(1).</li>
+ *   <li>Number of swaps, average case: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of swaps, worst case: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
+ * </ul>
  */
 public final class InsertionSortBinarySearch implements SortAlgorithm {
 	

@@ -30,7 +30,12 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 /**
  * Sorts by running a sequence of insertion sorts with varying gaps.
- * The time complexity is in <var>O</var>(<var>n</var><sup>1.3</sup>).
+ * <ul>
+ *   <li>Time complexity, average case: approximately &#x398;(<var>n</var><sup>1.3</sup>).</li>
+ *   <li>Number of comparisons, average case: approximately &#x398;(<var>n</var><sup>1.3</sup>).</li>
+ *   <li>Number of swaps, average case: approximately &#x398;(<var>n</var><sup>1.3</sup>).</li>
+ *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
+ * </ul>
  */
 public final class ShellSort implements SortAlgorithm {
 	

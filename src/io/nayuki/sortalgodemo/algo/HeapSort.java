@@ -31,7 +31,12 @@ import io.nayuki.sortalgodemo.core.SortArray;
 /**
  * Sorts by building a binary max-heap, then repeatedly extracting the maximum element
  * and prepending it to the sorted subarray at the end of the array.
- * The time complexity is in <var>O</var>(<var>n</var> log <var>n</var>).
+ * <ul>
+ *   <li>Time complexity, all cases: &#x398;(<var>n</var> log <var>n</var>).</li>
+ *   <li>Number of comparisons, all cases: &#x398;(<var>n</var> log <var>n</var>).</li>
+ *   <li>Number of swaps, all cases: &#x398;(<var>n</var> log <var>n</var>).</li>
+ *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
+ * </ul>
  */
 public final class HeapSort implements SortAlgorithm {
 	

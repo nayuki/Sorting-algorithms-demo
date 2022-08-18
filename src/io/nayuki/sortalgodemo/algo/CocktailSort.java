@@ -28,6 +28,17 @@ import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
 
+/**
+ * Sorts by alternating between bubble sort forward and backward.
+ * <ul>
+ *   <li>Time complexity, all cases: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of comparisons, all cases: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of swaps, best case: &#x398;(1).</li>
+ *   <li>Number of swaps, average case: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of swaps, worst case: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
+ * </ul>
+ */
 public final class CocktailSort implements SortAlgorithm {
 	
 	// Singleton

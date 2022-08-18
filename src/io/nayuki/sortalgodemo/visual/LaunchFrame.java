@@ -239,8 +239,8 @@ final class LaunchFrame extends Frame implements ActionListener {
 				String msg;
 				try {
 					array.assertSorted();
-					msg = String.format("%s: %d comparisons, %d swaps",
-						algorithm.getName(), array.getComparisonCount(), array.getSwapCount());
+					msg = String.format("%s: %d elements, %d comparisons, %d swaps",
+						algorithm.getName(), array.length(), array.getComparisonCount(), array.getSwapCount());
 				} catch (AssertionError e) {
 					msg = algorithm.getName() + ": Sorting failed";
 				}

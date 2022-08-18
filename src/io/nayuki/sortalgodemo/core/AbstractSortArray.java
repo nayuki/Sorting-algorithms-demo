@@ -64,14 +64,14 @@ public abstract class AbstractSortArray implements SortArray {
 	/* Comparison and swapping */
 	
 	public int compare(int i, int j) {
-		if (i < 0 || j < 0 || i >= values.length || j >= values.length)
+		if (!(0 <= i && i < length() && 0 <= j && j < length()))
 			throw new IndexOutOfBoundsException();
 		return Integer.compare(values[i], values[j]);
 	}
 	
 	
 	public void swap(int i, int j) {
-		if (i < 0 || j < 0 || i >= values.length || j >= values.length)
+		if (!(0 <= i && i < length() && 0 <= j && j < length()))
 			throw new IndexOutOfBoundsException();
 		int temp = values[i];
 		values[i] = values[j];
@@ -80,7 +80,7 @@ public abstract class AbstractSortArray implements SortArray {
 	
 	
 	public boolean compareAndSwap(int i, int j) {
-		if (compare(j, i) < 0) {
+		if (compare(i, j) > 0) {
 			swap(i, j);
 			return true;
 		} else

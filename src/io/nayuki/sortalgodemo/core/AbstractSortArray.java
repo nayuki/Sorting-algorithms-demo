@@ -28,7 +28,7 @@ import java.util.Random;
 
 
 /**
- * A convenience abstract base class that manages an array and implements most of the methods.
+ * A convenience class that manages an array and implements most of the methods.
  */
 public abstract class AbstractSortArray implements SortArray {
 	

@@ -27,44 +27,93 @@ package io.nayuki.sortalgodemo.core;
 
 /**
  * An array that can be sorted and have the sorting process visualized.
- * <p>By design, array elements can only be compared and swapped. It is forbidden to peek
- * at element values, or to move them to and from auxiliary storage. These restrictions
- * ensure that all implemented sorting algorithms are in-place comparison sorts.</p>
+ * <p>By design, array elements can only be compared and swapped. It is
+ * forbidden to peek at or copy element values. These restrictions ensure
+ * that all implemented sorting algorithms are in-place comparison sorts.</p>
  */
 public interface SortArray {
 	
-	// Must be a non-negative, unchanging value.
+	/**
+	 * The length of this array, which is a non-negative, unchanging value.
+	 * @return the length of this array
+	 */
 	public int length();
 	
 	
-	// Compares the values at the two given array indices. Returns a negative number
-	// if array[i] < array[j], zero if array[i] == array[j], or a positive number
-	// if array[i] > array[j]. Do not assume that this returns only -1, 0, or 1.
+	/**
+	 * Compares the values of this array at the two specified indexes.
+	 * Returns a negative number if array[i] &lt; array[j], zero if array[i] == array[j], or a positive number
+	 * if array[i] > array[j]. Do not assume that this returns only &minus;1, 0, or 1.
+	 * This follows the behavior of {@link java.lang.Comparable#compareTo(Object) Comparable.compareTo(T)}.
+	 * @param i an index for comparing
+	 * @param j an index for comparing
+	 * @return a negative number, zero, or a positive number depending on how array[i] compares to array[j]
+	 * @throws IndexOutOfBoundsException if not (0 &le; {@code i}, {@code j} &lt; {@code length()})
+	 */
 	public int compare(int i, int j);
 	
 	
-	// Swaps the values at the two given array indices.
+	/**
+	 * Swaps the values of this array at the two specified indexes.
+	 * The two indexes can be the same.
+	 * @param i an index for swapping
+	 * @param j an index for swapping
+	 * @throws IndexOutOfBoundsException if not (0 &le; {@code i}, {@code j} &lt; {@code length()})
+	 */
 	public void swap(int i, int j);
 	
 	
-	// Compares the values at the two given array indices, swaps if and
-	// only if array[i] > array[j], and returns whether a swap occurred.
+	/**
+	 * Compares the values of this array at the two given indexes, then swaps
+	 * if and only if array[i] > array[j], and returns whether a swap occurred.
+	 * This is equivalent to:
+	 * <pre>if (array.compare(i, j) > 0) {
+	 *    array.swap(i, j);
+	 *    return true;
+	 *} else
+	 *    return false;
+	 *}</pre>
+	 * @param i an index for comparing and swapping
+	 * @param j an index for comparing and swapping
+	 * @return whether initially array[i] > array[j], which causes them to be swapped
+	 * @throws IndexOutOfBoundsException if not (0 &le; {@code i}, {@code j} &lt; {@code length()})
+	 */
 	public boolean compareAndSwap(int i, int j);
 	
 	
-	// Randomizes the order of all elements in this array.
+	/**
+	 * Randomizes the order of all elements in this array.
+	 */
 	public void shuffle();
 	
 	
-	// Sets the element at the given index to the given state.
+	/**
+	 * Sets the element at the specified index to the given state.
+	 * This may trigger a visual change or do nothing.
+	 * @param index the index to set
+	 * @param state the element state (not {@code null})
+	 * @throws NullPointerException if {@code state} is {@code null}
+	 * @throws IndexOutOfBoundsException if not (0 &le; {@code index} &lt; {@code length()})
+	 */
 	public void setElement(int index, ElementState state);
 	
-	// Sets all elements in the given range [start, end) to the given state.
+	
+	/**
+	 * Sets all elements in the specified range [{@code start}, {@code end}) to the specified state.
+	 * This may trigger a visual change or do nothing.
+	 * @param start the start index of the range (inclusive)
+	 * @param end the end index of the range (exclusive)
+	 * @param state the element state (not {@code null})
+	 * @throws NullPointerException if {@code state} is {@code null}
+	 * @throws IndexOutOfBoundsException if not (0 &le; {@code start} &le; {@code end} &lt; {@code length()})
+	 */
 	public void setRange(int start, int end, ElementState state);
 	
 	
 	
-	// The set of all possible states that each array element is in.
+	/**
+	 * All the possible states that each array element is in.
+	 */
 	public enum ElementState {
 		ACTIVE, INACTIVE, COMPARING, DONE;
 	}

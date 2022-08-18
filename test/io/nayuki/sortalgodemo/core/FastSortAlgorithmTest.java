@@ -28,8 +28,9 @@ import org.junit.Test;
 
 
 /**
- * Adds test cases involving large arrays, which are appropriate for fast sort algorithms that run in
- * O(n log n) time. Actual sort algos need to extend this abstract base class for this to be useful.
+ * Adds test cases involving large arrays, which are appropriate for fast
+ * sort algorithms that run in <var>O</var>(<var>n</var> log <var>n</var>) time.
+ * Actual sort algos need to extend this abstract base class for this to be useful.
  */
 public abstract class FastSortAlgorithmTest extends SortAlgorithmTest {
 	

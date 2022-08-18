@@ -42,7 +42,7 @@ public abstract class AbstractSortArray implements SortArray {
 	
 	public AbstractSortArray(int size) {
 		if (size < 0)
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Negative array size");
 		
 		// Initialize in order: [0, 1, 2, ..., size-1]
 		values = new int[size];

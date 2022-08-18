@@ -78,7 +78,7 @@ public abstract class SortAlgorithmTest {
 	protected void testSorting(int size, ArrayOrder type) {
 		// Check arguments
 		if (size < 0)
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Negative array size");
 		Objects.requireNonNull(type);
 		
 		// Create array

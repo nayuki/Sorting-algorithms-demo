@@ -51,8 +51,7 @@ public final class StupidSort implements SortAlgorithm {
 	@Override public void sort(SortArray array) {
 		int length = array.length();
 		array.setRange(0, length, SortArray.ElementState.INACTIVE);
-		int i = 0;
-		while (i < length - 1) {
+		for (int i = 0; i < length - 1; ) {
 			if (array.compareAndSwap(i, i + 1))
 				i = 0;
 			else

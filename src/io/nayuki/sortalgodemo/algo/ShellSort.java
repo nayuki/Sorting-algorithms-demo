@@ -59,8 +59,8 @@ public final class ShellSort implements SortAlgorithm {
 			array.setRange(0, length, SortArray.ElementState.INACTIVE);
 			
 			// Do an insertion sort with this step size
-			for (int j = 0; j < length; j++) {
-				for (int k = j; k >= step && array.compareAndSwap(k - step, k); k -= step);
+			for (int i = 0; i < length; i++) {
+				for (int j = i; j >= step && array.compareAndSwap(j - step, j); j -= step);
 			}
 		}
 	}

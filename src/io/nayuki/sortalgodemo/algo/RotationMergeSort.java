@@ -58,7 +58,7 @@ public final class RotationMergeSort implements SortAlgorithm {
 	// Sorts the subrange of the array [start, end).
 	private static void sort(SortArray array, int start, int end) {
 		if (!(0 <= start && start <= end && end <= array.length()))
-			throw new IllegalArgumentException();
+			throw new IndexOutOfBoundsException();
 		if (end - start <= 1)
 			return;
 		

@@ -42,7 +42,7 @@ public final class CocktailSort implements SortAlgorithm {
 	}
 	
 	
-	public void sort(SortArray array) {
+	@Override public void sort(SortArray array) {
 		int left = 0;
 		int right = array.length();
 		int i = left;

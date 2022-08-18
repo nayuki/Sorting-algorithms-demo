@@ -46,7 +46,7 @@ public final class InsertionSort implements SortAlgorithm {
 	}
 	
 	
-	public void sort(SortArray array) {
+	@Override public void sort(SortArray array) {
 		int length = array.length();
 		array.setRange(0, length, SortArray.ElementState.INACTIVE);
 		for (int i = 0; i < length; i++) {

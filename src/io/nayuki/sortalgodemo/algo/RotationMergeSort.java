@@ -48,7 +48,7 @@ public final class RotationMergeSort implements SortAlgorithm {
 	}
 	
 	
-	public void sort(SortArray array) {
+	@Override public void sort(SortArray array) {
 		sort(array, 0, array.length());
 		array.setRange(0, array.length(), ElementState.DONE);
 	}

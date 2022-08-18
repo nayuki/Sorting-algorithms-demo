@@ -49,7 +49,7 @@ public final class ShellSort implements SortAlgorithm {
 	private static int[] GAP_SEQUENCE = {1750, 701, 301, 132, 57, 23, 10, 4, 1};
 	
 	
-	public void sort(SortArray array) {
+	@Override public void sort(SortArray array) {
 		int length = array.length();
 		for (int step : GAP_SEQUENCE) {
 			array.setRange(0, length, SortArray.ElementState.INACTIVE);

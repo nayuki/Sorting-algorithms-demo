@@ -42,7 +42,7 @@ public final class PancakeSort implements SortAlgorithm {
 	}
 	
 	
-	public void sort(SortArray array) {
+	@Override public void sort(SortArray array) {
 		for (int i = array.length() - 1; i >= 0; i--) {
 			int maxIndex = 0;
 			for (int j = 1; j <= i; j++) {

@@ -45,7 +45,7 @@ public final class SlowSort implements SortAlgorithm {
 	}
 	
 	
-	public void sort(SortArray array) {
+	@Override public void sort(SortArray array) {
 		array.setRange(0, array.length(), SortArray.ElementState.INACTIVE);
 		sort(array, 0, array.length(), true);
 	}

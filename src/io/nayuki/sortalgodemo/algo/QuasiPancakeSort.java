@@ -42,7 +42,7 @@ public final class QuasiPancakeSort implements SortAlgorithm {
 	}
 	
 	
-	public void sort(SortArray array) {
+	@Override public void sort(SortArray array) {
 		int length = array.length();
 		for (int i = 1; i < length; i++) {
 			int j = i;

@@ -47,7 +47,7 @@ public final class CombSort implements SortAlgorithm {
 	}
 	
 	
-	public void sort(SortArray array) {
+	@Override public void sort(SortArray array) {
 		// Comb sort with exponentially decreasing gaps
 		int length = array.length();
 		for (int step = length; step > 1; step = step * 10 / 13) {

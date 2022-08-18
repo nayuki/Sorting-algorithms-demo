@@ -46,7 +46,7 @@ public final class QuickSortSliding implements SortAlgorithm {
 	}
 	
 	
-	public void sort(SortArray array) {
+	@Override public void sort(SortArray array) {
 		sort(array, 0, array.length());
 	}
 	

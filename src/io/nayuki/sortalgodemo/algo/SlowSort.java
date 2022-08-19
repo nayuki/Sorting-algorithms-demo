@@ -32,6 +32,10 @@ import io.nayuki.sortalgodemo.core.SortArray;
  * A pessimal "multiply and surrender" algorithm.
  * <ul>
  *   <li>Time complexity, all cases: superpolynomial.</li>
+ *   <li>Number of comparisons, all cases: superpolynomial.</li>
+ *   <li>Number of swaps, best case: &#x398;(1).</li>
+ *   <li>Number of swaps, average case: superpolynomial.</li>
+ *   <li>Number of swaps, worst case: superpolynomial.</li>
  *   <li>Auxiliary space complexity, all cases: &#x398;(<var>n</var>).</li>
  * </ul>
  */

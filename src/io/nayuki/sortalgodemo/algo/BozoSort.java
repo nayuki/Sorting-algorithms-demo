@@ -40,7 +40,7 @@ import io.nayuki.sortalgodemo.core.SortArray;
  *   <li>Number of comparisons, average case: &#x398;(<var>n</var><sup>3</sup> log <var>n</var>).</li>
  *   <li>Number of comparisons, worst case: &#x221E;.</li>
  *   <li>Number of swaps, best case: &#x398;(1).</li>
- *   <li>Number of swaps, average case: at most <var>O</var>(<var>n</var><sup>3</sup> log <var>n</var>).</li>
+ *   <li>Number of swaps, average case: <var>&#x398;</var>(<var>n</var><sup>2</sup>).</li>
  *   <li>Number of swaps, worst case: &#x221E;.</li>
  *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
  * </ul>

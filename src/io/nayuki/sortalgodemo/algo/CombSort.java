@@ -32,7 +32,15 @@ import io.nayuki.sortalgodemo.core.SortArray;
  * Sorts by scanning the array linearly, comparing and swapping
  * elements between a gap, and repeating with decreasing gaps.
  * <ul>
- *   <li>Time complexity, all cases: at most <var>O</var>(<var>n</var><sup>2</sup>).</li>
+ *   <li>Time complexity, best case: <var>&#x398;</var>(<var>n</var> log <var>n</var>).</li>
+ *   <li>Time complexity, average case: at most <var>O</var>(<var>n</var><sup>2</sup>).</li>
+ *   <li>Time complexity, worst case: at most <var>O</var>(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of comparisons, best case: <var>&#x398;</var>(<var>n</var> log <var>n</var>).</li>
+ *   <li>Number of comparisons, average case: at most <var>O</var>(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of comparisons, worst case: at most <var>O</var>(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of swaps, best case: <var>&#x398;</var>(1).</li>
+ *   <li>Number of swaps, average case: at most <var>O</var>(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of swaps, worst case: at most <var>O</var>(<var>n</var><sup>2</sup>).</li>
  *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
  * </ul>
  */

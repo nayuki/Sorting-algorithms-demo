@@ -30,8 +30,17 @@ import io.nayuki.sortalgodemo.core.SortArray;
 
 /**
  * Sorts by growing a sorted prefix and only reversing suffixes of this prefix.
+ * The behavior resembles insertion sort.
  * <ul>
- *   <li>Time complexity, all cases: at most <var>O</var>(<var>n</var><sup>2</sup>).</li>
+ *   <li>Time complexity, best case: <var>&#x398;</var>(<var>n</var>).</li>
+ *   <li>Time complexity, average case: <var>&#x398;</var>(<var>n</var><sup>2</sup>).</li>
+ *   <li>Time complexity, worst case: <var>&#x398;</var>(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of comparisons, best case: <var>&#x398;</var>(<var>n</var>).</li>
+ *   <li>Number of comparisons, average case: <var>&#x398;</var>(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of comparisons, worst case: <var>&#x398;</var>(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of swaps, best case: <var>&#x398;</var>(1).</li>
+ *   <li>Number of swaps, average case: <var>&#x398;</var>(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of swaps, worst case: <var>&#x398;</var>(<var>n</var><sup>2</sup>).</li>
  *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
  * </ul>
  */

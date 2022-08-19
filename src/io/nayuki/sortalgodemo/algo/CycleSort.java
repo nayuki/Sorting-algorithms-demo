@@ -31,7 +31,11 @@ import io.nayuki.sortalgodemo.core.SortArray;
 /**
  * Sorts by finding the final resting place of each element, swapping, and following cycles.
  * <ul>
- *   <li>Time complexity: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Time complexity, all cases: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of comparisons, all cases: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of swaps, best case: &#x398;(1).</li>
+ *   <li>Number of swaps, average case: &#x398;(<var>n</var>).</li>
+ *   <li>Number of swaps, worst case: &#x398;(<var>n</var>).</li>
  *   <li>Auxiliary space complexity, all cases: &#x398;(<var>n</var>).</li>
  * </ul>
  */

@@ -36,7 +36,7 @@ import io.nayuki.sortalgodemo.core.SortArray.ElementState;
  *   <li>Time complexity, best case: &#x398;(<var>n</var> log <var>n</var>).</li>
  *   <li>Time complexity, average case: &#x398;(<var>n</var> log <var>n</var>).</li>
  *   <li>Time complexity, worst case: &#x398;(<var>n</var><sup>2</sup>).</li>
- *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
+ *   <li>Auxiliary space complexity, all cases: &#x398;(log <var>n</var>).</li>
  * </ul>
  */
 public final class RotationMergeSort implements SortAlgorithm {

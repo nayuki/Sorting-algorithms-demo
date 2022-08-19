@@ -93,30 +93,33 @@ final class LaunchFrame extends Frame implements ActionListener {
 		
 		// Create and add label elements
 		{
-			var label = new Label("Algorithm:");
 			gbc.gridy = 0;
+			
+			var label = new Label("Algorithm:");
 			gbl.setConstraints(label, gbc);
 			this.add(label);
+			gbc.gridy++;
 			
 			label = new Label("Array size:");
-			gbc.gridy = 1;
 			gbl.setConstraints(label, gbc);
 			this.add(label);
+			gbc.gridy++;
 			
 			label = new Label("Scale:");
-			gbc.gridy = 2;
 			gbl.setConstraints(label, gbc);
 			this.add(label);
+			gbc.gridy++;
 			
 			label = new Label("Speed:");
-			gbc.gridy = 3;
 			gbl.setConstraints(label, gbc);
 			this.add(label);
+			gbc.gridy++;
 		}
 		
 		
 		/*-- Second column --*/
 		gbc.gridx = 1;
+		gbc.gridy = 0;
 		gbc.weightx = 2;
 		
 		// Drop-down selector for sort algorithm
@@ -124,30 +127,30 @@ final class LaunchFrame extends Frame implements ActionListener {
 		algorithmInput = new Choice();
 		for (SortAlgorithm algo : algos)
 			algorithmInput.add(algo.getName());
-		gbc.gridy = 0;
 		gbl.setConstraints(algorithmInput, gbc);
 		this.add(algorithmInput);
+		gbc.gridy++;
 		
 		// Text field for array size
 		arraySizeInput = new TextField("30");
 		arraySizeInput.addActionListener(this);
-		gbc.gridy = 1;
 		gbl.setConstraints(arraySizeInput, gbc);
 		this.add(arraySizeInput);
+		gbc.gridy++;
 		
 		// Text field for scale
 		scaleInput = new TextField("12");
 		scaleInput.addActionListener(this);
-		gbc.gridy = 2;
 		gbl.setConstraints(scaleInput, gbc);
 		this.add(scaleInput);
+		gbc.gridy++;
 		
 		// Text field for speed
 		speedInput = new TextField("10");
 		speedInput.addActionListener(this);
-		gbc.gridy = 3;
 		gbl.setConstraints(speedInput, gbc);
 		this.add(speedInput);
+		gbc.gridy++;
 		
 		// Run button
 		runButton = new Button("Run");
@@ -155,11 +158,11 @@ final class LaunchFrame extends Frame implements ActionListener {
 		gbc.anchor = GridBagConstraints.NORTH;
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
-		gbc.gridy = 4;
 		gbc.gridwidth = 2;
 		gbc.weighty = 1;
 		gbl.setConstraints(runButton, gbc);
 		this.add(runButton);
+		gbc.gridy++;
 		
 		// Do layout and show
 		this.pack();

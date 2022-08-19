@@ -68,7 +68,6 @@ final class VisualSortArray extends AbstractSortArray {
 		super(size);
 		if (scale <= 0 || speed <= 0 || Double.isInfinite(speed) || Double.isNaN(speed))
 			throw new IllegalArgumentException();
-		shuffle();
 		state = new int[size];
 		
 		// Initialize various numbers

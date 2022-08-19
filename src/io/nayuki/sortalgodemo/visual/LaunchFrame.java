@@ -40,6 +40,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import io.nayuki.sortalgodemo.core.AbstractSortArray;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -59,6 +60,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 	private final TextField speedInput;
 	
 	private final Choice algorithmInput;
+	private final Choice initialOrder;
 	private final Button runButton;
 	
 	
@@ -105,6 +107,11 @@ final class LaunchFrame extends Frame implements ActionListener {
 			this.add(label);
 			gbc.gridy++;
 			
+			label = new Label("Initial order:");
+			gbl.setConstraints(label, gbc);
+			this.add(label);
+			gbc.gridy++;
+			
 			label = new Label("Visual scale:");
 			gbl.setConstraints(label, gbc);
 			this.add(label);
@@ -136,6 +143,17 @@ final class LaunchFrame extends Frame implements ActionListener {
 		arraySizeInput.addActionListener(this);
 		gbl.setConstraints(arraySizeInput, gbc);
 		this.add(arraySizeInput);
+		gbc.gridy++;
+		
+		initialOrder = new Choice();
+		initialOrder.add("Ascending");
+		initialOrder.add("Almost ascending");
+		initialOrder.add("Random");
+		initialOrder.add("Almost descending");
+		initialOrder.add("Descending");
+		initialOrder.select("Random");
+		gbl.setConstraints(initialOrder, gbc);
+		this.add(initialOrder);
 		gbc.gridy++;
 		
 		// Text field for scale
@@ -195,6 +213,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 		
 		// Initialize objects and worker thread
 		final var array = new VisualSortArray(size, scale, speed);
+		setInitialOrder(array, initialOrder.getSelectedIndex());
 		array.finishInitialization();
 		final SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
 		final int startDelay = 1000;  // In milliseconds
@@ -253,6 +272,46 @@ final class LaunchFrame extends Frame implements ActionListener {
 				}
 			}
 		}.start();
+	}
+	
+	
+	private static void setInitialOrder(VisualSortArray array, int selectedIndex) {
+		switch (selectedIndex) {
+			case 0: {  // Ascending
+				// Do nothing
+				break;
+			}
+			
+			case 1: {  // Almost ascending
+				for (int i = 0; i < array.length() / 10; i++) {
+					for (int j = 0; j < array.length() - 1; j++) {
+						if (AbstractSortArray.random.nextBoolean())
+							array.swap(j, j + 1);
+					}
+				}
+				break;
+			}
+			
+			case 2: {  // Random
+				array.shuffle();
+				break;
+			}
+			
+			case 3: {  // Almost descending
+				setInitialOrder(array, 4);
+				setInitialOrder(array, 1);
+				break;
+			}
+			
+			case 4: {  // Descending
+				for (int i = 0, j = array.length() - 1; i < j; i++, j--)
+					array.swap(i, j);
+				break;
+			}
+			
+			default:
+				throw new IllegalArgumentException();
+		}
 	}
 	
 }

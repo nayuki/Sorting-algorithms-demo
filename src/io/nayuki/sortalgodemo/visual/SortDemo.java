@@ -47,9 +47,9 @@ public final class SortDemo {
 	public static void main(String[] args) {
 		// Set up list of algorithms and go
 		new LaunchFrame(Arrays.asList(
+			// Approximately O(n^2) (mediocre)
 			BubbleSort.INSTANCE,
 			CocktailSort.INSTANCE,
-			CombSort.INSTANCE,
 			SelectionSort.INSTANCE,
 			CycleSort.INSTANCE,
 			PancakeSort.INSTANCE,
@@ -57,15 +57,18 @@ public final class SortDemo {
 			GnomeSort.INSTANCE,
 			InsertionSort.INSTANCE,
 			InsertionSortBinarySearch.INSTANCE,
-			RotationMergeSort.INSTANCE,
+			// Approximately O(n log n) (good)
+			CombSort.INSTANCE,
 			ShellSort.INSTANCE,
+			RotationMergeSort.INSTANCE,
 			HeapSort.INSTANCE,
 			QuickSortDoubleEnded.INSTANCE,
 			QuickSortSliding.INSTANCE,
-			SlowSort.INSTANCE,
+			// Approximately O(n^3) (bad)
 			StoogeSort.INSTANCE,
 			StupidSort.INSTANCE,
-			BozoSort.INSTANCE));
+			BozoSort.INSTANCE,
+			SlowSort.INSTANCE));
 	}
 	
 }

@@ -95,7 +95,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 		{
 			gbc.gridy = 0;
 			
-			var label = new Label("Algorithm:");
+			var label = new Label("Sort algorithm:");
 			gbl.setConstraints(label, gbc);
 			this.add(label);
 			gbc.gridy++;
@@ -105,12 +105,12 @@ final class LaunchFrame extends Frame implements ActionListener {
 			this.add(label);
 			gbc.gridy++;
 			
-			label = new Label("Scale:");
+			label = new Label("Visual scale:");
 			gbl.setConstraints(label, gbc);
 			this.add(label);
 			gbc.gridy++;
 			
-			label = new Label("Speed:");
+			label = new Label("Running speed:");
 			gbl.setConstraints(label, gbc);
 			this.add(label);
 			gbc.gridy++;

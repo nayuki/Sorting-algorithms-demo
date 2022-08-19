@@ -195,6 +195,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 		
 		// Initialize objects and worker thread
 		final var array = new VisualSortArray(size, scale, speed);
+		array.finishInitialization();
 		final SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
 		final int startDelay = 1000;  // In milliseconds
 		new Thread() {

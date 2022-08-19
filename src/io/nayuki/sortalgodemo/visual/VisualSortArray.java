@@ -38,6 +38,8 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	/*---- Fields ----*/
 	
+	private boolean isInitialized = false;
+	
 	// Visual state per element: 0=active, 1=inactive, 2=comparing, 3=done
 	private int[] state;
 	
@@ -81,6 +83,13 @@ final class VisualSortArray extends AbstractSortArray {
 		this.scale = scale;
 		canvas = new BufferedCanvas(size * scale);
 		graphics = canvas.getBufferGraphics();
+	}
+	
+	
+	public void finishInitialization() {
+		if (isInitialized)
+			throw new IllegalStateException();
+		isInitialized = true;
 		redraw(0, values.length);
 	}
 	
@@ -108,15 +117,15 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	
 	public void swap(int i, int j) {
+		super.swap(i, j);
+		if (!isInitialized)
+			return;
 		if (Thread.interrupted())
 			throw new StopException();
-		super.swap(i, j);
-		if (state != null) {  // If outside the constructor
-			beforeStep();
-			swapCount++;
-			setElement(i, ElementState.ACTIVE);
-			setElement(j, ElementState.ACTIVE);
-		}
+		beforeStep();
+		swapCount++;
+		setElement(i, ElementState.ACTIVE);
+		setElement(j, ElementState.ACTIVE);
 	}
 	
 	

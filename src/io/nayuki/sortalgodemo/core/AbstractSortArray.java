@@ -51,14 +51,10 @@ public abstract class AbstractSortArray implements SortArray {
 	
 	/*---- Methods ----*/
 	
-	/* Field getters */
-	
 	public int length() {
 		return values.length;
 	}
 	
-	
-	/* Comparison and swapping */
 	
 	public int compare(int i, int j) {
 		if (!(0 <= i && i < length() && 0 <= j && j < length()))

@@ -90,11 +90,9 @@ final class LaunchFrame extends Frame implements ActionListener {
 		
 		
 		/*-- First column --*/
-		gbc.gridx = 0;
-		gbc.weightx = 1;
-		
-		// Create and add label elements
-		{
+		{  // Create and add label elements
+			gbc.gridx = 0;
+			gbc.weightx = 1;
 			gbc.gridy = 0;
 			
 			var label = new Label("Sort algorithm:");
@@ -126,8 +124,8 @@ final class LaunchFrame extends Frame implements ActionListener {
 		
 		/*-- Second column --*/
 		gbc.gridx = 1;
-		gbc.gridy = 0;
 		gbc.weightx = 2;
+		gbc.gridy = 0;
 		
 		// Drop-down selector for sort algorithm
 		algorithms = new ArrayList<>(algos);
@@ -145,6 +143,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 		this.add(arraySizeInput);
 		gbc.gridy++;
 		
+		// Drop-down selector for initial order
 		initialOrder = new Choice();
 		initialOrder.add("Ascending");
 		initialOrder.add("Almost ascending");
@@ -216,7 +215,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 		setInitialOrder(array, initialOrder.getSelectedIndex());
 		array.finishInitialization();
 		final SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
-		final int startDelay = 1000;  // In milliseconds
+		final int startDelayMs = 1000;
 		new Thread() {
 			public Thread thread = this;
 			
@@ -251,7 +250,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 			private void doSort() {
 				// Wait and sort
 				try {
-					Thread.sleep(startDelay);
+					Thread.sleep(startDelayMs);
 					algorithm.sort(array);
 					array.setRange(0, array.length(), SortArray.ElementState.DONE);
 				} catch (StopException|InterruptedException e) {
@@ -267,7 +266,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 				} catch (AssertionError e) {
 					msg = algorithm.getName() + ": Sorting failed";
 				}
-				synchronized (System.err) {
+				synchronized(System.err) {
 					System.err.println(msg);
 				}
 			}

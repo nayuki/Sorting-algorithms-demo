@@ -40,7 +40,6 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import io.nayuki.sortalgodemo.core.AbstractSortArray;
 import io.nayuki.sortalgodemo.core.SortAlgorithm;
 import io.nayuki.sortalgodemo.core.SortArray;
 
@@ -286,7 +285,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 			case 1: {  // Almost ascending
 				for (int i = 0; i < array.length() / 10; i++) {
 					for (int j = 0; j < array.length() - 1; j++) {
-						if (AbstractSortArray.random.nextBoolean())
+						if (SortArray.random.nextBoolean())
 							array.swap(j, j + 1);
 					}
 				}

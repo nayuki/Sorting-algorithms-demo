@@ -24,6 +24,8 @@
 
 package io.nayuki.sortalgodemo.core;
 
+import java.util.Random;
+
 
 /**
  * An array that can be sorted and have the sorting process visualized.
@@ -108,6 +110,10 @@ public interface SortArray {
 	 * @throws IndexOutOfBoundsException if not (0 &le; {@code start} &le; {@code end} &lt; {@code length()})
 	 */
 	public void setRange(int start, int end, ElementState state);
+	
+	
+	
+	public static final Random random = new Random();
 	
 	
 	

@@ -64,8 +64,8 @@ public final class BozoSort implements SortAlgorithm {
 	@Override public void sort(SortArray array) {
 		int length = array.length();
 		while (!isSorted(array)) {
-			int i = AbstractSortArray.random.nextInt(length);
-			int j = AbstractSortArray.random.nextInt(length);
+			int i = SortArray.random.nextInt(length);
+			int j = SortArray.random.nextInt(length);
 			array.compareAndSwap(Math.min(i, j), Math.max(i, j));
 		}
 	}

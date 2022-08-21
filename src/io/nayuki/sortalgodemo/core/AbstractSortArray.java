@@ -24,7 +24,6 @@
 
 package io.nayuki.sortalgodemo.core;
 
-import java.util.Random;
 import java.util.stream.IntStream;
 
 
@@ -100,11 +99,5 @@ public abstract class AbstractSortArray implements SortArray {
 	
 	// Does nothing by default; can be overridden.
 	public void setRange(int start, int end, SortArray.ElementState state) {}
-	
-	
-	
-	/*---- Static utilities ----*/
-	
-	public static final Random random = new Random();
 	
 }

@@ -86,7 +86,11 @@ public interface SortArray {
 	/**
 	 * Randomizes the order of all elements in this array.
 	 */
-	public void shuffle();
+	public default void shuffle() {
+		// Durstenfeld shuffle algorithm
+		for (int i = length() - 1; i > 0; i--)
+			swap(i, random.nextInt(i + 1));
+	}
 	
 	
 	/**

@@ -49,8 +49,8 @@ final class VisualSortArray extends AbstractSortArray {
 	private final Graphics graphics;
 	
 	// Statistics
-	private volatile int comparisonCount;
-	private volatile int swapCount;
+	private volatile long comparisonCount;
+	private volatile long swapCount;
 	
 	// Speed regulation
 	private final double targetFrameRate = 60;
@@ -148,11 +148,11 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	/* After sorting */
 	
-	public int getComparisonCount() {
+	public long getComparisonCount() {
 		return comparisonCount;
 	}
 	
-	public int getSwapCount() {
+	public long getSwapCount() {
 		return swapCount;
 	}
 	

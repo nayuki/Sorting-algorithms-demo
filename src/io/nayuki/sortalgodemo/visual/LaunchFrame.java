@@ -123,51 +123,53 @@ final class LaunchFrame extends Frame implements ActionListener {
 		
 		
 		/*-- Second column --*/
-		gbc.gridx = 1;
-		gbc.weightx = 2;
-		gbc.gridy = 0;
-		
-		// Drop-down selector for sort algorithm
-		algorithms = new ArrayList<>(algos);
-		algorithmInput = new Choice();
-		for (SortAlgorithm algo : algos)
-			algorithmInput.add(algo.getName());
-		gbl.setConstraints(algorithmInput, gbc);
-		this.add(algorithmInput);
-		gbc.gridy++;
-		
-		// Text field for array size
-		arraySizeInput = new TextField("30");
-		arraySizeInput.addActionListener(this);
-		gbl.setConstraints(arraySizeInput, gbc);
-		this.add(arraySizeInput);
-		gbc.gridy++;
-		
-		// Drop-down selector for initial order
-		initialOrder = new Choice();
-		initialOrder.add("Ascending");
-		initialOrder.add("Almost ascending");
-		initialOrder.add("Random");
-		initialOrder.add("Almost descending");
-		initialOrder.add("Descending");
-		initialOrder.select("Random");
-		gbl.setConstraints(initialOrder, gbc);
-		this.add(initialOrder);
-		gbc.gridy++;
-		
-		// Text field for scale
-		scaleInput = new TextField("12");
-		scaleInput.addActionListener(this);
-		gbl.setConstraints(scaleInput, gbc);
-		this.add(scaleInput);
-		gbc.gridy++;
-		
-		// Text field for speed
-		speedInput = new TextField("10");
-		speedInput.addActionListener(this);
-		gbl.setConstraints(speedInput, gbc);
-		this.add(speedInput);
-		gbc.gridy++;
+		{
+			gbc.gridx = 1;
+			gbc.weightx = 2;
+			gbc.gridy = 0;
+			
+			// Drop-down selector for sort algorithm
+			algorithms = new ArrayList<>(algos);
+			algorithmInput = new Choice();
+			for (SortAlgorithm algo : algos)
+				algorithmInput.add(algo.getName());
+			gbl.setConstraints(algorithmInput, gbc);
+			this.add(algorithmInput);
+			gbc.gridy++;
+			
+			// Text field for array size
+			arraySizeInput = new TextField("30");
+			arraySizeInput.addActionListener(this);
+			gbl.setConstraints(arraySizeInput, gbc);
+			this.add(arraySizeInput);
+			gbc.gridy++;
+			
+			// Drop-down selector for initial order
+			initialOrder = new Choice();
+			initialOrder.add("Ascending");
+			initialOrder.add("Almost ascending");
+			initialOrder.add("Random");
+			initialOrder.add("Almost descending");
+			initialOrder.add("Descending");
+			initialOrder.select("Random");
+			gbl.setConstraints(initialOrder, gbc);
+			this.add(initialOrder);
+			gbc.gridy++;
+			
+			// Text field for scale
+			scaleInput = new TextField("12");
+			scaleInput.addActionListener(this);
+			gbl.setConstraints(scaleInput, gbc);
+			this.add(scaleInput);
+			gbc.gridy++;
+			
+			// Text field for speed
+			speedInput = new TextField("10");
+			speedInput.addActionListener(this);
+			gbl.setConstraints(speedInput, gbc);
+			this.add(speedInput);
+			gbc.gridy++;
+		}
 		
 		// Run button
 		runButton = new Button("Run");

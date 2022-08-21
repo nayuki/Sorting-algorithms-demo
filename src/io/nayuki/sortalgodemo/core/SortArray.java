@@ -80,7 +80,13 @@ public interface SortArray {
 	 * @return whether initially array[i] > array[j], which causes them to be swapped
 	 * @throws IndexOutOfBoundsException if not (0 &le; {@code i}, {@code j} &lt; {@code length()})
 	 */
-	public boolean compareAndSwap(int i, int j);
+	public default boolean compareAndSwap(int i, int j) {
+		if (compare(i, j) > 0) {
+			swap(i, j);
+			return true;
+		} else
+			return false;
+	}
 	
 	
 	/**

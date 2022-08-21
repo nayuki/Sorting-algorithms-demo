@@ -76,15 +76,6 @@ public abstract class AbstractSortArray implements SortArray {
 	}
 	
 	
-	public boolean compareAndSwap(int i, int j) {
-		if (compare(i, j) > 0) {
-			swap(i, j);
-			return true;
-		} else
-			return false;
-	}
-	
-	
 	/* Sorting progress visualization */
 	
 	// Does nothing by default; can be overridden.

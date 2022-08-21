@@ -24,6 +24,7 @@
 
 package io.nayuki.sortalgodemo.core;
 
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -101,25 +102,37 @@ public interface SortArray {
 	
 	/**
 	 * Sets the element at the specified index to the given state.
-	 * This may trigger a visual change or do nothing.
+	 * By default, this method checks the arguments and does nothing else.
+	 * Implementations may choose to trigger a visual change.
 	 * @param index the index to set
 	 * @param state the element state (not {@code null})
 	 * @throws NullPointerException if {@code state} is {@code null}
 	 * @throws IndexOutOfBoundsException if not (0 &le; {@code index} &lt; {@code length()})
 	 */
-	public void setElement(int index, ElementState state);
+	public default void setElement(int index, ElementState state) {
+		Objects.requireNonNull(state);
+		if (!(0 <= index && index < length()))
+			throw new IndexOutOfBoundsException();
+	}
 	
 	
 	/**
 	 * Sets all elements in the specified range [{@code start}, {@code end}) to the specified state.
-	 * This may trigger a visual change or do nothing.
+	 * By default, this method checks the arguments and calls {@link #setElement(int,ElementState)}.
+	 * Implementations may choose to trigger a visual change.
 	 * @param start the start index of the range (inclusive)
 	 * @param end the end index of the range (exclusive)
 	 * @param state the element state (not {@code null})
 	 * @throws NullPointerException if {@code state} is {@code null}
 	 * @throws IndexOutOfBoundsException if not (0 &le; {@code start} &le; {@code end} &lt; {@code length()})
 	 */
-	public void setRange(int start, int end, ElementState state);
+	public default void setRange(int start, int end, ElementState state) {
+		Objects.requireNonNull(state);
+		if (!(0 <= start && start <= end && end < length()))
+			throw new IndexOutOfBoundsException();
+		for (int i = start; i < end; i++)
+			setElement(i, state);
+	}
 	
 	
 	

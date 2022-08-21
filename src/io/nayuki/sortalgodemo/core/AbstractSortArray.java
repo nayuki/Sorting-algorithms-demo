@@ -75,13 +75,4 @@ public abstract class AbstractSortArray implements SortArray {
 		values[j] = temp;
 	}
 	
-	
-	/* Sorting progress visualization */
-	
-	// Does nothing by default; can be overridden.
-	public void setElement(int index, SortArray.ElementState state) {}
-	
-	// Does nothing by default; can be overridden.
-	public void setRange(int start, int end, SortArray.ElementState state) {}
-	
 }

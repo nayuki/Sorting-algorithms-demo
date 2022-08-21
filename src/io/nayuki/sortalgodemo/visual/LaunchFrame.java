@@ -258,11 +258,10 @@ final class LaunchFrame extends Frame implements ActionListener {
 				}
 				
 				// Check and print
-				String msg;
+				String msg = String.format("%s: %d elements, %d comparisons, %d swaps",
+					algorithm.getName(), array.length(), array.getComparisonCount(), array.getSwapCount());
 				try {
 					array.assertSorted();
-					msg = String.format("%s: %d elements, %d comparisons, %d swaps",
-						algorithm.getName(), array.length(), array.getComparisonCount(), array.getSwapCount());
 				} catch (AssertionError e) {
 					msg = algorithm.getName() + ": Sorting failed";
 				}
@@ -275,6 +274,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 	
 	
 	private static void setInitialOrder(VisualSortArray array, int selectedIndex) {
+		Objects.requireNonNull(array);
 		switch (selectedIndex) {
 			case 0: {  // Ascending
 				// Do nothing

@@ -103,6 +103,8 @@ final class VisualSortArray implements SortArray {
 	/* Comparison and swapping */
 	
 	@Override public int compare(int i, int j) {
+		if (!isInitialized)
+			throw new IllegalStateException();
 		
 		setElementInternal(i, ElementState.COMPARING);
 		setElementInternal(j, ElementState.COMPARING);

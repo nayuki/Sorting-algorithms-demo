@@ -48,10 +48,13 @@ final class VisualSortArray extends AbstractSortArray {
 	private volatile long swapCount;
 	
 	// Speed regulation
-	private final double targetFrameRate = 60;
-	private final double stepsPerFrame;
-	private double remainingStepsAllowed;
-	private long nextRepaintTime;
+	private final double stepsPerSecond;
+	private final int stepsPerCheck;
+	private int stepsRemaining;
+	private long prevCheckTimeNs;
+	
+	private static final long CHECK_INTERVAL_NS = 10_000_000;
+	private static final long BUSY_WAIT_THRESHOLD_NS = 1_000_000;
 	
 	
 	
@@ -62,14 +65,13 @@ final class VisualSortArray extends AbstractSortArray {
 		super(size);
 		if (speed <= 0 || Double.isInfinite(speed) || Double.isNaN(speed))
 			throw new IllegalArgumentException();
+		stepsPerSecond = speed;
+		stepsPerCheck = (int)Math.max(Math.min(stepsPerSecond * CHECK_INTERVAL_NS / 1e9, 1_000_000), 1);
 		state = new int[size];
 		
 		// Initialize various numbers
 		comparisonCount = 0;
 		swapCount = 0;
-		stepsPerFrame = speed / targetFrameRate;
-		remainingStepsAllowed = 0;
-		nextRepaintTime = System.nanoTime();
 	}
 	
 	
@@ -78,6 +80,9 @@ final class VisualSortArray extends AbstractSortArray {
 			throw new IllegalStateException();
 		isInitialized = true;
 		isDone = false;
+		
+		stepsRemaining = stepsPerCheck;
+		prevCheckTimeNs = System.nanoTime();
 	}
 	
 	
@@ -92,10 +97,9 @@ final class VisualSortArray extends AbstractSortArray {
 		
 		setElement(i, ElementState.COMPARING);
 		setElement(j, ElementState.COMPARING);
-		beforeStep();
+		regulateSpeed();
 		comparisonCount++;
 		
-		// No repaint here
 		setElement(i, ElementState.ACTIVE);
 		setElement(j, ElementState.ACTIVE);
 		
@@ -109,10 +113,10 @@ final class VisualSortArray extends AbstractSortArray {
 			return;
 		if (Thread.interrupted())
 			throw new StopException();
-		beforeStep();
 		swapCount++;
 		setElement(i, ElementState.ACTIVE);
 		setElement(j, ElementState.ACTIVE);
+		regulateSpeed();
 	}
 	
 	
@@ -168,30 +172,30 @@ final class VisualSortArray extends AbstractSortArray {
 	}
 	
 	
-	// Performs regulation of repaint intervals and stepping speed.
-	private void beforeStep() {
-		boolean first = true;
-		while (remainingStepsAllowed < 1) {
-			long currentTime;
-			while (true) {
-				currentTime = System.nanoTime();
-				if (currentTime >= nextRepaintTime)
-					break;
-				long delay = nextRepaintTime - currentTime;
+	private void regulateSpeed() {
+		stepsRemaining--;
+		if (stepsRemaining > 0)
+			return;
+		
+		if (Thread.interrupted())
+			throw new StopException();
+		
+		long elapsedTime = System.nanoTime() - prevCheckTimeNs;
+		double targetTime = stepsPerCheck * 1e9 / stepsPerSecond;
+		if (elapsedTime < targetTime) {
+			double toSleepNs = targetTime - elapsedTime - BUSY_WAIT_THRESHOLD_NS;
+			if (toSleepNs > 0) {
 				try {
-					Thread.sleep(delay / 1_000_000, (int)(delay % 1_000_000));
+					Thread.sleep((long)(toSleepNs / 1e6));
 				} catch (InterruptedException e) {
 					throw new StopException();
 				}
 			}
-			if (first)
-				first = false;
-			nextRepaintTime += Math.round(1e9 / targetFrameRate);
-			if (nextRepaintTime <= currentTime)
-				nextRepaintTime = currentTime + Math.round(1e9 / targetFrameRate);
-			remainingStepsAllowed += stepsPerFrame;
+			while (System.nanoTime() - prevCheckTimeNs < targetTime);  // Busy-wait
 		}
-		remainingStepsAllowed--;
+		
+		stepsRemaining = stepsPerCheck;
+		prevCheckTimeNs = System.nanoTime();
 	}
 	
 }

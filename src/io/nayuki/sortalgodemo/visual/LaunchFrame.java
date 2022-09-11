@@ -246,6 +246,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 					(rect.width - sortFrame.getWidth()) / 8,
 					(rect.height - sortFrame.getHeight()) / 8);
 				sortFrame.setVisible(true);
+				array.canvas.repaint();
 			}
 			
 			private void doSort() {

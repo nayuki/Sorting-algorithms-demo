@@ -25,51 +25,55 @@
 package io.nayuki.sortalgodemo.visual;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 
-/**
- * A canvas with an off-screen image and a graphics object.
- */
 @SuppressWarnings("serial")
 final class BufferedCanvas extends Canvas {
 	
 	/*---- Fields ----*/
 	
+	private VisualSortArray array;
+	private final int scale;
 	private BufferedImage buffer;
 	private Graphics bufGfx;
 	public volatile int synchronizer;
 	
 	
 	
-	/*---- Constructors ----*/
+	/*---- Constructor ----*/
 	
-	public BufferedCanvas(int size) {
-		this(size, size);
-	}
-	
-	
-	public BufferedCanvas(int width, int height) {
-		if (width <= 0 || height <= 0)
+	public BufferedCanvas(VisualSortArray array, int scale) {
+		this.array = Objects.requireNonNull(array);
+		if (scale <= 0)
 			throw new IllegalArgumentException();
-		this.setSize(width, height);
-		buffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR);
+		this.scale = scale;
+		
+		int size = Math.multiplyExact(array.length(), scale);
+		buffer = new BufferedImage(size, size, BufferedImage.TYPE_INT_BGR);
 		bufGfx = buffer.getGraphics();
+		this.setSize(size, size);
 	}
 	
 	
 	
 	/*---- Methods ----*/
 	
-	// Returns the graphics object for the off-screen image, not null.
-	public Graphics getBufferGraphics() {
-		return bufGfx;
-	}
-	
-	
 	// Called by the AWT event loop, not by user code.
 	public void update(Graphics g) {
+		bufGfx.setColor(BACKGROUND_COLOR);
+		bufGfx.fillRect(0, 0, array.length() * scale, array.length() * scale);
+		for (int i = 0; i < array.length(); i++) {
+			bufGfx.setColor(STATE_COLORS[array.getState(i)]);
+			int val = array.getValue(i);
+			if (scale == 1)
+				bufGfx.drawLine(0, i, val, i);
+			else  // scale > 1
+				bufGfx.fillRect(0, i * scale, (val + 1) * scale, scale);
+		}
 		paint(g);
 	}
 	
@@ -79,5 +83,18 @@ final class BufferedCanvas extends Canvas {
 		synchronizer = synchronizer;
 		g.drawImage(buffer, 0, 0, this);
 	}
+	
+	
+	
+	/*---- Color constants ----*/
+	
+	private static Color[] STATE_COLORS = {
+		new Color(0x294099),  // Active: Blue
+		new Color(0x959EBF),  // Inactive: Gray
+		new Color(0xD4BA0D),  // Comparing: Yellow
+		new Color(0x25963D),  // Done: Green
+	};
+	
+	private static Color BACKGROUND_COLOR = new Color(0xFFFFFF);  // White
 	
 }

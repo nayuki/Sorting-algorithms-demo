@@ -24,8 +24,6 @@
 
 package io.nayuki.sortalgodemo.visual;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.util.Arrays;
 import java.util.Objects;
 import io.nayuki.sortalgodemo.core.AbstractSortArray;
@@ -44,9 +42,7 @@ final class VisualSortArray extends AbstractSortArray {
 	private int[] state;
 	
 	// Graphics
-	private final int scale;
 	public final BufferedCanvas canvas;
-	private final Graphics graphics;
 	
 	// Statistics
 	private volatile long comparisonCount;
@@ -57,7 +53,6 @@ final class VisualSortArray extends AbstractSortArray {
 	private final double stepsPerFrame;
 	private double remainingStepsAllowed;
 	private long nextRepaintTime;
-	private final boolean drawIncrementally;
 	
 	
 	
@@ -76,12 +71,9 @@ final class VisualSortArray extends AbstractSortArray {
 		stepsPerFrame = speed / targetFrameRate;
 		remainingStepsAllowed = 0;
 		nextRepaintTime = System.nanoTime();
-		drawIncrementally = stepsPerFrame < size;
 		
 		// Initialize graphics
-		this.scale = scale;
-		canvas = new BufferedCanvas(size * scale);
-		graphics = canvas.getBufferGraphics();
+		canvas = new BufferedCanvas(this, scale);
 	}
 	
 	
@@ -89,7 +81,7 @@ final class VisualSortArray extends AbstractSortArray {
 		if (isInitialized)
 			throw new IllegalStateException();
 		isInitialized = true;
-		redraw(0, values.length);
+		canvas.repaint();
 	}
 	
 	
@@ -133,16 +125,22 @@ final class VisualSortArray extends AbstractSortArray {
 	public void setElement(int index, ElementState state) {
 		Objects.requireNonNull(state);
 		this.state[index] = state.ordinal();
-		if (drawIncrementally)
-			redraw(index, index + 1);
 	}
 	
 	
 	public void setRange(int start, int end, ElementState state) {
 		Objects.requireNonNull(state);
 		Arrays.fill(this.state, start, end, state.ordinal());
-		if (drawIncrementally)
-			redraw(start, end);
+	}
+	
+	
+	public int getValue(int index) {
+		return values[index];
+	}
+	
+	
+	public int getState(int index) {
+		return state[index];
 	}
 	
 	
@@ -163,23 +161,7 @@ final class VisualSortArray extends AbstractSortArray {
 			if (values[i - 1] > values[i])
 				throw new AssertionError();
 		}
-		redraw(0, values.length);
 		canvas.repaint();
-	}
-	
-	
-	// Redraws the given range of indices to the off-screen buffer image.
-	// Note that this does not call repaint() on the canvas element.
-	private void redraw(int start, int end) {
-		graphics.setColor(BACKGROUND_COLOR);
-		graphics.fillRect(0, start * scale, values.length * scale, (end - start) * scale);
-		for (int i = start; i < end; i++) {
-			graphics.setColor(STATE_COLORS[state[i]]);
-			if (scale == 1)
-				graphics.drawLine(0, i, values[i], i);
-			else  // scale > 1
-				graphics.fillRect(0, i * scale, (values[i] + 1) * scale, scale);
-		}
 	}
 	
 	
@@ -200,8 +182,6 @@ final class VisualSortArray extends AbstractSortArray {
 				}
 			}
 			if (first) {
-				if (!drawIncrementally)
-					redraw(0, values.length);
 				canvas.synchronizer = canvas.synchronizer;
 				canvas.repaint();
 				first = false;
@@ -213,18 +193,5 @@ final class VisualSortArray extends AbstractSortArray {
 		}
 		remainingStepsAllowed--;
 	}
-	
-	
-	
-	/*---- Color constants ----*/
-	
-	private static Color[] STATE_COLORS = {
-		new Color(0x294099),  // Active: Blue
-		new Color(0x959EBF),  // Inactive: Gray
-		new Color(0xD4BA0D),  // Comparing: Yellow
-		new Color(0x25963D),  // Done: Green
-	};
-	
-	private static Color BACKGROUND_COLOR = new Color(0xFFFFFF);  // White
 	
 }

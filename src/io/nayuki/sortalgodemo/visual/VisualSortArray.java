@@ -28,6 +28,7 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicIntegerArray;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReferenceArray;
+import java.util.function.Consumer;
 import io.nayuki.sortalgodemo.core.SortArray;
 
 
@@ -61,7 +62,7 @@ final class VisualSortArray implements SortArray {
 	
 	/*---- Constructors ----*/
 	
-	public VisualSortArray(int size, double speed) {
+	public VisualSortArray(int size, double speed, Consumer<SortArray> scrambler) {
 		if (speed <= 0 || Double.isInfinite(speed) || Double.isNaN(speed))
 			throw new IllegalArgumentException();
 		stepsPerSecond = speed;
@@ -72,13 +73,16 @@ final class VisualSortArray implements SortArray {
 		values = new AtomicIntegerArray(size);
 		for (int i = 0; i < values.length(); i++)
 			values.set(i, i);
+		scrambler.accept(this);
 		
 		states = new AtomicReferenceArray<>(size);
 		setRange(0, size, ElementState.ACTIVE);
+		
+		finishInitialization();
 	}
 	
 	
-	public void finishInitialization() {
+	private void finishInitialization() {
 		if (isInitialized)
 			throw new IllegalStateException();
 		isInitialized = true;

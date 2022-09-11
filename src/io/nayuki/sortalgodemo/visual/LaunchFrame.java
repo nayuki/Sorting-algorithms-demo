@@ -212,14 +212,13 @@ final class LaunchFrame extends Frame implements ActionListener {
 			return;
 		
 		// Initialize array and another frame
-		var array = new VisualSortArray(size, speed);
-		setInitialOrder(array, initialOrderInput.getSelectedIndex());
-		array.finishInitialization();
+		var array = new VisualSortArray(size, speed,
+			arr -> setInitialOrder(arr, initialOrderInput.getSelectedIndex()));
 		new SortFrame(array, algorithms.get(algorithmInput.getSelectedIndex()), scale);
 	}
 	
 	
-	private static void setInitialOrder(VisualSortArray array, int selectedIndex) {
+	private static void setInitialOrder(SortArray array, int selectedIndex) {
 		Objects.requireNonNull(array);
 		switch (selectedIndex) {
 			case 0: {  // Ascending

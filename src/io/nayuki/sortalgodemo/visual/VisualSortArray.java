@@ -103,8 +103,6 @@ final class VisualSortArray implements SortArray {
 	/* Comparison and swapping */
 	
 	@Override public int compare(int i, int j) {
-		if (Thread.interrupted())
-			throw new StopException();
 		
 		setElementInternal(i, ElementState.COMPARING);
 		setElementInternal(j, ElementState.COMPARING);
@@ -124,8 +122,6 @@ final class VisualSortArray implements SortArray {
 		values.setOpaque(j, x);
 		if (!isInitialized)
 			return;
-		if (Thread.interrupted())
-			throw new StopException();
 		swapCount.setOpaque(swapCount.getPlain() + 1);
 		setElementInternal(i, ElementState.ACTIVE);
 		setElementInternal(j, ElementState.ACTIVE);

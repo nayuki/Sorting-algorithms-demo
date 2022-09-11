@@ -41,11 +41,11 @@ final class VisualSortArray implements SortArray {
 	
 	private AtomicIntegerArray values;
 	private AtomicReferenceArray<ElementState> states = null;
-	private volatile boolean isDone;
+	private volatile boolean isDone = false;
 	
 	// Statistics
-	private AtomicLong comparisonCount = new AtomicLong();
-	private AtomicLong swapCount = new AtomicLong();
+	private AtomicLong comparisonCount = new AtomicLong(0);
+	private AtomicLong swapCount = new AtomicLong(0);
 	
 	// Speed regulation
 	private final double stepsPerSecond;
@@ -75,15 +75,6 @@ final class VisualSortArray implements SortArray {
 		
 		states = new AtomicReferenceArray<>(size);
 		setRange(0, size, ElementState.ACTIVE);
-		
-		finishInitialization();
-	}
-	
-	
-	private void finishInitialization() {
-		isDone = false;
-		comparisonCount.set(0);
-		swapCount.set(0);
 		
 		stepsRemaining = stepsPerCheck;
 		prevCheckTimeNs = System.nanoTime();

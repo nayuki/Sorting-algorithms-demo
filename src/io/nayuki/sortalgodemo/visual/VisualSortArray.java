@@ -40,7 +40,7 @@ final class VisualSortArray extends AbstractSortArray {
 	private boolean isInitialized = false;
 	
 	// Visual state per element: 0=active, 1=inactive, 2=comparing, 3=done
-	private int[] state;
+	private int[] states;
 	
 	private volatile boolean isDone;
 	
@@ -68,7 +68,7 @@ final class VisualSortArray extends AbstractSortArray {
 			throw new IllegalArgumentException();
 		stepsPerSecond = speed;
 		stepsPerCheck = (int)Math.max(Math.min(stepsPerSecond * CHECK_INTERVAL_NS / 1e9, 1_000_000), 1);
-		state = new int[size];
+		states = new int[size];
 	}
 	
 	
@@ -124,13 +124,13 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	public void setElement(int index, ElementState state) {
 		Objects.requireNonNull(state);
-		this.state[index] = state.ordinal();
+		this.states[index] = state.ordinal();
 	}
 	
 	
 	public void setRange(int start, int end, ElementState state) {
 		Objects.requireNonNull(state);
-		Arrays.fill(this.state, start, end, state.ordinal());
+		Arrays.fill(states, start, end, state.ordinal());
 	}
 	
 	
@@ -140,7 +140,7 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	
 	public int getState(int index) {
-		return state[index];
+		return states[index];
 	}
 	
 	

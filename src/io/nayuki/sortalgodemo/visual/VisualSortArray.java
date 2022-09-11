@@ -41,8 +41,7 @@ final class VisualSortArray extends AbstractSortArray {
 	// Visual state per element: 0=active, 1=inactive, 2=comparing, 3=done
 	private int[] state;
 	
-	// Graphics
-	public final SortCanvas canvas;
+	private volatile boolean isDone;
 	
 	// Statistics
 	private volatile long comparisonCount;
@@ -58,10 +57,10 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	/*---- Constructors ----*/
 	
-	public VisualSortArray(int size, int scale, double speed) {
+	public VisualSortArray(int size, double speed) {
 		// Check arguments and initialize arrays
 		super(size);
-		if (scale <= 0 || speed <= 0 || Double.isInfinite(speed) || Double.isNaN(speed))
+		if (speed <= 0 || Double.isInfinite(speed) || Double.isNaN(speed))
 			throw new IllegalArgumentException();
 		state = new int[size];
 		
@@ -71,9 +70,6 @@ final class VisualSortArray extends AbstractSortArray {
 		stepsPerFrame = speed / targetFrameRate;
 		remainingStepsAllowed = 0;
 		nextRepaintTime = System.nanoTime();
-		
-		// Initialize graphics
-		canvas = new SortCanvas(this, scale);
 	}
 	
 	
@@ -81,7 +77,7 @@ final class VisualSortArray extends AbstractSortArray {
 		if (isInitialized)
 			throw new IllegalStateException();
 		isInitialized = true;
-		canvas.repaint();
+		isDone = false;
 	}
 	
 	
@@ -161,7 +157,12 @@ final class VisualSortArray extends AbstractSortArray {
 			if (values[i - 1] > values[i])
 				throw new AssertionError();
 		}
-		canvas.repaint();
+		isDone = true;
+	}
+	
+	
+	public boolean isDone() {
+		return isDone;
 	}
 	
 	
@@ -181,11 +182,8 @@ final class VisualSortArray extends AbstractSortArray {
 					throw new StopException();
 				}
 			}
-			if (first) {
-				canvas.synchronizer = canvas.synchronizer;
-				canvas.repaint();
+			if (first)
 				first = false;
-			}
 			nextRepaintTime += Math.round(1e9 / targetFrameRate);
 			if (nextRepaintTime <= currentTime)
 				nextRepaintTime = currentTime + Math.round(1e9 / targetFrameRate);

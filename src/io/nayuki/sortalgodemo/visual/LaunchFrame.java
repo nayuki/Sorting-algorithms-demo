@@ -212,10 +212,11 @@ final class LaunchFrame extends Frame implements ActionListener {
 			return;
 		
 		// Initialize objects and worker thread
-		final var array = new VisualSortArray(size, scale, speed);
+		final var array = new VisualSortArray(size, speed);
 		setInitialOrder(array, initialOrder.getSelectedIndex());
 		array.finishInitialization();
 		final SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
+		SortCanvas canvas = new SortCanvas(array, scale, 60);
 		final int startDelayMs = 1000;
 		new Thread() {
 			public Thread thread = this;
@@ -228,7 +229,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 			private void initFrame() {
 				// Do component layout
 				final var sortFrame = new Frame(algorithm.getName());
-				sortFrame.add(array.canvas);
+				sortFrame.add(canvas);
 				sortFrame.setResizable(false);
 				sortFrame.pack();
 				
@@ -246,7 +247,6 @@ final class LaunchFrame extends Frame implements ActionListener {
 					(rect.width - sortFrame.getWidth()) / 8,
 					(rect.height - sortFrame.getHeight()) / 8);
 				sortFrame.setVisible(true);
-				array.canvas.repaint();
 			}
 			
 			private void doSort() {
@@ -256,6 +256,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 					algorithm.sort(array);
 					array.setRange(0, array.length(), SortArray.ElementState.DONE);
 				} catch (StopException|InterruptedException e) {
+					canvas.stop();
 					return;
 				}
 				

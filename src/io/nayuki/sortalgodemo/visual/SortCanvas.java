@@ -40,22 +40,35 @@ final class SortCanvas extends Canvas {
 	private final int scale;
 	private BufferedImage buffer;
 	private Graphics bufGfx;
-	public volatile int synchronizer;
+	private Thread worker;
 	
 	
 	
 	/*---- Constructor ----*/
 	
-	public SortCanvas(VisualSortArray array, int scale) {
+	public SortCanvas(VisualSortArray array, int scale, double frameRateHz) {
 		this.array = Objects.requireNonNull(array);
 		if (scale <= 0)
 			throw new IllegalArgumentException();
 		this.scale = scale;
+		if (frameRateHz <= 0)
+			throw new IllegalArgumentException();
 		
 		int size = Math.multiplyExact(array.length(), scale);
 		buffer = new BufferedImage(size, size, BufferedImage.TYPE_INT_BGR);
 		bufGfx = buffer.getGraphics();
 		this.setSize(size, size);
+		
+		worker = new Thread(() -> {
+			try {
+				while (!array.isDone()) {
+					SortCanvas.this.repaint();
+					Thread.sleep((int)(1000 / frameRateHz));
+				}
+				SortCanvas.this.repaint();
+			} catch (InterruptedException e) {}
+		});
+		worker.start();
 	}
 	
 	
@@ -80,8 +93,12 @@ final class SortCanvas extends Canvas {
 	
 	// Called by the AWT event loop, not by user code.
 	public void paint(Graphics g) {
-		synchronizer = synchronizer;
 		g.drawImage(buffer, 0, 0, this);
+	}
+	
+	
+	public void stop() {
+		worker.interrupt();
 	}
 	
 	

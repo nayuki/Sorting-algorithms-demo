@@ -49,19 +49,19 @@ final class SimpleSortArray extends AbstractSortArray implements Cloneable {
 	
 	/*---- Methods ----*/
 	
-	public int compare(int i, int j) {
+	@Override public int compare(int i, int j) {
 		comparisonCount++;
 		return super.compare(i, j);
 	}
 	
 	
-	public void swap(int i, int j) {
+	@Override public void swap(int i, int j) {
 		swapCount++;
 		super.swap(i, j);
 	}
 	
 	
-	public SimpleSortArray clone() {
+	@Override public SimpleSortArray clone() {
 		try {
 			SimpleSortArray result = (SimpleSortArray)super.clone();
 			result.values = result.values.clone();

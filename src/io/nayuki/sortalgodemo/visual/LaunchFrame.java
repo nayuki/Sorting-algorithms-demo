@@ -71,7 +71,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 		super("Sort Demo");
 		Objects.requireNonNull(algos);
 		this.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
+			@Override public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
 		});
@@ -197,7 +197,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 	
 	// Called when the run button is clicked or entered is pressed in a text field.
 	// Called by the AWT event loop, not by user code.
-	public void actionPerformed(ActionEvent ev) {
+	@Override public void actionPerformed(ActionEvent ev) {
 		// Parse and check input numbers from text fields
 		int size, scale;
 		double speed;

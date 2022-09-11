@@ -51,19 +51,19 @@ public abstract class AbstractSortArray implements SortArray {
 	
 	/*---- Methods ----*/
 	
-	public int length() {
+	@Override public int length() {
 		return values.length;
 	}
 	
 	
-	public int compare(int i, int j) {
+	@Override public int compare(int i, int j) {
 		if (!(0 <= i && i < length() && 0 <= j && j < length()))
 			throw new IndexOutOfBoundsException();
 		return Integer.compare(values[i], values[j]);
 	}
 	
 	
-	public void swap(int i, int j) {
+	@Override public void swap(int i, int j) {
 		if (!(0 <= i && i < length() && 0 <= j && j < length()))
 			throw new IndexOutOfBoundsException();
 		int temp = values[i];

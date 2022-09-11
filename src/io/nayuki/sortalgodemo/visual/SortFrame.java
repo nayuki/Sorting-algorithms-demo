@@ -70,7 +70,7 @@ final class SortFrame extends Frame {
 		
 		// Set window closing action
 		this.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
+			@Override public void windowClosing(WindowEvent e) {
 				worker.interrupt();
 				SortFrame.this.dispose();
 			}

@@ -76,7 +76,7 @@ final class SortCanvas extends Canvas {
 	/*---- Methods ----*/
 	
 	// Called by the AWT event loop, not by user code.
-	public void update(Graphics g) {
+	@Override public void update(Graphics g) {
 		bufGfx.setColor(BACKGROUND_COLOR);
 		bufGfx.fillRect(0, 0, array.length() * scale, array.length() * scale);
 		for (int i = 0; i < array.length(); i++) {
@@ -92,7 +92,7 @@ final class SortCanvas extends Canvas {
 	
 	
 	// Called by the AWT event loop, not by user code.
-	public void paint(Graphics g) {
+	@Override public void paint(Graphics g) {
 		g.drawImage(buffer, 0, 0, this);
 	}
 	

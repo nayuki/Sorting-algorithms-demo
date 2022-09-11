@@ -24,9 +24,9 @@
 
 package io.nayuki.sortalgodemo.visual;
 
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicReferenceArray;
 import io.nayuki.sortalgodemo.core.AbstractSortArray;
 
 
@@ -40,7 +40,7 @@ final class VisualSortArray extends AbstractSortArray {
 	private boolean isInitialized = false;
 	
 	// Visual state per element: 0=active, 1=inactive, 2=comparing, 3=done
-	private int[] states;
+	private AtomicReferenceArray<ElementState> states;
 	
 	private volatile boolean isDone;
 	
@@ -68,7 +68,9 @@ final class VisualSortArray extends AbstractSortArray {
 			throw new IllegalArgumentException();
 		stepsPerSecond = speed;
 		stepsPerCheck = (int)Math.max(Math.min(stepsPerSecond * CHECK_INTERVAL_NS / 1e9, 1_000_000), 1);
-		states = new int[size];
+		
+		states = new AtomicReferenceArray<>(size);
+		setRange(0, size, ElementState.ACTIVE);
 	}
 	
 	
@@ -129,12 +131,13 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	public void setRange(int start, int end, ElementState state) {
 		Objects.requireNonNull(state);
-		Arrays.fill(states, start, end, state.ordinal());
+		for (int i = start; i < end; i++)
+			setElementInternal(i, state);
 	}
 	
 	
 	private void setElementInternal(int index, ElementState state) {
-		states[index] = state.ordinal();
+		states.setOpaque(index, state);
 	}
 	
 	
@@ -144,7 +147,7 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	
 	public int getState(int index) {
-		return states[index];
+		return states.getOpaque(index).ordinal();
 	}
 	
 	

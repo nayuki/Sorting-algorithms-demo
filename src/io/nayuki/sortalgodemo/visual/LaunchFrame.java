@@ -56,7 +56,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 	
 	private final Choice algorithmInput;
 	private final TextField arraySizeInput;
-	private final Choice initialOrder;
+	private final Choice initialOrderInput;
 	private final TextField scaleInput;
 	private final TextField speedInput;
 	
@@ -144,15 +144,15 @@ final class LaunchFrame extends Frame implements ActionListener {
 			gbc.gridy++;
 			
 			// Drop-down selector for initial order
-			initialOrder = new Choice();
-			initialOrder.add("Ascending");
-			initialOrder.add("Almost ascending");
-			initialOrder.add("Random");
-			initialOrder.add("Almost descending");
-			initialOrder.add("Descending");
-			initialOrder.select("Random");
-			gbl.setConstraints(initialOrder, gbc);
-			this.add(initialOrder);
+			initialOrderInput = new Choice();
+			initialOrderInput.add("Ascending");
+			initialOrderInput.add("Almost ascending");
+			initialOrderInput.add("Random");
+			initialOrderInput.add("Almost descending");
+			initialOrderInput.add("Descending");
+			initialOrderInput.select("Random");
+			gbl.setConstraints(initialOrderInput, gbc);
+			this.add(initialOrderInput);
 			gbc.gridy++;
 			
 			// Text field for scale
@@ -213,7 +213,7 @@ final class LaunchFrame extends Frame implements ActionListener {
 		
 		// Initialize objects and worker thread
 		final var array = new VisualSortArray(size, speed);
-		setInitialOrder(array, initialOrder.getSelectedIndex());
+		setInitialOrder(array, initialOrderInput.getSelectedIndex());
 		array.finishInitialization();
 		final SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
 		SortCanvas canvas = new SortCanvas(array, scale, 60);

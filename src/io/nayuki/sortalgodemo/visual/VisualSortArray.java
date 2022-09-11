@@ -39,7 +39,6 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	private boolean isInitialized = false;
 	
-	// Visual state per element: 0=active, 1=inactive, 2=comparing, 3=done
 	private AtomicReferenceArray<ElementState> states;
 	
 	private volatile boolean isDone;
@@ -146,8 +145,8 @@ final class VisualSortArray extends AbstractSortArray {
 	}
 	
 	
-	public int getState(int index) {
-		return states.getOpaque(index).ordinal();
+	public ElementState getState(int index) {
+		return states.getOpaque(index);
 	}
 	
 	

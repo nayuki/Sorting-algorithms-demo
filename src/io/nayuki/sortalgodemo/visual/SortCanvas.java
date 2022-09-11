@@ -80,7 +80,7 @@ final class SortCanvas extends Canvas {
 		bufGfx.setColor(BACKGROUND_COLOR);
 		bufGfx.fillRect(0, 0, array.length() * scale, array.length() * scale);
 		for (int i = 0; i < array.length(); i++) {
-			bufGfx.setColor(STATE_COLORS[array.getState(i)]);
+			bufGfx.setColor(STATE_COLORS[array.getState(i).ordinal()]);
 			int val = array.getValue(i);
 			if (scale == 1)
 				bufGfx.drawLine(0, i, val, i);

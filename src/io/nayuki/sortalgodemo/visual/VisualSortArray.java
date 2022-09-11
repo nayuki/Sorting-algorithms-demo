@@ -39,10 +39,8 @@ final class VisualSortArray implements SortArray {
 	
 	/*---- Fields ----*/
 	
-	private boolean isInitialized = false;
-	
 	private AtomicIntegerArray values;
-	private AtomicReferenceArray<ElementState> states;
+	private AtomicReferenceArray<ElementState> states = null;
 	private volatile boolean isDone;
 	
 	// Statistics
@@ -83,10 +81,6 @@ final class VisualSortArray implements SortArray {
 	
 	
 	private void finishInitialization() {
-		if (isInitialized)
-			throw new IllegalStateException();
-		isInitialized = true;
-		
 		isDone = false;
 		comparisonCount.set(0);
 		swapCount.set(0);
@@ -107,9 +101,6 @@ final class VisualSortArray implements SortArray {
 	/* Comparison and swapping */
 	
 	@Override public int compare(int i, int j) {
-		if (!isInitialized)
-			throw new IllegalStateException();
-		
 		setElementInternal(i, ElementState.COMPARING);
 		setElementInternal(j, ElementState.COMPARING);
 		regulateSpeed();
@@ -126,7 +117,7 @@ final class VisualSortArray implements SortArray {
 		int y = values.getPlain(j);
 		values.setOpaque(i, y);
 		values.setOpaque(j, x);
-		if (!isInitialized)
+		if (states == null)
 			return;
 		
 		setElementInternal(i, ElementState.ACTIVE);
@@ -137,9 +128,6 @@ final class VisualSortArray implements SortArray {
 	
 	
 	@Override public boolean compareAndSwap(int i, int j) {
-		if (!isInitialized)
-			throw new IllegalStateException();
-		
 		setElementInternal(i, ElementState.COMPARING);
 		setElementInternal(j, ElementState.COMPARING);
 		regulateSpeed();

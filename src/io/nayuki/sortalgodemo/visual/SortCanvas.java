@@ -32,7 +32,7 @@ import java.util.Objects;
 
 
 @SuppressWarnings("serial")
-final class BufferedCanvas extends Canvas {
+final class SortCanvas extends Canvas {
 	
 	/*---- Fields ----*/
 	
@@ -46,7 +46,7 @@ final class BufferedCanvas extends Canvas {
 	
 	/*---- Constructor ----*/
 	
-	public BufferedCanvas(VisualSortArray array, int scale) {
+	public SortCanvas(VisualSortArray array, int scale) {
 		this.array = Objects.requireNonNull(array);
 		if (scale <= 0)
 			throw new IllegalArgumentException();

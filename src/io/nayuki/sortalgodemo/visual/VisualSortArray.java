@@ -42,7 +42,7 @@ final class VisualSortArray extends AbstractSortArray {
 	private int[] state;
 	
 	// Graphics
-	public final BufferedCanvas canvas;
+	public final SortCanvas canvas;
 	
 	// Statistics
 	private volatile long comparisonCount;
@@ -73,7 +73,7 @@ final class VisualSortArray extends AbstractSortArray {
 		nextRepaintTime = System.nanoTime();
 		
 		// Initialize graphics
-		canvas = new BufferedCanvas(this, scale);
+		canvas = new SortCanvas(this, scale);
 	}
 	
 	

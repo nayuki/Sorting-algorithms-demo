@@ -124,6 +124,7 @@ final class VisualSortArray implements SortArray {
 		values.setOpaque(j, x);
 		if (!isInitialized)
 			return;
+		
 		setElementInternal(i, ElementState.ACTIVE);
 		setElementInternal(j, ElementState.ACTIVE);
 		swapCount.setOpaque(swapCount.getPlain() + 1);
@@ -165,6 +166,7 @@ final class VisualSortArray implements SortArray {
 	public long getComparisonCount() {
 		return comparisonCount.getOpaque();
 	}
+	
 	
 	public long getSwapCount() {
 		return swapCount.getOpaque();

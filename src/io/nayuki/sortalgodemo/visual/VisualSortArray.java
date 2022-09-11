@@ -25,22 +25,23 @@
 package io.nayuki.sortalgodemo.visual;
 
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicIntegerArray;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReferenceArray;
-import io.nayuki.sortalgodemo.core.AbstractSortArray;
+import io.nayuki.sortalgodemo.core.SortArray;
 
 
 /**
  * An array to be sorted. Elements can be compared and swapped, but their values cannot be accessed directly.
  */
-final class VisualSortArray extends AbstractSortArray {
+final class VisualSortArray implements SortArray {
 	
 	/*---- Fields ----*/
 	
 	private boolean isInitialized = false;
 	
+	private AtomicIntegerArray values;
 	private AtomicReferenceArray<ElementState> states;
-	
 	private volatile boolean isDone;
 	
 	// Statistics
@@ -61,12 +62,16 @@ final class VisualSortArray extends AbstractSortArray {
 	/*---- Constructors ----*/
 	
 	public VisualSortArray(int size, double speed) {
-		// Check arguments and initialize arrays
-		super(size);
 		if (speed <= 0 || Double.isInfinite(speed) || Double.isNaN(speed))
 			throw new IllegalArgumentException();
 		stepsPerSecond = speed;
 		stepsPerCheck = (int)Math.max(Math.min(stepsPerSecond * CHECK_INTERVAL_NS / 1e9, 1_000_000), 1);
+		
+		if (size <= 0)
+			throw new IllegalArgumentException();
+		values = new AtomicIntegerArray(size);
+		for (int i = 0; i < values.length(); i++)
+			values.set(i, i);
 		
 		states = new AtomicReferenceArray<>(size);
 		setRange(0, size, ElementState.ACTIVE);
@@ -90,6 +95,11 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	/*---- Methods ----*/
 	
+	@Override public int length() {
+		return values.length();
+	}
+	
+	
 	/* Comparison and swapping */
 	
 	public int compare(int i, int j) {
@@ -103,13 +113,15 @@ final class VisualSortArray extends AbstractSortArray {
 		
 		setElementInternal(i, ElementState.ACTIVE);
 		setElementInternal(j, ElementState.ACTIVE);
-		
-		return super.compare(i, j);
+		return Integer.compare(values.getPlain(i), values.getPlain(j));
 	}
 	
 	
 	public void swap(int i, int j) {
-		super.swap(i, j);
+		int x = values.getPlain(i);
+		int y = values.getPlain(j);
+		values.setOpaque(i, y);
+		values.setOpaque(j, x);
 		if (!isInitialized)
 			return;
 		if (Thread.interrupted())
@@ -141,7 +153,7 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	
 	public int getValue(int index) {
-		return values[index];
+		return values.getOpaque(index);
 	}
 	
 	
@@ -165,8 +177,8 @@ final class VisualSortArray extends AbstractSortArray {
 	public void finishSorting() {
 		if (isDone)
 			throw new IllegalStateException();
-		for (int i = 1; i < values.length; i++) {
-			if (values[i - 1] > values[i])
+		for (int i = 1; i < values.length(); i++) {
+			if (values.getPlain(i - 1) > values.getPlain(i))
 				throw new AssertionError();
 		}
 		isDone = true;

@@ -211,68 +211,11 @@ final class LaunchFrame extends Frame implements ActionListener {
 		if (size <= 0 || scale <= 0 || speed <= 0 || Double.isInfinite(speed) || Double.isNaN(speed))
 			return;
 		
-		// Initialize objects and worker thread
+		// Initialize array and another frame
 		var array = new VisualSortArray(size, speed);
 		setInitialOrder(array, initialOrderInput.getSelectedIndex());
 		array.finishInitialization();
-		SortAlgorithm algorithm = algorithms.get(algorithmInput.getSelectedIndex());
-		SortCanvas canvas = new SortCanvas(array, scale, 60);
-		int startDelayMs = 1000;
-		new Thread() {
-			public Thread thread = this;
-			
-			public void run() {
-				initFrame();
-				doSort();
-			}
-			
-			private void initFrame() {
-				// Do component layout
-				var sortFrame = new Frame(algorithm.getName());
-				sortFrame.add(canvas);
-				sortFrame.setResizable(false);
-				sortFrame.pack();
-				
-				// Set window closing action
-				sortFrame.addWindowListener(new WindowAdapter() {
-					public void windowClosing(WindowEvent e) {
-						thread.interrupt();
-						sortFrame.dispose();
-					}
-				});
-				
-				// Set window position and show
-				Rectangle rect = getGraphicsConfiguration().getBounds();
-				sortFrame.setLocation(
-					(rect.width - sortFrame.getWidth()) / 8,
-					(rect.height - sortFrame.getHeight()) / 8);
-				sortFrame.setVisible(true);
-			}
-			
-			private void doSort() {
-				// Wait and sort
-				try {
-					Thread.sleep(startDelayMs);
-					algorithm.sort(array);
-					array.setRange(0, array.length(), SortArray.ElementState.DONE);
-				} catch (StopException|InterruptedException e) {
-					canvas.stop();
-					return;
-				}
-				
-				// Check and print
-				String msg = String.format("%s: %d elements, %d comparisons, %d swaps",
-					algorithm.getName(), array.length(), array.getComparisonCount(), array.getSwapCount());
-				try {
-					array.finishSorting();
-				} catch (AssertionError e) {
-					msg = algorithm.getName() + ": Sorting failed";
-				}
-				synchronized(System.err) {
-					System.err.println(msg);
-				}
-			}
-		}.start();
+		new SortFrame(array, algorithms.get(algorithmInput.getSelectedIndex()), scale);
 	}
 	
 	

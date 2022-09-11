@@ -54,12 +54,12 @@ final class LaunchFrame extends Frame implements ActionListener {
 	
 	private final List<SortAlgorithm> algorithms;
 	
+	private final Choice algorithmInput;
 	private final TextField arraySizeInput;
+	private final Choice initialOrder;
 	private final TextField scaleInput;
 	private final TextField speedInput;
 	
-	private final Choice algorithmInput;
-	private final Choice initialOrder;
 	private final Button runButton;
 	
 	

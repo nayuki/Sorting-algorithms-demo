@@ -26,6 +26,7 @@ package io.nayuki.sortalgodemo.visual;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicLong;
 import io.nayuki.sortalgodemo.core.AbstractSortArray;
 
 
@@ -44,8 +45,8 @@ final class VisualSortArray extends AbstractSortArray {
 	private volatile boolean isDone;
 	
 	// Statistics
-	private volatile long comparisonCount;
-	private volatile long swapCount;
+	private AtomicLong comparisonCount = new AtomicLong();
+	private AtomicLong swapCount = new AtomicLong();
 	
 	// Speed regulation
 	private final double stepsPerSecond;
@@ -68,10 +69,6 @@ final class VisualSortArray extends AbstractSortArray {
 		stepsPerSecond = speed;
 		stepsPerCheck = (int)Math.max(Math.min(stepsPerSecond * CHECK_INTERVAL_NS / 1e9, 1_000_000), 1);
 		state = new int[size];
-		
-		// Initialize various numbers
-		comparisonCount = 0;
-		swapCount = 0;
 	}
 	
 	
@@ -79,7 +76,10 @@ final class VisualSortArray extends AbstractSortArray {
 		if (isInitialized)
 			throw new IllegalStateException();
 		isInitialized = true;
+		
 		isDone = false;
+		comparisonCount.set(0);
+		swapCount.set(0);
 		
 		stepsRemaining = stepsPerCheck;
 		prevCheckTimeNs = System.nanoTime();
@@ -98,7 +98,7 @@ final class VisualSortArray extends AbstractSortArray {
 		setElement(i, ElementState.COMPARING);
 		setElement(j, ElementState.COMPARING);
 		regulateSpeed();
-		comparisonCount++;
+		comparisonCount.setOpaque(comparisonCount.getPlain() + 1);
 		
 		setElement(i, ElementState.ACTIVE);
 		setElement(j, ElementState.ACTIVE);
@@ -113,7 +113,7 @@ final class VisualSortArray extends AbstractSortArray {
 			return;
 		if (Thread.interrupted())
 			throw new StopException();
-		swapCount++;
+		swapCount.setOpaque(swapCount.getPlain() + 1);
 		setElement(i, ElementState.ACTIVE);
 		setElement(j, ElementState.ACTIVE);
 		regulateSpeed();
@@ -147,11 +147,11 @@ final class VisualSortArray extends AbstractSortArray {
 	/* After sorting */
 	
 	public long getComparisonCount() {
-		return comparisonCount;
+		return comparisonCount.getOpaque();
 	}
 	
 	public long getSwapCount() {
-		return swapCount;
+		return swapCount.getOpaque();
 	}
 	
 	

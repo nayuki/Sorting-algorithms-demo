@@ -132,6 +132,30 @@ final class VisualSortArray implements SortArray {
 	}
 	
 	
+	@Override public boolean compareAndSwap(int i, int j) {
+		if (!isInitialized)
+			throw new IllegalStateException();
+		
+		setElementInternal(i, ElementState.COMPARING);
+		setElementInternal(j, ElementState.COMPARING);
+		regulateSpeed();
+		
+		setElementInternal(i, ElementState.ACTIVE);
+		setElementInternal(j, ElementState.ACTIVE);
+		comparisonCount.setOpaque(comparisonCount.getPlain() + 1);
+		int x = values.getPlain(i);
+		int y = values.getPlain(j);
+		if (x > y) {
+			values.setOpaque(i, y);
+			values.setOpaque(j, x);
+			swapCount.setOpaque(swapCount.getPlain() + 1);
+			regulateSpeed();
+			return true;
+		} else
+			return false;
+	}
+	
+	
 	/* Array visualization */
 	
 	@Override public void setElement(int index, ElementState state) {

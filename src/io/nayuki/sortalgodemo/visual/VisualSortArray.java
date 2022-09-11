@@ -152,7 +152,9 @@ final class VisualSortArray extends AbstractSortArray {
 	
 	
 	// Checks if the array is sorted. Returns silently if so, throws AssertionError if not.
-	public void assertSorted() {
+	public void finishSorting() {
+		if (isDone)
+			throw new IllegalStateException();
 		for (int i = 1; i < values.length; i++) {
 			if (values[i - 1] > values[i])
 				throw new AssertionError();

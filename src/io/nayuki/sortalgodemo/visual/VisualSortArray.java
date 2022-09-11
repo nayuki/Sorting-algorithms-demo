@@ -107,10 +107,10 @@ final class VisualSortArray implements SortArray {
 		setElementInternal(i, ElementState.COMPARING);
 		setElementInternal(j, ElementState.COMPARING);
 		regulateSpeed();
-		comparisonCount.setOpaque(comparisonCount.getPlain() + 1);
 		
 		setElementInternal(i, ElementState.ACTIVE);
 		setElementInternal(j, ElementState.ACTIVE);
+		comparisonCount.setOpaque(comparisonCount.getPlain() + 1);
 		return Integer.compare(values.getPlain(i), values.getPlain(j));
 	}
 	
@@ -122,9 +122,9 @@ final class VisualSortArray implements SortArray {
 		values.setOpaque(j, x);
 		if (!isInitialized)
 			return;
-		swapCount.setOpaque(swapCount.getPlain() + 1);
 		setElementInternal(i, ElementState.ACTIVE);
 		setElementInternal(j, ElementState.ACTIVE);
+		swapCount.setOpaque(swapCount.getPlain() + 1);
 		regulateSpeed();
 	}
 	

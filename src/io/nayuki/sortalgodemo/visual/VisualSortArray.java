@@ -95,13 +95,13 @@ final class VisualSortArray extends AbstractSortArray {
 		if (Thread.interrupted())
 			throw new StopException();
 		
-		setElement(i, ElementState.COMPARING);
-		setElement(j, ElementState.COMPARING);
+		setElementInternal(i, ElementState.COMPARING);
+		setElementInternal(j, ElementState.COMPARING);
 		regulateSpeed();
 		comparisonCount.setOpaque(comparisonCount.getPlain() + 1);
 		
-		setElement(i, ElementState.ACTIVE);
-		setElement(j, ElementState.ACTIVE);
+		setElementInternal(i, ElementState.ACTIVE);
+		setElementInternal(j, ElementState.ACTIVE);
 		
 		return super.compare(i, j);
 	}
@@ -114,8 +114,8 @@ final class VisualSortArray extends AbstractSortArray {
 		if (Thread.interrupted())
 			throw new StopException();
 		swapCount.setOpaque(swapCount.getPlain() + 1);
-		setElement(i, ElementState.ACTIVE);
-		setElement(j, ElementState.ACTIVE);
+		setElementInternal(i, ElementState.ACTIVE);
+		setElementInternal(j, ElementState.ACTIVE);
 		regulateSpeed();
 	}
 	
@@ -123,14 +123,18 @@ final class VisualSortArray extends AbstractSortArray {
 	/* Array visualization */
 	
 	public void setElement(int index, ElementState state) {
-		Objects.requireNonNull(state);
-		this.states[index] = state.ordinal();
+		setElementInternal(index, Objects.requireNonNull(state));
 	}
 	
 	
 	public void setRange(int start, int end, ElementState state) {
 		Objects.requireNonNull(state);
 		Arrays.fill(states, start, end, state.ordinal());
+	}
+	
+	
+	private void setElementInternal(int index, ElementState state) {
+		states[index] = state.ordinal();
 	}
 	
 	

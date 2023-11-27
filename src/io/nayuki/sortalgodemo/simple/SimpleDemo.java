@@ -42,6 +42,7 @@ public final class SimpleDemo {
 		
 		BubbleSort.INSTANCE,
 		CocktailSort.INSTANCE,
+		OddEvenSort.INSTANCE,
 		SelectionSort.INSTANCE,
 		GnomeSort.INSTANCE,
 		InsertionSort.INSTANCE,

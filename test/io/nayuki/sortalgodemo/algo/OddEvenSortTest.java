@@ -22,54 +22,16 @@
  *   Software.
  */
 
-/* 
- * Sort demo main class
- * 
- * Color legend:
- * - Blue: Normal
- * - Green: In final position
- * - Yellow: Comparing
- * - Gray: Inactive
- */
+package io.nayuki.sortalgodemo.algo;
 
-package io.nayuki.sortalgodemo.visual;
-
-import java.util.Arrays;
-import io.nayuki.sortalgodemo.algo.*;
+import io.nayuki.sortalgodemo.core.FastSortAlgorithmTest;
+import io.nayuki.sortalgodemo.core.SortAlgorithm;
 
 
-/**
- * The main class for the sort demo desktop GUI application.
- */
-public final class SortDemo {
+public final class OddEvenSortTest extends FastSortAlgorithmTest {
 	
-	// Run with no command line arguments.
-	public static void main(String[] args) {
-		// Set up list of algorithms and go
-		new LaunchFrame(Arrays.asList(
-			// Approximately O(n^2) (mediocre)
-			BubbleSort.INSTANCE,
-			CocktailSort.INSTANCE,
-			OddEvenSort.INSTANCE,
-			SelectionSort.INSTANCE,
-			CycleSort.INSTANCE,
-			PancakeSort.INSTANCE,
-			QuasiPancakeSort.INSTANCE,
-			GnomeSort.INSTANCE,
-			InsertionSort.INSTANCE,
-			InsertionSortBinarySearch.INSTANCE,
-			// Approximately O(n log n) (good)
-			CombSort.INSTANCE,
-			ShellSort.INSTANCE,
-			RotationMergeSort.INSTANCE,
-			HeapSort.INSTANCE,
-			QuickSortDoubleEnded.INSTANCE,
-			QuickSortSliding.INSTANCE,
-			// Approximately O(n^3) (bad)
-			StoogeSort.INSTANCE,
-			StupidSort.INSTANCE,
-			BozoSort.INSTANCE,
-			SlowSort.INSTANCE));
+	@Override public SortAlgorithm getInstance() {
+		return OddEvenSort.INSTANCE;
 	}
 	
 }

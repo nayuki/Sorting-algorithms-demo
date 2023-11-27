@@ -31,9 +31,9 @@ import io.nayuki.sortalgodemo.core.SortArray;
 /**
  * Sorts by only reversing prefixes of the array. The behavior resembles selection sort.
  * <ul>
- *   <li>Time complexity, all cases: <var>&#x398;</var>(<var>n</var><sup>2</sup>).</li>
- *   <li>Number of comparisons, all cases: <var>&#x398;</var>(<var>n</var><sup>2</sup>).</li>
- *   <li>Number of swaps, all cases: <var>&#x398;</var>(<var>n</var><sup>2</sup>).</li>
+ *   <li>Time complexity, all cases: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of comparisons, all cases: &#x398;(<var>n</var><sup>2</sup>).</li>
+ *   <li>Number of swaps, all cases: &#x398;(<var>n</var><sup>2</sup>).</li>
  *   <li>Auxiliary space complexity, all cases: &#x398;(1).</li>
  * </ul>
  */
